@@ -2,6 +2,7 @@ package bindingofisaac;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.util.Duration;
 
 import javafx.event.EventHandler;
@@ -51,7 +52,7 @@ public class TickTimer {
 	 *         play, pause, or stop this individual tick later on. If you do not capture this
 	 *         value, it is still possible to interact with the tick using playAll() and stopAll().
 	 */
-	public int addTick(int duration, int cycleCount, EventHandler onTickEvent) {
+	public int addTick(int duration, int cycleCount, EventHandler<ActionEvent> onTickEvent) {
 		KeyFrame cKeyFrame = new KeyFrame(Duration.millis(duration), onTickEvent);
 		Timeline cTimeline = new Timeline();
 		cTimeline.setCycleCount(cycleCount);
@@ -76,7 +77,7 @@ public class TickTimer {
 	 *         play, pause, or stop this individual tick later on. If you do not capture this
 	 *         value, it is still possible to interact with the tick using playAll() and stopAll().
 	 */
-	public int addTickAndPlay(int duration, int cycleCount, EventHandler onTickEvent) {
+	public int addTickAndPlay(int duration, int cycleCount, EventHandler<ActionEvent> onTickEvent) {
 		int tick = addTick(duration, cycleCount, onTickEvent);
 		play(tick);
 		return tick;
