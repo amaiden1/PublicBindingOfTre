@@ -1,5 +1,6 @@
 package bindingofisaac;
 
+import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -107,6 +108,19 @@ public class TickTimer {
 	 */
 	public void play(int index) {
 		ticks.get(index).play();
+	}
+
+	/**
+	 * Plays the tick at the specified index from the start, then removes it once playback
+	 * has finished.
+	 * @param index the index of the tick to play once
+	 */
+	public void playOnce(int index) {
+		ticks.get(index).playFromStart();
+		while (ticks.get(index).getStatus() == Animation.Status.RUNNING) {
+			// do nothing, just wait until it stops
+		}
+		removeTick(index);
 	}
 
 	/**
