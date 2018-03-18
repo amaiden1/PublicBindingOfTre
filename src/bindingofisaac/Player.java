@@ -71,7 +71,7 @@ public class Player {
 		return direction;
 	}
 
-	public ImageView getImg() {
+	public ImageView getImageView() {
 		return currentImg;
 	}
 
