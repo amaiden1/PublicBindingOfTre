@@ -2,14 +2,13 @@ package bindingofisaac;
 
 import javafx.scene.image.ImageView;
 
-public abstract class Constants {
+public final class Constants {
 
 	/*
 	 * CONSTANTS ONLY. All fields must be public and static.
 	 *
 	 * Nothing else should go in this file. It also
-	 * should not be instantiated; the class's abstract
-	 * property prevents this.
+	 * should not be instantiated.
 	 *
 	 * For easier usage, add 'import static Constants' to
 	 * your imports.
@@ -32,6 +31,14 @@ public abstract class Constants {
 			DOOR_LEFT = ImageHelper.imageFromSource("door_left.png");
 
 
+	/*
+	 * Forcibly prevents class instantation. The default
+	 * constructor is public, so if we specify a private
+	 * constructor, a default public constructor is not
+	 * created. Thus it tries to use this one, and cannot,
+	 * so an error is thrown.
+	 */
+	private Constants() {}
 
 
 }
