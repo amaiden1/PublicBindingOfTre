@@ -17,10 +17,6 @@ import java.util.ArrayList;
 
 public class Room {
 
-	private final int
-			ROOM_WIDTH = 1040, // 13 * 80
-			ROOM_HEIGHT = 560, // 7 * 80 - 1200x720 for 1080p
-			ROOM_INNER_OFFSET = 60;
 	private boolean
 			isOccupied,
 			isCleared;
@@ -52,11 +48,11 @@ public class Room {
 		enemies = new ArrayList<>();
 		*/
 		basePane = new StackPane();
-		basePane.setPrefSize(ROOM_WIDTH, ROOM_HEIGHT);
+		basePane.setPrefSize(Constants.ROOM_WIDTH, Constants.ROOM_HEIGHT);
 		outerPane = new Pane();
-		outerPane.setPrefSize(ROOM_WIDTH, ROOM_HEIGHT);
+		outerPane.setPrefSize(Constants.ROOM_WIDTH, Constants.ROOM_HEIGHT);
 		innerPane = new Pane();
-		innerPane.setPrefSize(ROOM_WIDTH - ROOM_INNER_OFFSET, ROOM_HEIGHT - ROOM_INNER_OFFSET);
+		innerPane.setPrefSize(Constants.ROOM_WIDTH - Constants.ROOM_INNER_OFFSET, Constants.ROOM_HEIGHT - Constants.ROOM_INNER_OFFSET);
 		basePane.getChildren().add(outerPane);  // Two seperate calls here to ensure explicit
 		basePane.getChildren().add(innerPane);  // stack order
 	}
@@ -71,10 +67,12 @@ public class Room {
 
 	public ArrayList<Enemy> getEnemies() {
 		// code to get enemies
+		return new ArrayList<>();
 	}
 
 	public ArrayList<ImageView> getEnemyImageViews() {
 		// code to get enemy image views
+		return new ArrayList<>();
 	}
 
 	public void removeEnemy(Enemy enemy) {
@@ -103,6 +101,7 @@ public class Room {
 
 	public Item getItem() {
 		// code to return item
+		return new Item();
 	}
 
 }
