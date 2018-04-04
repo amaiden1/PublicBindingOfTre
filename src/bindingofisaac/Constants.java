@@ -7,10 +7,11 @@ public final class Constants {
 	/*
 	 * CONSTANTS ONLY. All fields must be public and static.
 	 *
-	 * Nothing else should go in this file. It also
-	 * should not be instantiated.
+	 * Nothing else should go in this file. It also should
+	 * not be instantiated.
 	 *
-	 * For easier usage, add 'import static Constants' to
+	 * For easier usage, add
+	 * 'import static bindingofisaac.Constants.*' to
 	 * your imports.
 	 */
 	public static final int
@@ -22,13 +23,19 @@ public final class Constants {
 			UP = 0,
 			RIGHT = 1,
 			DOWN = 2,
-			LEFT = 3;
+			LEFT = 3,
+
+			ROOM_TYPE_REGULAR = 0,
+			ROOM_TYPE_ITEM = 1,
+			ROOM_TYPE_BOSS = 2;
 
 	public static final ImageView
 			DOOR_UP = ImageHelper.imageFromSource("door_up.png"),
 			DOOR_RIGHT = ImageHelper.imageFromSource("door_left.png"),
 			DOOR_DOWN = ImageHelper.imageFromSource("door_down.png"),
-			DOOR_LEFT = ImageHelper.imageFromSource("door_left.png");
+			DOOR_LEFT = ImageHelper.imageFromSource("door_left.png"),
+			ROOM_INNER_BACKGROUND = ImageHelper.imageFromSource("inner_background.png"),
+			ROOM_OUTER_BACKGROUND = ImageHelper.imageFromSource("inner_background.png");
 
 
 	/*
