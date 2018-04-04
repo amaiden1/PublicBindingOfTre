@@ -14,14 +14,16 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Room {
 
 	private boolean
 			isOccupied,
 			isCleared;
-	private ImageView background;
-	/*
+	private ImageView
+			innerBack,
+			outerBack;
 	private Door
 			door0,
 			door1,
@@ -29,24 +31,26 @@ public class Room {
 			door3;
 	private Item item;
 	private ArrayList<Enemy> enemies;
-	*/
 	private StackPane basePane;
 	private Pane
 			outerPane,
 			innerPane;
+	private int
+			ix, // artificial index x
+			iy; // artificial index y
 
-	public Room(ImageView background) {
+	public Room(ImageView innerBack, ImageView outerBack) {
+		// include door HashMap in constructor?
 		isOccupied = false;
 		isCleared = false;
-		this.background = background;
-		/*
+		this.innerBack = innerBack;
+		this.outerBack = outerBack;
 		door0 = null;
 		door1 = null;
 		door2 = null;
 		door3 = null;
 		item = null;
 		enemies = new ArrayList<>();
-		*/
 		basePane = new StackPane();
 		basePane.setPrefSize(Constants.ROOM_WIDTH, Constants.ROOM_HEIGHT);
 		outerPane = new Pane();
@@ -57,8 +61,35 @@ public class Room {
 		basePane.getChildren().add(innerPane);  // stack order
 	}
 
-	public void setDoors(boolean d0, boolean d1, boolean d2, boolean d3) {
+	public void setDoors(boolean[] doors) {
 		// code to create doors and add them
+		/*
+		if (doors.containsKey(0)) {
+			door0 = new Door(0, doors.get(0));
+		}
+		if (doors.containsKey(1)) {
+			door1 = new Door(1, doors.get(1));
+		}
+		if (doors.containsKey(0)) {
+			door2 = new Door(2, doors.get(2));
+		}
+		if (doors.containsKey(0)) {
+			door3 = new Door(3, doors.get(3));
+		}
+		*/
+		if (doors[0]) {
+			door0 = new Door(0);
+		}
+		if (doors[1]) {
+			door1 = new Door(1);
+		}
+		if (doors[2]) {
+			door2 = new Door(2);
+		}
+		if (doors[3]) {
+			door3 = new Door(3);
+		}
+
 	}
 
 	public void setEnemies(Enemy... enemies) {
