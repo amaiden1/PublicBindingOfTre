@@ -16,6 +16,8 @@ import javafx.scene.layout.StackPane;
 import java.util.ArrayList;
 import static bindingofisaac.Constants.*;
 import java.awt.Canvas;
+import java.io.File;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
 
 public class Room {
@@ -23,6 +25,7 @@ public class Room {
 	private boolean
 			isOccupied,
 			isCleared;
+	private Scene roomScene;
 	private boolean[] hasDoors;
 	private ImageView
 			innerBack,
@@ -74,12 +77,16 @@ public class Room {
 		roomPane = new Pane();
 		roomPane.setPrefSize(ROOM_WIDTH, ROOM_HEIGHT);
 		
-		Image wallBackground = new Image("file:Open_Door.png");
-		ImageView walls = new ImageView(wallBackground);
-		Image arena = new Image("file:Playable_Area.png");
-		ImageView playableArea = new ImageView(arena);
+		Image walls = new Image("Walls.png");
+		System.out.println(walls);
 		
-		roomPane.getChildren().add(walls);
+		outerBack = new ImageView();
+		outerBack.setImage(walls);
+		
+		innerBack = new ImageView(new Image("file:Playable_Area.png"));
+		roomPane.getChildren().add(outerBack);
+		
+		roomScene = new Scene(roomPane);
 		
 		isOccupied = false;
 		isCleared = false;
@@ -123,6 +130,10 @@ public class Room {
 			numDoors++;
 		}
 
+	}
+	
+	public Scene getRoomScene(){
+		return roomScene;
 	}
 	
 	public Pane getRoomPane(){

@@ -25,13 +25,13 @@ public class Main extends Application{
 		primaryStage.setScene(primaryScene);
 
 		LayoutGenerator lg = new LayoutGenerator();
-		primaryPane.getChildren().add(lg.getPane());
+		//primaryPane.getChildren().add(lg.getPane());
 		Floor floor = lg.getFloor();
 		System.out.println(floor);
 		
 		Room spawnRoom = floor.getSpawnRoom();
-		primaryPane.getChildren().clear();
-		primaryPane = spawnRoom.getRoomPane();
+		primaryPane.getChildren().add(spawnRoom.getRoomPane());
+		//primaryStage.setScene(spawnRoom.getRoomScene());
 		
 		primaryStage.show();
 		
