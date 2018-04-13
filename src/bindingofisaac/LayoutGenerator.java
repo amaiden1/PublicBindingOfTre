@@ -127,10 +127,7 @@ public class LayoutGenerator {
 	public MiniMap getMiniMap(){
 		return miniMap;
 	}
-        
-    public Pane getPane(){
-        return miniMap.getPane();
-    }
+	
 	/***********************************************CREATING DOORS**********************************************************************/
 		
 	
