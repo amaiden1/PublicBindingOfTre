@@ -9,6 +9,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import static bindingofisaac.Constants.*;
 
 /**
  *
@@ -23,14 +24,18 @@ public class Main extends Application{
 		Scene primaryScene = new Scene(primaryPane);
 		primaryStage = new Stage();
 		primaryStage.setScene(primaryScene);
+		primaryPane.setPrefSize(ROOM_WIDTH, ROOM_HEIGHT);
+		//primaryStage.setMaxHeight(ROOM_HEIGHT + 30);
+		//primaryStage.setMaxWidth(ROOM_WIDTH);
+		//primaryStage.setResizable(false);
 
 		LayoutGenerator lg = new LayoutGenerator();
-		//primaryPane.getChildren().add(lg.getPane());
 		Floor floor = lg.getFloor();
 		System.out.println(floor);
 		
 		Room spawnRoom = floor.getSpawnRoom();
 		primaryPane.getChildren().add(spawnRoom.getRoomPane());
+		primaryPane.getChildren().add(lg.getMiniMap().getPane());
 		//primaryStage.setScene(spawnRoom.getRoomScene());
 		
 		primaryStage.show();
