@@ -21,9 +21,9 @@ public final class Constants {
 	 * your imports.
 	 */
 	public static final int
-			ROOM_WIDTH = 1040, // 13 * 80
-			ROOM_HEIGHT = 560, // 7 * 80 - 1200x720 for 1080p
-			ROOM_INNER_OFFSET = 60,
+			ROOM_WIDTH = 1200, // 13 * 80
+			ROOM_HEIGHT = 720, // 7 * 80 - 1200x720 for 1080p
+			ROOM_INNER_OFFSET = 80,
 
 			// UCD directions
 			UP = 0,

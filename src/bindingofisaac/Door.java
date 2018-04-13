@@ -25,36 +25,37 @@ public class Door {
 
 	public Door(int dir) throws Exception {
 		this.direction = dir;
+		img = new ImageView("/img/Open_Door.png");
 		switch (dir) {
 			case 0:
-				//img.setRotate(0);  // rotate to face
+				img.setRotate(0);  // rotate to face
 				doorX = ROOM_WIDTH / 2;
 				doorY = ROOM_INNER_OFFSET / 2;
-				hitbox = new Rectangle(60,60); //problem line
+				hitbox = new Rectangle(img.getFitWidth(),img.getFitHeight()); //problem line
 				hitboxX = ROOM_WIDTH / 2;
 				hitboxY = (int)(ROOM_INNER_OFFSET + (hitbox.getHeight() / 2));
 				break;
 			case 1:
-				//img.setRotate(90);  // rotate to face
+				img.setRotate(90);  // rotate to face
 				doorX = ROOM_WIDTH - (ROOM_INNER_OFFSET / 2);
 				doorY = ROOM_HEIGHT / 2;
-				hitbox = new Rectangle(60,60);
+				hitbox = new Rectangle(img.getFitHeight(),img.getFitWidth());
 				hitboxX = (int)(ROOM_WIDTH - ROOM_INNER_OFFSET - (hitbox.getWidth() / 2));
 				hitboxY = ROOM_HEIGHT / 2;
 				break;
 			case 2:
-				//img.setRotate(180);  // rotate to face DOWN
+				img.setRotate(180);  // rotate to face DOWN
 				doorX = ROOM_WIDTH / 2;
 				doorY = (int)(ROOM_HEIGHT - (ROOM_INNER_OFFSET / 2));
-				hitbox = new Rectangle(60,60);
+				hitbox = new Rectangle(img.getFitWidth(),img.getFitHeight()); //problem line
 				hitboxX = ROOM_WIDTH / 2;
 				hitboxY = (int)(ROOM_HEIGHT - ROOM_INNER_OFFSET - (hitbox.getHeight() / 2));
 				break;
 			case 3:
-				//img.setRotate(270);  // rotate to face LEFT
+				img.setRotate(270);  // rotate to face LEFT
 				doorX = ROOM_INNER_OFFSET / 2;
 				doorY = ROOM_HEIGHT / 2;
-				hitbox = new Rectangle(60,60);
+				hitbox = new Rectangle(img.getFitHeight(),img.getFitWidth());
 				hitboxX = (int)(ROOM_INNER_OFFSET + (hitbox.getWidth() / 2));
 				hitboxY = ROOM_HEIGHT / 2;
 				break;
@@ -62,6 +63,7 @@ public class Door {
 				// Direction isn't 0, 1, 2, 3
 				throw new DirectionNotFoundException("[ERROR][Door.constructor] Invalid direction specified! Must be 0-3");
 		}
+		img.relocate(doorX, doorY);
 	}
 
 	public void setOpen(boolean open) {
@@ -83,6 +85,10 @@ public class Door {
 
 	public ImageView getImageView() {
 		return img;
+	}
+	
+	public Rectangle getHitbox(){
+		return hitbox;
 	}
 
 }
