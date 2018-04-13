@@ -15,9 +15,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import java.util.ArrayList;
 import static bindingofisaac.Constants.*;
-import java.awt.Canvas;
-import java.io.File;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 
 public class Room {
@@ -25,7 +22,6 @@ public class Room {
 	private boolean
 			isOccupied,
 			isCleared;
-	private Scene roomScene;
 	private boolean[] hasDoors;
 	private ImageView
 			innerBack,
@@ -77,16 +73,14 @@ public class Room {
 		roomPane = new Pane();
 		roomPane.setPrefSize(ROOM_WIDTH, ROOM_HEIGHT);
 		
-		Image walls = new Image("Walls.png");
-		System.out.println(walls);
-		
+		Image walls = new Image("/img/Walls.png");
 		outerBack = new ImageView();
 		outerBack.setImage(walls);
+		innerBack = new ImageView(new Image("/img/Playable_Area.png"));
 		
-		innerBack = new ImageView(new Image("file:Playable_Area.png"));
 		roomPane.getChildren().add(outerBack);
-		
-		roomScene = new Scene(roomPane);
+		roomPane.getChildren().add(innerBack);
+		innerBack.relocate(80,82);
 		
 		isOccupied = false;
 		isCleared = false;
@@ -115,25 +109,25 @@ public class Room {
 		*/
 		if (doors[0]) {
 			door0 = new Door(0);
+			roomPane.getChildren().add(door0.getImageView());
 			numDoors++;
 		}
 		if (doors[1]) {
 			door1 = new Door(1);
+			roomPane.getChildren().add(door1.getImageView());
 			numDoors++;
 		}
 		if (doors[2]) {
 			door2 = new Door(2);
+			roomPane.getChildren().add(door2.getImageView());
 			numDoors++;
 		}
 		if (doors[3]) {
 			door3 = new Door(3);
+			roomPane.getChildren().add(door3.getImageView());
 			numDoors++;
 		}
 
-	}
-	
-	public Scene getRoomScene(){
-		return roomScene;
 	}
 	
 	public Pane getRoomPane(){
