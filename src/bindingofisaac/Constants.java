@@ -1,6 +1,12 @@
 package bindingofisaac;
 
+import javafx.geometry.Insets;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.paint.Paint;
 
 public final class Constants {
 
@@ -29,13 +35,18 @@ public final class Constants {
 			ROOM_TYPE_ITEM = 1,
 			ROOM_TYPE_BOSS = 2;
 
-	public static final ImageView
-			DOOR_UP = ImageHelper.imageFromSource("door_up.png"),
-			DOOR_RIGHT = ImageHelper.imageFromSource("door_left.png"),
-			DOOR_DOWN = ImageHelper.imageFromSource("door_down.png"),
-			DOOR_LEFT = ImageHelper.imageFromSource("door_left.png"),
-			ROOM_INNER_BACKGROUND = ImageHelper.imageFromSource("inner_background.png"),
-			ROOM_OUTER_BACKGROUND = ImageHelper.imageFromSource("inner_background.png");
+	public static final ImageView // Locked_Door.png, Open_Door.png
+			LOCKED_DOOR = ImageHelper.imageFromSource("Locked_Door.png"),
+			DOOR_RIGHT = ImageHelper.imageFromSource("Open_Door.png"),
+			ROOM_PLAYABLE_AREA = ImageHelper.imageFromSource("Playable_Area.png"),
+			ROOM_WALLS = ImageHelper.imageFromSource("Walls.png");
+	
+	public static final Background 
+			ROOM = new Background(new BackgroundFill(Paint.valueOf("BLUE"), CornerRadii.EMPTY, Insets.EMPTY)),
+			EMPTY = new Background(new BackgroundFill(Paint.valueOf("WHITE"), CornerRadii.EMPTY, Insets.EMPTY)),
+			SPAWN = new Background(new BackgroundFill(Paint.valueOf("YELLOW"), CornerRadii.EMPTY, Insets.EMPTY)),
+			STAIRS = new Background(new BackgroundFill(Paint.valueOf("RED"), CornerRadii.EMPTY, Insets.EMPTY)),
+			ITEM = new Background(new BackgroundFill(Paint.valueOf("GREEN"), CornerRadii.EMPTY, Insets.EMPTY));
 
 
 	/*

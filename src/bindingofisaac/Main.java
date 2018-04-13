@@ -6,31 +6,38 @@
 package bindingofisaac;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
  *
  * @author Nolan
  */
-public class Main extends Application {
+public class Main extends Application{
 	
 	@Override
-	public void start(Stage primaryStage) {
+	public void start(Stage primaryStage) throws Exception{
 
 		Pane primaryPane = new Pane();
 		Scene primaryScene = new Scene(primaryPane);
 		primaryStage = new Stage();
 		primaryStage.setScene(primaryScene);
 
+		LayoutGenerator lg = new LayoutGenerator();
+		primaryPane.getChildren().add(lg.getPane());
+		Floor floor = lg.getFloor();
+		System.out.println(floor);
+		
+		Room spawnRoom = floor.getSpawnRoom();
+		primaryPane.getChildren().clear();
+		primaryPane = spawnRoom.getRoomPane();
+		
+		primaryStage.show();
+		
 		/*
-		 * Actions to perform on application start
-		 */
+		* Actions to perform on application start
+		*/
 
 	}
 

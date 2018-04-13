@@ -14,13 +14,16 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import java.util.ArrayList;
-import java.util.HashMap;
+import static bindingofisaac.Constants.*;
+import java.awt.Canvas;
+import javafx.scene.image.Image;
 
 public class Room {
 
 	private boolean
 			isOccupied,
 			isCleared;
+	private boolean[] hasDoors;
 	private ImageView
 			innerBack,
 			outerBack;
@@ -33,18 +36,20 @@ public class Room {
 	private ArrayList<Enemy> enemies;
 	private StackPane basePane;
 	private Pane
-			outerPane,
+			roomPane,
 			innerPane;
 	private int
+			numDoors,
 			ix, // artificial index x
 			iy; // artificial index y
-
-	public Room(ImageView innerBack, ImageView outerBack) {
+	
+/*******************************************************************************************************************************************
+	public Room() { // Nolan's constructor
 		// include door HashMap in constructor?
 		isOccupied = false;
 		isCleared = false;
-		this.innerBack = innerBack;
-		this.outerBack = outerBack;
+		//this.innerBack = innerBack;
+		//this.outerBack = outerBack; // each floor has diff background??
 		door0 = null;
 		door1 = null;
 		door2 = null;
@@ -57,11 +62,35 @@ public class Room {
 		outerPane.setPrefSize(Constants.ROOM_WIDTH, Constants.ROOM_HEIGHT);
 		innerPane = new Pane();
 		innerPane.setPrefSize(Constants.ROOM_WIDTH - Constants.ROOM_INNER_OFFSET, Constants.ROOM_HEIGHT - Constants.ROOM_INNER_OFFSET);
-		basePane.getChildren().add(outerPane);  // Two seperate calls here to ensure explicit
+		basePane.getChildren().add(outerPane);  // Two separate calls here to ensure explicit
 		basePane.getChildren().add(innerPane);  // stack order
 	}
+	/***************************************************************************************************************************************/
+	
+	public Room(int x, int y){ //Austin's constructor
+		ix = x; iy = y;
+		hasDoors = new boolean[]{false,false,false,false}; //N, E, S, W
+		numDoors = 0;
+		roomPane = new Pane();
+		roomPane.setPrefSize(ROOM_WIDTH, ROOM_HEIGHT);
+		
+		Image wallBackground = new Image("file:Open_Door.png");
+		ImageView walls = new ImageView(wallBackground);
+		Image arena = new Image("file:Playable_Area.png");
+		ImageView playableArea = new ImageView(arena);
+		
+		roomPane.getChildren().add(walls);
+		
+		isOccupied = false;
+		isCleared = false;
+		door0 = null;
+		door1 = null;
+		door2 = null;
+		door3 = null;
+		
+	}
 
-	public void setDoors(boolean[] doors) {
+	public void setDoors(boolean[] doors) throws Exception{
 		// code to create doors and add them
 		/*
 		if (doors.containsKey(0)) {
@@ -79,17 +108,37 @@ public class Room {
 		*/
 		if (doors[0]) {
 			door0 = new Door(0);
+			numDoors++;
 		}
 		if (doors[1]) {
 			door1 = new Door(1);
+			numDoors++;
 		}
 		if (doors[2]) {
 			door2 = new Door(2);
+			numDoors++;
 		}
 		if (doors[3]) {
 			door3 = new Door(3);
+			numDoors++;
 		}
 
+	}
+	
+	public Pane getRoomPane(){
+		return roomPane;
+	}
+	
+	public int getX(){
+		return ix;
+	}
+	
+	public int getY(){
+		return iy;
+	}
+	
+	public int getNumDoors(){
+		return numDoors;
 	}
 
 	public void setEnemies(Enemy... enemies) {
@@ -134,5 +183,13 @@ public class Room {
 		// code to return item
 		return new Item();
 	}
+        
+    public void setX(int x){
+        ix = x;
+    }
+        
+    public void setY(int y){
+        iy = y;
+    }
 
 }

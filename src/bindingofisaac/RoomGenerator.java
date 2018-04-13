@@ -2,9 +2,7 @@ package bindingofisaac;
 
 import javafx.scene.image.ImageView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Random;
 
 public class RoomGenerator {
@@ -25,9 +23,9 @@ public class RoomGenerator {
 		items = possibleItems;
 		this.boss = boss;
 	}
-
+/*
 	public Room generateRegularRoom(boolean[] doors) {
-		Room room = new Room(background, background);
+		Room room = new Room();
 		// randomize enemies
 		for (int i = 0 ; i < MIN_ENEMIES + rand.nextInt(MAX_ENEMIES - MIN_ENEMIES) ; i++) {
 			room.getEnemies().add(enemies.get(rand.nextInt(enemies.size())));
@@ -39,7 +37,7 @@ public class RoomGenerator {
 	}
 
 	public Room generateItemRoom(boolean[] doors) {
-		Room room = new Room(background, background);
+		Room room = new Room();
 		// randomize item
 		room.setItem(items.get(rand.nextInt(items.size())));
 		// setup doors
@@ -51,7 +49,7 @@ public class RoomGenerator {
 	}
 
 	public Room generateFinalRoom(boolean[] doors) {
-		Room room = new Room(background, background);
+		Room room = new Room();
 		// insert boss
 		room.getEnemies().add(boss);
 		// setup doors
@@ -60,6 +58,6 @@ public class RoomGenerator {
 		 * Todo: add/create final room staircase
 		 */
 
-		return room;
-	}
+		//return room;
+	//}
 }
