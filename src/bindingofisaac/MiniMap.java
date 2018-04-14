@@ -26,6 +26,7 @@ public final Background EMPTY = new Background(new BackgroundFill(Paint.valueOf(
 public final Background SPAWN = new Background(new BackgroundFill(Paint.valueOf("YELLOW"), CornerRadii.EMPTY, Insets.EMPTY));
 public final Background STAIRS = new Background(new BackgroundFill(Paint.valueOf("RED"), CornerRadii.EMPTY, Insets.EMPTY));
 public final Background ITEM = new Background(new BackgroundFill(Paint.valueOf("GREEN"), CornerRadii.EMPTY, Insets.EMPTY));
+private final int MAP_SIZE = 50;
 	
 	private Pane miniMap;
 	private Button[][] grid;
@@ -39,12 +40,14 @@ public final Background ITEM = new Background(new BackgroundFill(Paint.valueOf("
 				grid[col][row] = new Button();
 				grid[col][row].setBackground(EMPTY);
 				miniMap.getChildren().add(grid[col][row]);
-				grid[col][row].setPrefSize(50, 50);
-				grid[col][row].relocate(col *  50, (6 -row) * 50);
+				grid[col][row].setPrefSize(MAP_SIZE, MAP_SIZE);
+				grid[col][row].relocate(col *  MAP_SIZE, (6 -row) * MAP_SIZE);
+				grid[col][row].setOpacity(0);
             }
 		}
             grid[3][3].setBackground(SPAWN);
-			miniMap.relocate(ROOM_WIDTH - miniMap.getWidth(), 0);
+			grid[3][3].setOpacity(.5);
+			miniMap.relocate(900, 0);
 	}
 	
 	public Pane getPane(){
@@ -60,6 +63,7 @@ public final Background ITEM = new Background(new BackgroundFill(Paint.valueOf("
             int col = x + 3;
             int row = y + 3;
             grid[col][row].setBackground(type);
-				grid[col][row].setText(x + "," + y);
+			grid[col][row].setOpacity(.5);
+			grid[col][row].setText(x + "," + y);
 	}
 }

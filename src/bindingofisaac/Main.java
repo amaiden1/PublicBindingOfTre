@@ -36,7 +36,6 @@ public class Main extends Application{
 		Room spawnRoom = floor.getSpawnRoom();
 		primaryPane.getChildren().add(spawnRoom.getRoomPane());
 		primaryPane.getChildren().add(lg.getMiniMap().getPane());
-		//primaryStage.setScene(spawnRoom.getRoomScene());
 		
 		primaryStage.show();
 		
