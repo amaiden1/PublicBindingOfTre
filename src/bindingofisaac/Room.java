@@ -42,29 +42,6 @@ public class Room {
 			ix, // artificial index x
 			iy; // artificial index y
 	
-/*******************************************************************************************************************************************
-	public Room() { // Nolan's constructor
-		// include door HashMap in constructor?
-		isOccupied = false;
-		isCleared = false;
-		//this.innerBack = innerBack;
-		//this.outerBack = outerBack; // each floor has diff background??
-		door0 = null;
-		door1 = null;
-		door2 = null;
-		door3 = null;
-		item = null;
-		enemies = new ArrayList<>();
-		basePane = new StackPane();
-		basePane.setPrefSize(Constants.ROOM_WIDTH, Constants.ROOM_HEIGHT);
-		outerPane = new Pane();
-		outerPane.setPrefSize(Constants.ROOM_WIDTH, Constants.ROOM_HEIGHT);
-		innerPane = new Pane();
-		innerPane.setPrefSize(Constants.ROOM_WIDTH - Constants.ROOM_INNER_OFFSET, Constants.ROOM_HEIGHT - Constants.ROOM_INNER_OFFSET);
-		basePane.getChildren().add(outerPane);  // Two separate calls here to ensure explicit
-		basePane.getChildren().add(innerPane);  // stack order
-	}
-	/***************************************************************************************************************************************/
 	
 	public Room(int x, int y){ //Austin's constructor
 		ix = x; iy = y;
@@ -91,44 +68,35 @@ public class Room {
 		
 	}
 
-	public void setDoors(boolean[] doors) throws Exception{
+	public void setDoors(boolean[] doors, Floor floor, int roomX, int roomY) throws Exception{
 		// code to create doors and add them
-		/*
-		if (doors.containsKey(0)) {
-			door0 = new Door(0, doors.get(0));
-		}
-		if (doors.containsKey(1)) {
-			door1 = new Door(1, doors.get(1));
-		}
-		if (doors.containsKey(0)) {
-			door2 = new Door(2, doors.get(2));
-		}
-		if (doors.containsKey(0)) {
-			door3 = new Door(3, doors.get(3));
-		}
-		*/
 		if (doors[0]) {
 			door0 = new Door(0);
 			roomPane.getChildren().add(door0.getImageView());
 			numDoors++;
+                        door0.setDestination(floor.getRoomAtLocation(roomX, roomY + 1));
 		}
 		if (doors[1]) {
 			door1 = new Door(1);
 			roomPane.getChildren().add(door1.getImageView());
 			numDoors++;
+                        door1.setDestination(floor.getRoomAtLocation(roomX + 1, roomY));
 		}
 		if (doors[2]) {
 			door2 = new Door(2);
 			roomPane.getChildren().add(door2.getImageView());
 			numDoors++;
+                        door2.setDestination(floor.getRoomAtLocation(roomX, roomY - 1));
 		}
 		if (doors[3]) {
 			door3 = new Door(3);
 			roomPane.getChildren().add(door3.getImageView());
 			numDoors++;
+                        door3.setDestination(floor.getRoomAtLocation(roomX - 1, roomY));
 		}
-
 	}
+        
+        
 	
         public double getHeight(){
             return roomPane.getHeight();

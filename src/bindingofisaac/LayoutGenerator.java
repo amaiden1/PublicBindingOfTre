@@ -109,8 +109,8 @@ public class LayoutGenerator {
 			currentNumberOfRooms = roomsXList.size();
         }
 		addRooms();
+                floor = new Floor(floorRooms); //problem line?
 		addFloorDoors();
-		floor = new Floor(floorRooms);
 	}
         
     private void addRooms(){
@@ -133,12 +133,12 @@ public class LayoutGenerator {
 	
 	public void addFloorDoors() throws Exception{
 		boolean[] doorValues = new boolean[4];
-		for(Room thisRoom : floorRooms){ 
+		for(Room thisRoom : floor.getFloor()){ 
 			doorValues[0] = isRoomInDirection(thisRoom, 0);
 			doorValues[1] = isRoomInDirection(thisRoom, 1);
 			doorValues[2] = isRoomInDirection(thisRoom, 2);
 			doorValues[3] = isRoomInDirection(thisRoom, 3);
-			thisRoom.setDoors(doorValues);
+			thisRoom.setDoors(doorValues, floor, thisRoom.getX(), thisRoom.getY());
 		}
 	}
 	

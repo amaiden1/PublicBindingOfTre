@@ -19,6 +19,10 @@ public class Floor {
 		thisFloor = givenRooms;
 		spawnRoom = thisFloor.get(0);
 	}
+        
+        public ArrayList<Room> getFloor(){
+            return thisFloor;
+        }
 	
 	public String toString(){
 		String result = "";
@@ -27,11 +31,33 @@ public class Floor {
 			result += "Room (" + current.getX() + " , " + current.getY() + "): Doors: " + current.getNumDoors() + "\n";
 			index++;
 		}
+                this.getRoomAtLocation(0, 0).setOccupied(true);
 		return result;
 	}
 	
 	public Room getSpawnRoom(){
 		return spawnRoom;
 	}
+        
+        private void doorCollisionChecker(){
+            
+        }
 	
+        public Room getRoomAtLocation(int x, int y){
+            Room room = null;
+            boolean found = false;
+            int index = 0;
+            do{
+                if(thisFloor.get(index).getX() == x && thisFloor.get(index).getY() == y){
+                    found = true;
+                    room = thisFloor.get(index);
+                }
+                if(index > thisFloor.size()){
+                    found = true;
+                }
+                index++;
+            }while(!found);
+            return room;
+        }
+        
 }

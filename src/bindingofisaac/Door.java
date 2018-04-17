@@ -4,10 +4,13 @@
 
 package bindingofisaac;
 
-import javafx.scene.image.ImageView;
-import javafx.scene.shape.Rectangle;
 
 import static bindingofisaac.Constants.*;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.geometry.Bounds;
+import javafx.scene.image.ImageView;
+import javafx.scene.shape.Rectangle;
 
 public class Door {
 
@@ -18,7 +21,7 @@ public class Door {
 		doorY,
 		hitboxX,
 		hitboxY;
-	//private Room destination;
+	private Room destination;
 	private boolean isOpen;
 	private ImageView img;  // this image is first provided UP
 	private Rectangle hitbox;
@@ -65,6 +68,15 @@ public class Door {
 				throw new DirectionNotFoundException("[ERROR][Door.constructor] Invalid direction specified! Must be 0-3");
 		}
 		img.relocate(doorX, doorY);
+                
+                img.boundsInParentProperty().addListener(new ChangeListener<Bounds>(){
+
+                    @Override
+                    public void changed(ObservableValue<? extends Bounds> observable, Bounds oldValue, Bounds newValue) {
+                        if(img.intersects(player.getImageView().getBoundsInLocal()))
+                    }
+                });
+                
 	}
 
 	public void setOpen(boolean open) {

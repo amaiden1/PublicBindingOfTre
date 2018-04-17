@@ -19,6 +19,7 @@ import javafx.stage.Stage;
  */
 public class Main extends Application{
 	
+    
 	@Override
 	public void start(Stage primaryStage) throws Exception{
 
@@ -30,6 +31,7 @@ public class Main extends Application{
 		//primaryStage.setMaxHeight(ROOM_HEIGHT + 30);
 		//primaryStage.setMaxWidth(ROOM_WIDTH);
 		//primaryStage.setResizable(false);
+                
 
 		LayoutGenerator lg = new LayoutGenerator();
 		Floor floor = lg.getFloor();
