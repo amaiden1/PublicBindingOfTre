@@ -12,7 +12,8 @@ import static bindingofisaac.Constants.*;
 public class Door {
 
 	private int
-		direction,
+		direction;
+        private double
 		doorX,
 		doorY,
 		hitboxX,
@@ -28,33 +29,33 @@ public class Door {
 		img = new ImageView("/img/Open_Door.png");
 		switch (dir) {
 			case 0:
-				img.setRotate(0);  // rotate to face
-				doorX = ROOM_WIDTH / 2;
+				img.setRotate(0);  // rotate to face UP
+				doorX = (ROOM_WIDTH / 2) - 10;
 				doorY = 0;
 				hitbox = new Rectangle(img.getFitWidth(),img.getFitHeight());
 				hitboxX = doorX;
 				hitboxY = doorY;
 				break;
 			case 1:
-				img.setRotate(90);  // rotate to face
-				doorX = ROOM_WIDTH - (ROOM_INNER_OFFSET / 2);
-				doorY = (int)(ROOM_HEIGHT / 2 + img.getFitWidth());
+				img.setRotate(90);  // rotate to face RIGHT
+				doorX = ROOM_WIDTH - 65;
+				doorY = (ROOM_HEIGHT / 2 ) - 40;
 				hitbox = new Rectangle(img.getFitHeight(),img.getFitWidth());
 				hitboxX = doorX;
 				hitboxY = doorY;
 				break;
 			case 2:
 				img.setRotate(180);  // rotate to face DOWN
-				doorX = ROOM_WIDTH / 2;
-				doorY = (int)(ROOM_HEIGHT - ROOM_INNER_OFFSET);
+				doorX = (ROOM_WIDTH / 2) - 10;
+				doorY = (ROOM_HEIGHT - ROOM_INNER_OFFSET);
 				hitbox = new Rectangle(img.getFitWidth(),img.getFitHeight());
 				hitboxX = doorX;
 				hitboxY = doorY;
 				break;
 			case 3:
 				img.setRotate(270);  // rotate to face LEFT
-				doorX = ROOM_INNER_OFFSET / 2;
-				doorY = ROOM_HEIGHT / 2;
+				doorX = ROOM_INNER_OFFSET - 65;
+				doorY = (ROOM_HEIGHT / 2) - 40;
 				hitbox = new Rectangle(img.getFitHeight(),img.getFitWidth());
 				hitboxX = doorX;
 				hitboxY = doorY;
@@ -73,7 +74,7 @@ public class Door {
 	public boolean isOpen() {
 		return isOpen;
 	}
-	/*
+        
 	public Room getDestination() {
 		return destination;
 	}
@@ -81,8 +82,7 @@ public class Door {
 	public void setDestination(Room dest) {
 		destination = dest;
 	}
-	*/
-
+        
 	public ImageView getImageView() {
 		return img;
 	}

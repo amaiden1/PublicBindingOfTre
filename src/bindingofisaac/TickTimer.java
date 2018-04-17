@@ -44,11 +44,11 @@ public class TickTimer {
 	 * index. If the tick should be played immediately,
 	 * addTickAndPlay() should be used for simplicity.
 	 * @param duration the duration in milliseconds the tick should last, per loop (cycle)
-	 * @param cycleCount the amount of times the tick should play befire finishing
+	 * @param cycleCount the amount of times the tick should play before finishing
 	 *                   (note that Timeline.INDEFINITE is acceptable here)
 	 * @param onTickEvent the EventHandler that should run each tick. Per standard format,
 	 *                    this should be an ActionEvent EventHandler, and must implement the
-	 *                    handle(ActionEvent evt) method
+	 *                    handle(ActionEvent event) method
 	 * @return the index of this tick in the ticks ArrayList. This is necessary if you want to
 	 *         play, pause, or stop this individual tick later on. If you do not capture this
 	 *         value, it is still possible to interact with the tick using playAll() and stopAll().
@@ -69,11 +69,11 @@ public class TickTimer {
 	 * Creates a tick and adds it to the ticks list.
 	 * The tick will play immediately upon adding.
 	 * @param duration the duration in milliseconds the tick should last, per loop (cycle)
-	 * @param cycleCount the amount of times the tick should play befire finishing
+	 * @param cycleCount the amount of times the tick should play before finishing
 	 *                   (note that Timeline.INDEFINITE is acceptable here)
 	 * @param onTickEvent the EventHandler that should run each tick. Per standard format,
 	 *                    this should be an ActionEvent EventHandler, and must implement the
-	 *                    handle(ActionEvent evt) method
+	 *                    handle(ActionEvent event) method
 	 * @return the index of this tick in the ticks list. This is necessary if you want to
 	 *         play, pause, or stop this individual tick later on. If you do not capture this
 	 *         value, it is still possible to interact with the tick using playAll() and stopAll().

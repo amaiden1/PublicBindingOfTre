@@ -1,7 +1,10 @@
 package bindingofisaac;
 
-import javafx.scene.image.ImageView;
+import static bindingofisaac.Constants.ROOM_WIDTH;
+import static bindingofisaac.Constants.UP;
 import java.util.ArrayList;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class Player {
 
@@ -9,10 +12,10 @@ public class Player {
 			x,  // current x position
 			y;  // current y position
 	private final ImageView
-			UP_IMG = ImageHelper.imageFromSource("playerUp.png"),       // image for dir 0
-			RIGHT_IMG = ImageHelper.imageFromSource("playerRight.png"), // image for dir 1
-			DOWN_IMG = ImageHelper.imageFromSource("playerDown.png"),   // image for dir 2
-			LEFT_IMG = ImageHelper.imageFromSource("playerLeft.png");   // image for dir 3
+			UP_IMG = new ImageView(new Image("/img/Player.png"));       // image for dir 0
+			//RIGHT_IMG = ImageHelper.imageFromSource("playerRight.png"), // image for dir 1
+			//DOWN_IMG = ImageHelper.imageFromSource("playerDown.png"),   // image for dir 2
+			//LEFT_IMG = ImageHelper.imageFromSource("playerLeft.png");   // image for dir 3
 	private ImageView currentImg;
 	private ArrayList<Integer /* replace with proper data type */> inventory;
 	private int
@@ -23,16 +26,19 @@ public class Player {
 			attackStrength,
 			attackSpeed;
 
-	public Player(int startX,
-	              int startY) {
-		x = startX;
-		y = startY;
-		currentImg = RIGHT_IMG;
-		direction = 1;
-		health = 100;
-		speed = 1;
-		attackStrength = 1;
-		attackSpeed = 1;
+	public Player(double startX,
+	              double startY) {
+            
+            UP_IMG.setFitHeight(70);
+            UP_IMG.setFitWidth(70);
+            x = startX;
+            y = startY;
+            currentImg = UP_IMG;
+            direction = 1;
+            health = 100;
+            speed = 1;
+            attackStrength = 1;
+            attackSpeed = 1;
 	}
 
 	public double getX() {

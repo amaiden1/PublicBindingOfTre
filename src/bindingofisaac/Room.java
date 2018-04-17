@@ -130,6 +130,14 @@ public class Room {
 
 	}
 	
+        public double getHeight(){
+            return roomPane.getHeight();
+        }
+        
+        public double getWidth(){
+            return roomPane.getWidth();
+        }
+        
 	public Pane getRoomPane(){
 		return roomPane;
 	}

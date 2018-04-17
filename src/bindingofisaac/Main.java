@@ -5,11 +5,13 @@
  */
 package bindingofisaac;
 
+import static bindingofisaac.Constants.*;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import static bindingofisaac.Constants.*;
 
 /**
  *
@@ -37,6 +39,15 @@ public class Main extends Application{
 		primaryPane.getChildren().add(spawnRoom.getRoomPane());
 		primaryPane.getChildren().add(lg.getMiniMap().getPane());
 		
+                Player player = new Player(ROOM_WIDTH / 2, ROOM_HEIGHT / 2);
+                ImageView playerImg = player.getImageView();
+                primaryPane.getChildren().add(playerImg);
+                playerImg.relocate(player.getX(), player.getY());
+                PlayerController controller = new PlayerController(primaryScene, player);
+                
+                Timeline time = new Timeline();
+                time.setCycleCount(Timeline.INDEFINITE);
+                
 		primaryStage.show();
 		
 		/*
