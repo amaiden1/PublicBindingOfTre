@@ -19,18 +19,21 @@ import javafx.stage.Stage;
  */
 public class Main extends Application{
 	
-    
+	protected static Player player;
+	
 	@Override
 	public void start(Stage primaryStage) throws Exception{
+		player = new Player(ROOM_WIDTH / 2, ROOM_HEIGHT / 2);
 
 		Pane primaryPane = new Pane();
 		Scene primaryScene = new Scene(primaryPane);
 		primaryStage = new Stage();
 		primaryStage.setScene(primaryScene);
 		primaryPane.setPrefSize(ROOM_WIDTH, ROOM_HEIGHT);
-		//primaryStage.setMaxHeight(ROOM_HEIGHT + 30);
-		//primaryStage.setMaxWidth(ROOM_WIDTH);
-		//primaryStage.setResizable(false);
+		primaryStage.setMaxHeight(ROOM_HEIGHT + 30);
+		primaryStage.setMaxWidth(ROOM_WIDTH);
+		primaryStage.setResizable(false);
+		primaryPane.setMaxSize(ROOM_WIDTH, ROOM_HEIGHT);
                 
 
 		LayoutGenerator lg = new LayoutGenerator();
@@ -41,7 +44,6 @@ public class Main extends Application{
 		primaryPane.getChildren().add(spawnRoom.getRoomPane());
 		primaryPane.getChildren().add(lg.getMiniMap().getPane());
 		
-                Player player = new Player(ROOM_WIDTH / 2, ROOM_HEIGHT / 2);
                 ImageView playerImg = player.getImageView();
                 primaryPane.getChildren().add(playerImg);
                 playerImg.relocate(player.getX(), player.getY());
@@ -57,8 +59,8 @@ public class Main extends Application{
 		*/
 
 	}
-
-
+	
+	
 	/**
 	 * @param args the command line arguments
 	 */

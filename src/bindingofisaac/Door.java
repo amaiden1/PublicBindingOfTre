@@ -6,6 +6,14 @@ package bindingofisaac;
 
 
 import static bindingofisaac.Constants.*;
+import javafx.beans.InvalidationListener;
+import javafx.beans.binding.BooleanBinding;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Bounds;
@@ -26,9 +34,16 @@ public class Door {
 	private ImageView img;  // this image is first provided UP
 	private Rectangle hitbox;
 	private int numDoors;
+	private BooleanBinding isCollidingWithPlayer;
+	private DoubleProperty doorBoundsProperty;
+	private DoubleProperty playerBoundsProperty;
+
+	public Door() {
+	}
 
 	public Door(int dir) throws Exception {
 		this.direction = dir;
+		
 		img = new ImageView("/img/Open_Door.png");
 		switch (dir) {
 			case 0:
@@ -68,15 +83,24 @@ public class Door {
 				throw new DirectionNotFoundException("[ERROR][Door.constructor] Invalid direction specified! Must be 0-3");
 		}
 		img.relocate(doorX, doorY);
-                
-                img.boundsInParentProperty().addListener(new ChangeListener<Bounds>(){
-
-                    @Override
-                    public void changed(ObservableValue<? extends Bounds> observable, Bounds oldValue, Bounds newValue) {
-                        if(img.intersects(player.getImageView().getBoundsInLocal()))
-                    }
-                });
-                
+		doorBoundsProperty = new SimpleDoubleProperty(doorX);
+		playerBoundsProperty = new SimpleDoubleProperty(Main.player.getX());
+		isCollidingWithPlayer = (doorBoundsProperty.isEqualTo(playerBoundsProperty));
+        initializeDoorCollisionChecker();
+		
+	}
+	
+	private boolean intersects(Bounds playerBounds){
+		System.out.println(playerBounds);
+		return true;
+	}
+	
+	private void initializeDoorCollisionChecker(){
+		isCollidingWithPlayer.addListener((observable, oldValue, newValue) -> {
+				if(newValue){
+					System.out.println("hello");
+				}
+        });
 	}
 
 	public void setOpen(boolean open) {

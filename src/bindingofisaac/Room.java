@@ -15,6 +15,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import java.util.ArrayList;
 import static bindingofisaac.Constants.*;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.geometry.Bounds;
 import javafx.scene.image.Image;
 
 public class Room {
@@ -31,6 +34,7 @@ public class Room {
 			door1,
 			door2,
 			door3;
+	private ArrayList<Door> doorsList;
 	private Item item;
 	private ArrayList<Enemy> enemies;
 	private StackPane basePane;
@@ -47,6 +51,7 @@ public class Room {
 		ix = x; iy = y;
 		hasDoors = new boolean[]{false,false,false,false}; //N, E, S, W
 		numDoors = 0;
+		doorsList = new ArrayList<>();
 		roomPane = new Pane();
 		roomPane.setPrefSize(ROOM_WIDTH, ROOM_HEIGHT);
 		
@@ -74,37 +79,39 @@ public class Room {
 			door0 = new Door(0);
 			roomPane.getChildren().add(door0.getImageView());
 			numDoors++;
-                        door0.setDestination(floor.getRoomAtLocation(roomX, roomY + 1));
+            door0.setDestination(floor.getRoomAtLocation(roomX, roomY + 1));
+			doorsList.add(door0);
 		}
 		if (doors[1]) {
 			door1 = new Door(1);
 			roomPane.getChildren().add(door1.getImageView());
 			numDoors++;
-                        door1.setDestination(floor.getRoomAtLocation(roomX + 1, roomY));
+            door1.setDestination(floor.getRoomAtLocation(roomX + 1, roomY));
+			doorsList.add(door1);
 		}
 		if (doors[2]) {
 			door2 = new Door(2);
 			roomPane.getChildren().add(door2.getImageView());
 			numDoors++;
-                        door2.setDestination(floor.getRoomAtLocation(roomX, roomY - 1));
+            door2.setDestination(floor.getRoomAtLocation(roomX, roomY - 1));
+			doorsList.add(door2);
 		}
 		if (doors[3]) {
 			door3 = new Door(3);
 			roomPane.getChildren().add(door3.getImageView());
 			numDoors++;
-                        door3.setDestination(floor.getRoomAtLocation(roomX - 1, roomY));
+            door3.setDestination(floor.getRoomAtLocation(roomX - 1, roomY));
+			doorsList.add(door3);
 		}
 	}
-        
-        
 	
-        public double getHeight(){
-            return roomPane.getHeight();
-        }
+    public double getHeight(){
+        return roomPane.getHeight();
+    }
         
-        public double getWidth(){
-            return roomPane.getWidth();
-        }
+    public double getWidth(){
+        return roomPane.getWidth();
+    }
         
 	public Pane getRoomPane(){
 		return roomPane;
