@@ -1,5 +1,7 @@
 package bindingofisaac;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -39,7 +41,8 @@ public final class Constants {
 			LOCKED_DOOR = ImageHelper.imageFromSource("Locked_Door.png"),
 			DOOR_RIGHT = ImageHelper.imageFromSource("Open_Door.png"),
 			ROOM_PLAYABLE_AREA = ImageHelper.imageFromSource("Playable_Area.png"),
-			ROOM_WALLS = ImageHelper.imageFromSource("Walls.png");
+			ROOM_WALLS = ImageHelper.imageFromSource("Walls.png"),
+			OPEN_DOOR = new ImageView("/img/Open_Door.png");
 	
 	public static final Background 
 			ROOM = new Background(new BackgroundFill(Paint.valueOf("BLUE"), CornerRadii.EMPTY, Insets.EMPTY)),
@@ -47,7 +50,7 @@ public final class Constants {
 			SPAWN = new Background(new BackgroundFill(Paint.valueOf("YELLOW"), CornerRadii.EMPTY, Insets.EMPTY)),
 			STAIRS = new Background(new BackgroundFill(Paint.valueOf("RED"), CornerRadii.EMPTY, Insets.EMPTY)),
 			ITEM = new Background(new BackgroundFill(Paint.valueOf("GREEN"), CornerRadii.EMPTY, Insets.EMPTY));
-
+	
 
 	/*
 	 * Forcibly prevents class instantation. The default

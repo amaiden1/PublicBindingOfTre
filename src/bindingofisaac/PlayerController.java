@@ -6,18 +6,12 @@
 
 package bindingofisaac;
 
-import static bindingofisaac.Constants.ROOM_WIDTH;
-import static bindingofisaac.Constants.UP;
+import static bindingofisaac.Constants.*;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-import static javafx.scene.input.KeyCode.DOWN;
-import static javafx.scene.input.KeyCode.LEFT;
-import static javafx.scene.input.KeyCode.RIGHT;
-import static javafx.scene.input.KeyCode.UP;
 import javafx.scene.input.KeyEvent;
 
 /**
@@ -27,6 +21,7 @@ import javafx.scene.input.KeyEvent;
 public class PlayerController {
     
     private Player player;
+	
     private boolean upPressed,
                     rightPressed,
                     downPressed,
@@ -36,7 +31,6 @@ public class PlayerController {
         this.player = player;
         TickTimer tt = new TickTimer();
         tt.addTickAndPlay(10, Timeline.INDEFINITE, new EventHandler<ActionEvent>(){
-            @Override
             public void handle(ActionEvent ae){
                 updatePlayer();
             }
@@ -80,23 +74,40 @@ public class PlayerController {
         });
     }
     
-    public void updatePlayer(){
+    public void updatePlayer() {
         int deltaX = 0;
         int deltaY = 0;
-        if(upPressed){
-            deltaY -= 3;
-        }
+        
         if(rightPressed){
             deltaX += 3;
-        }
-        if(downPressed){
-            deltaY += 3;
+            player.setImageView("/img/Right_Tre.png");
         }
         if(leftPressed){
             deltaX -= 3;
+            player.setImageView("/img/Left_Tre.png");
         }
-        player.setX(player.getX() + deltaX);
-        player.setY(player.getY() + deltaY);
-        player.getImageView().relocate(player.getX(), player.getY());
+		if(upPressed){
+			deltaY -= 3;
+			player.setImageView("/img/Back_Tre.png");
+			}
+		if(downPressed){
+			deltaY += 3;
+			player.setImageView("/img/Front_Tre.png");
+        }
+		
+		player.setX(player.getX() + deltaX);
+		player.setY(player.getY() + deltaY);
+		player.getImageView().setTranslateX(player.getX());
+		player.getImageView().setTranslateY(player.getY());
+		
+		for(Door thisDoor : player.getCurrentRoom().getDoors()){
+			thisDoor.checkCollision();
+		}
+		
+		Main.player.getGame().getFloor().checkStairsCollision();
+    }
+    
+    public boolean isInBounds(){
+        return ((player.getX() >= 80 && player.getX() <= ROOM_WIDTH - 80));
     }
 }

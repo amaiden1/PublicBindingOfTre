@@ -1,6 +1,7 @@
 package bindingofisaac;
 
 import static bindingofisaac.Constants.*;
+import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
 import java.util.Random;
 import javafx.geometry.Insets;
@@ -92,7 +93,7 @@ public class LayoutGenerator {
 		miniMap.setTile(ROOM, nextX, nextY);
 	}
 	
-	public LayoutGenerator() throws Exception{
+	public LayoutGenerator(){
 		miniMap = new MiniMap();
 		roomsXList = new ArrayList<Integer>();
 		roomsYList = new ArrayList<Integer>();
@@ -129,9 +130,8 @@ public class LayoutGenerator {
 	}
 	
 	/***********************************************CREATING DOORS**********************************************************************/
-		
 	
-	public void addFloorDoors() throws Exception{
+	public void addFloorDoors(){
 		boolean[] doorValues = new boolean[4];
 		for(Room thisRoom : floor.getFloor()){ 
 			doorValues[0] = isRoomInDirection(thisRoom, 0);
@@ -142,7 +142,7 @@ public class LayoutGenerator {
 		}
 	}
 	
-	private boolean isRoomInDirection(Room room, int direction) throws Exception{
+	private boolean isRoomInDirection(Room room, int direction){
 		boolean result = false;
 		int x = room.getX();
 		int y = room.getY();
@@ -156,7 +156,8 @@ public class LayoutGenerator {
 			case LEFT: result = containsRoom(x-1, y);
 				break;
 			default:
-				throw new DirectionNotFoundException("Not a valid direction");
+				System.out.println("not a valid direction");
+				break;
 		}
 		return result;
 	}

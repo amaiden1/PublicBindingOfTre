@@ -41,7 +41,7 @@ private final int MAP_SIZE = 50;
 				grid[col][row].setBackground(EMPTY);
 				miniMap.getChildren().add(grid[col][row]);
 				grid[col][row].setPrefSize(MAP_SIZE, MAP_SIZE);
-				grid[col][row].relocate(col *  MAP_SIZE, (6 -row) * MAP_SIZE);
+				grid[col][row].relocate((col - 1) *  MAP_SIZE, (6 - row) * MAP_SIZE);
 				grid[col][row].setOpacity(0);
             }
 		}
@@ -63,7 +63,7 @@ private final int MAP_SIZE = 50;
             int col = x + 3;
             int row = y + 3;
             grid[col][row].setBackground(type);
-			grid[col][row].setOpacity(.5);
-			grid[col][row].setText(x + "," + y);
+            grid[col][row].setOpacity(.5);
+            grid[col][row].setText(x + "," + y);
 	}
 }

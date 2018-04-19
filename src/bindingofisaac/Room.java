@@ -15,9 +15,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import java.util.ArrayList;
 import static bindingofisaac.Constants.*;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.geometry.Bounds;
 import javafx.scene.image.Image;
 
 public class Room {
@@ -37,10 +34,8 @@ public class Room {
 	private ArrayList<Door> doorsList;
 	private Item item;
 	private ArrayList<Enemy> enemies;
-	private StackPane basePane;
 	private Pane
-			roomPane,
-			innerPane;
+			roomPane;
 	private int
 			numDoors,
 			ix, // artificial index x
@@ -73,7 +68,7 @@ public class Room {
 		
 	}
 
-	public void setDoors(boolean[] doors, Floor floor, int roomX, int roomY) throws Exception{
+	public void setDoors(boolean[] doors, Floor floor, int roomX, int roomY) {
 		// code to create doors and add them
 		if (doors[0]) {
 			door0 = new Door(0);
@@ -103,6 +98,12 @@ public class Room {
             door3.setDestination(floor.getRoomAtLocation(roomX - 1, roomY));
 			doorsList.add(door3);
 		}
+		
+	}
+	
+	
+	public ArrayList<Door> getDoors(){
+		return doorsList;
 	}
 	
     public double getHeight(){
@@ -179,5 +180,9 @@ public class Room {
     public void setY(int y){
         iy = y;
     }
+	
+	public String toString(){
+		return "Room co-ordinates: " + ix + " " + iy;
+	}
 
 }
