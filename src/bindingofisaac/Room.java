@@ -34,6 +34,7 @@ public class Room {
 	private ArrayList<Door> doorsList;
 	private Item item;
 	private ArrayList<Enemy> enemies;
+	private Enemy enemy; // temperary for testing
 	private Pane
 			roomPane;
 	private int
@@ -100,7 +101,10 @@ public class Room {
 		}
 		
 	}
-	
+	public void addEnemies(){
+		enemy = new Witch(400, 400, Main.player.getGame().getFloorLevel());
+		roomPane.getChildren().add(enemy.getSprite());
+	}
 	
 	public ArrayList<Door> getDoors(){
 		return doorsList;

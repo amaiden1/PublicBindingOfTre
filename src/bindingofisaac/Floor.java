@@ -97,4 +97,9 @@ public class Floor {
         return room;
     }
         
+	public void addEnemies(){
+		for(Room room : thisFloor){
+			room.addEnemies();
+		}
+	}
 }

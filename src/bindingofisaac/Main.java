@@ -22,6 +22,7 @@ public class Main extends Application{
 		primaryStage = new Stage();
 		
 		player = new Player(ROOM_WIDTH / 2, ROOM_HEIGHT / 2, primaryStage);
+		player.getGame().nextFloor();
 
 	}
 

@@ -24,7 +24,7 @@ public class Player {
                 direction,
                 health,
                 speed,
-                attackStrength,
+                damage,
                 attackSpeed;
 
 	public Player (double startX, double startY, Stage mainStage) {
@@ -37,7 +37,7 @@ public class Player {
         direction = 1;
         health = 100;
         speed = 1;
-        attackStrength = 1;
+        damage = 5;
         attackSpeed = 1;
 		thisGame = new Game(mainStage, this);
 		
@@ -75,8 +75,8 @@ public class Player {
 		this.y = y;
 	}
 
-	public int getAttackStrength() {
-		return attackStrength;
+	public int getDamage() {
+		return damage;
 	}
 
 	public int getAttackSpeed() {

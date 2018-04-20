@@ -21,6 +21,7 @@ import javafx.scene.input.KeyEvent;
 public class PlayerController {
     
     private Player player;
+	private TickTimer tt;
 	
     private boolean upPressed,
                     rightPressed,
@@ -29,7 +30,7 @@ public class PlayerController {
     
     public PlayerController(Scene scene, Player player){
         this.player = player;
-        TickTimer tt = new TickTimer();
+        tt = new TickTimer();
         tt.addTickAndPlay(10, Timeline.INDEFINITE, new EventHandler<ActionEvent>(){
             public void handle(ActionEvent ae){
                 updatePlayer();
@@ -39,16 +40,16 @@ public class PlayerController {
         @Override
         public void handle(KeyEvent event){
                 
-            if(event.getCode() == KeyCode.UP){
+            if(event.getCode() == KeyCode.W){
                 upPressed = true;
             }
-            if(event.getCode() == KeyCode.RIGHT){
+            if(event.getCode() == KeyCode.D){
                 rightPressed = true;
             }
-            if(event.getCode() == KeyCode.DOWN){
+            if(event.getCode() == KeyCode.S){
                 downPressed = true;
             }
-            if(event.getCode() == KeyCode.LEFT){
+            if(event.getCode() == KeyCode.A){
                 leftPressed = true;
             }
         }
@@ -58,16 +59,16 @@ public class PlayerController {
         @Override
         public void handle(KeyEvent event){
             
-            if(event.getCode() == KeyCode.UP){
+            if(event.getCode() == KeyCode.W){
                 upPressed = false;
             }
-            if(event.getCode() == KeyCode.RIGHT){
+            if(event.getCode() == KeyCode.D){
                 rightPressed = false;
             }
-            if(event.getCode() == KeyCode.DOWN){
+            if(event.getCode() == KeyCode.S){
                 downPressed = false;
             }
-            if(event.getCode() == KeyCode.LEFT){
+            if(event.getCode() == KeyCode.A){
                 leftPressed = false;
             }
         }
@@ -110,4 +111,8 @@ public class PlayerController {
     public boolean isInBounds(){
         return ((player.getX() >= 80 && player.getX() <= ROOM_WIDTH - 80));
     }
+	
+	public TickTimer getTimer(){
+		return tt;
+	}
 }

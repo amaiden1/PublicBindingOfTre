@@ -55,9 +55,9 @@ public class TickTimer {
 	 */
 	public int addTick(int duration, int cycleCount, EventHandler<ActionEvent> onTickEvent) {
 		KeyFrame cKeyFrame = new KeyFrame(Duration.millis(duration), onTickEvent);
-		Timeline cTimeline = new Timeline();
+		Timeline cTimeline = new Timeline(cKeyFrame);
 		cTimeline.setCycleCount(cycleCount);
-		cTimeline.getKeyFrames().add(currentTickIndex, cKeyFrame);
+		//cTimeline.getKeyFrames().add(currentTickIndex, cKeyFrame);
 		ticks.add(cTimeline);
 
 		int tIndexTemp = currentTickIndex;

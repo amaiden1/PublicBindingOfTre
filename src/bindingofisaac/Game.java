@@ -54,12 +54,10 @@ public class Game {
 					}
 					catch (Exception e){
 						//do nothing
-					} // must figure out how to throw exception, then we are done traversing floors
+					}
 				}
 			}
 		});
-		
-		nextFloor();
 		
         controller = new PlayerController(primaryScene, player);
                 
@@ -87,6 +85,7 @@ public class Game {
 		player.getCurrentRoom().getRoomPane().getChildren().add(player.getImageView()); //adds player image to current room pane
 		primaryPane.getChildren().add(player.getCurrentRoom().getRoomPane());
 		primaryPane.getChildren().add(lg.getMiniMap().getPane());
+		floor.addEnemies();
 	}
 	
 	public Floor getFloor(){
