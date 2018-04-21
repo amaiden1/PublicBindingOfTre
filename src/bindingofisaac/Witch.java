@@ -17,11 +17,10 @@ import static bindingofisaac.Constants.*;
  */
 public class Witch extends Enemy{
 	
-	private boolean moveUp;
-	private boolean moveDown;
+	private int deltaY;
 	
-	public Witch(double givenX, double givenY, int floorLevel, Room givenRoom){
-		moveUp = true;
+	public Witch(int floorLevel, Room givenRoom){
+		deltaY = 1;
 		currentRoom = givenRoom;
 		sprite = new ImageView("/img/Witch.png");
 		sprite.setFitHeight(70);
@@ -29,9 +28,6 @@ public class Witch extends Enemy{
 		health = 10 + (10 * floorLevel);
 		damage = 5 + (2 * (floorLevel - 1));
 		speed = 1;
-		x = givenX;
-		y = givenY;
-		sprite.relocate(x, y);
 		
 		System.out.println("witch location: " + x + " , " + y);
 		System.out.println("sprite location: " + sprite.getX() + " , " + sprite.getY());
@@ -47,21 +43,9 @@ public class Witch extends Enemy{
 	
 	@Override
 	public void updatePos(){
-		
-		System.out.println(x + " , " + y);
-		if(y <= 100){
-			moveUp = false;
-			moveDown = true;
-		}
-		if(y >= ROOM_HEIGHT){
-			moveUp = true;
-			moveDown = false;
-		}
-		if(moveUp)
-			y--;
-		if(moveDown)
-			y++;
-		sprite.setTranslateY(y);
+		deltaY += (y <= 100)? 1 : (deltaY = (y >= 600)? -1 : deltaY);
+		y += deltaY;
+		sprite.relocate(x, y);
 	}
 	
 	
