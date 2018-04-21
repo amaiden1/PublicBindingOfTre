@@ -84,5 +84,9 @@ public class Enemy {
 		System.out.println("you need to override the updatePos method in Enemy you fool!");
 	}
 
+	public void shoot() {
+		// override me!
+	}
+
 	
 }
