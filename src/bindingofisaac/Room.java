@@ -103,8 +103,11 @@ public class Room {
 	}
 	
 	public void addEnemies(){
-		enemy = new Witch(400, 400, Main.player.getGame().getFloorLevel(), this);
+		enemy = new Witch(Main.player.getGame().getFloorLevel(), this);
+		enemy.setX(400);
+		enemy.setY(400);
 		roomPane.getChildren().add(enemy.getSprite());
+		enemy.getSprite().relocate(roomPane.getBoundsInLocal().getMinX() + 400, roomPane.getBoundsInLocal().getMinY() + 400);
 	}
 	
 	public ArrayList<Door> getDoors(){
