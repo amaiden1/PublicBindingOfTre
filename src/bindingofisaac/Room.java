@@ -163,6 +163,7 @@ public class Room {
 	public void setOccupied(boolean occupied) {
 		if(occupied && enemy != null){
 			Main.player.getGame().getController().getTimer().play(enemy.getTickIndex()); // when Isaac enters a room with enemies, they begin to move
+			if (enemy instanceof Witch) Main.player.getGame().getController().getTimer().play(((Witch) enemy).getBulletTimerIndex());
 		}
 		isOccupied = occupied;
 	}
