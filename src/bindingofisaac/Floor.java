@@ -58,7 +58,7 @@ public class Floor {
 		} catch (Exception e) {
 			System.out.println("Error parsing item file: " + e.getMessage());
 		}
-	}
+	}`
 	
 	public void setStairRoom(){
 		Random rand = new Random();
