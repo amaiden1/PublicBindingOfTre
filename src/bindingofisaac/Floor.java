@@ -5,9 +5,15 @@
  */
 package bindingofisaac;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
+
 import javafx.scene.image.ImageView;
+import sun.jvm.hotspot.ui.EditorCommands;
+
 import static bindingofisaac.Constants.*;
 
 /**
@@ -19,7 +25,8 @@ public class Floor {
 	private Room spawnRoom;
 	private Room stairRoom;
 	private Room itemRoom;
-	private final ImageView stairs = new ImageView("/img/Stairs.png");;
+	private final ImageView stairs = new ImageView("/img/Stairs.png");
+	private ArrayList<Item> possibleItems;
 	
 	public Floor(ArrayList<Room> givenRooms){
 		thisFloor = givenRooms;
@@ -31,6 +38,26 @@ public class Floor {
 		stairRoom.getRoomPane().getChildren().add(stairs);
 		stairs.relocate((ROOM_WIDTH + stairs.getFitWidth()) / 2, (ROOM_HEIGHT + stairs.getFitHeight()) / 2);
 		stairs.setVisible(true);
+
+		possibleItems = new ArrayList<>();
+		try {
+			Scanner itemFileScanner = new Scanner(new File("Items.txt"));
+			while (itemFileScanner.hasNextLine()) {
+				Scanner itemLineScanner = new Scanner(itemFileScanner.nextLine());
+				itemLineScanner.useDelimiter(",");
+				while (itemLineScanner.hasNext()) {
+					String name = itemLineScanner.next();
+					ImageView img = new ImageView(itemLineScanner.next());
+					int health = itemLineScanner.nextInt();
+					int speed = itemLineScanner.nextInt();
+					int damage = itemLineScanner.nextInt();
+					int attackSpeed = itemLineScanner.nextInt();
+					possibleItems.add(new Item(img, health, speed, damage, attackSpeed, name));
+				}
+			}
+		} catch (Exception e) {
+			System.out.println("Error parsing item file: " + e.getMessage());
+		}
 	}
 	
 	public void setStairRoom(){
