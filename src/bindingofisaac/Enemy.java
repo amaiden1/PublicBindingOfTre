@@ -5,6 +5,7 @@ import javafx.scene.image.ImageView;
 
 public class Enemy {
 
+	Room currentRoom;
 	int timerIndex;
 	ImageView sprite;
 	int speed;
@@ -21,6 +22,10 @@ public class Enemy {
 		if(sprite.getBoundsInParent().intersects(Main.player.getImageView().getBoundsInParent())){
 			System.out.println("collision at: " + Main.player.getCurrentRoom());
 		}
+		if(Main.player.getCurrentRoom() == currentRoom)
+			Main.player.getGame().getController().getTimer().play(timerIndex);
+		
+		//this is where I left off. collision checker works, but checks every enemy on the floor at the same time. Might want to only trigger the room I'm in
 	}
 	
 	public void setSprite(ImageView givenSprite){

@@ -25,7 +25,8 @@ public class Player {
                 health,
                 speed,
                 damage,
-                attackSpeed;
+                attackSpeed,
+				maxHealth;
 
 	public Player (double startX, double startY, Stage mainStage) {
 		
@@ -36,7 +37,8 @@ public class Player {
 		currentImg = playerImage;
         direction = 1;
         health = 100;
-        speed = 1;
+		maxHealth = health;
+        speed = 3;
         damage = 5;
         attackSpeed = 1;
 		thisGame = new Game(mainStage, this);

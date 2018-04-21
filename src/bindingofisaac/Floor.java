@@ -6,13 +6,11 @@
 package bindingofisaac;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
 import javafx.scene.image.ImageView;
-import sun.jvm.hotspot.ui.EditorCommands;
 
 import static bindingofisaac.Constants.*;
 

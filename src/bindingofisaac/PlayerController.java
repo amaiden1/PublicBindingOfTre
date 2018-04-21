@@ -76,23 +76,23 @@ public class PlayerController {
     }
     
     public void updatePlayer() {
-        int deltaX = 0;
-        int deltaY = 0;
+        double deltaX = 0;
+        double deltaY = 0;
         
         if(rightPressed){
-            deltaX += 3;
+            deltaX += Main.player.getSpeed();
             player.setImageView("/img/Right_Tre.png");
         }
         if(leftPressed){
-            deltaX -= 3;
+            deltaX -= Main.player.getSpeed();
             player.setImageView("/img/Left_Tre.png");
         }
 		if(upPressed){
-			deltaY -= 3;
+			deltaY -= Main.player.getSpeed();
 			player.setImageView("/img/Back_Tre.png");
 			}
 		if(downPressed){
-			deltaY += 3;
+			deltaY += Main.player.getSpeed();
 			player.setImageView("/img/Front_Tre.png");
         }
 		

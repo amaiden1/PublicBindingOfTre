@@ -102,7 +102,7 @@ public class Room {
 		
 	}
 	public void addEnemies(){
-		enemy = new Witch(400, 400, Main.player.getGame().getFloorLevel());
+		enemy = new Witch(400, 400, Main.player.getGame().getFloorLevel(), this);
 		roomPane.getChildren().add(enemy.getSprite());
 	}
 	
@@ -174,7 +174,7 @@ public class Room {
 
 	public Item getItem() {
 		// code to return item
-		return new Item();
+		return null;
 	}
         
     public void setX(int x){
