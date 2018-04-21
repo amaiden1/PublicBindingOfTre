@@ -6,9 +6,14 @@
 package bindingofisaac;
 
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+
+import java.security.interfaces.DSAPrivateKey;
+import java.util.ArrayList;
 
 /**
  *
@@ -23,6 +28,15 @@ public class Bullet {
 	private double startY;
 	private double endX;
 	private double endY;
+	ArrayList<Double> xStepList;
+	ArrayList<Double> yStepList;
+	double distEnemyToCorner;
+	double distCornerToPlayer;
+	int triangleNum;
+	double baseFactor;
+	double heightFactor;
+	int ticks;
+	int currentPosIndex;
 
 	public Bullet(double startX, double startY, double destinationX, double destinationY, String imageSrc){
 		bulletSprite = new ImageView(imageSrc);
@@ -44,21 +58,60 @@ public class Bullet {
 		bulletSprite.relocate(startX,startY);
 		bulletSprite.setRotate(90);
 
-		timerIndex = Main.player.getGame().getController().getTimer().addTickAndPlay(5, Timeline.INDEFINITE, new EventHandler<ActionEvent>(){
+		ticks = 50;
+
+		timerIndex = Main.player.getGame().getController().getTimer().addTickAndPlay(5, ticks, new EventHandler<ActionEvent>(){
             public void handle(ActionEvent ae){
                 updateBullet();
             }
         });
+
+		// shooting stuff
+		xStepList = new ArrayList<>();
+		yStepList = new ArrayList<>();
+		distEnemyToCorner = getDistance(startX, startY, startX, endY);
+		distCornerToPlayer = getDistance(startX, endY, endX, endY);
+		baseFactor = distEnemyToCorner / ticks;
+		heightFactor = distCornerToPlayer / ticks;
+		for (int b = 0 ; b < distEnemyToCorner ; b++) {
+			xStepList.add(baseFactor * b);
+			System.out.println("x step loop ran!");
+		}
+		for (int h = 0 ; h < distCornerToPlayer ; h++) {
+			yStepList.add(heightFactor * h);
+			System.out.println("y step loop ran!");
+		}
+		System.out.println("dist enemy to corner: " + distEnemyToCorner);
+		System.out.println("dist corner to player: " + distCornerToPlayer);
+		System.out.println("x length: " + xStepList.size() + " y length: " + yStepList.size());
+		currentPosIndex = 0;
+
 		
+	}
+
+	/*
+	SOLUTION IN PROGRESS I AM WORKING ON!
+	It aims to divide the area up into a bunch of triangles.
+	Please see the picture I sent you in text.
+	See if you might be able to get this to work.
+	 */
+
+	private double getDistance(double x1, double y1, double x2, double y2) {
+		double xDist = Math.pow((x2 - x1), 2);
+		double yDist = Math.pow((y2 - y1), 2);
+		double sqrt = Math.sqrt(xDist - yDist);
+		return sqrt;
 	}
 	
 	public void updateBullet(){
 
-		startX += 1;
-		startY += 1;
-		double destX = Math.sqrt((startX * startX) + (endX * endX));
-		double destY = Math.sqrt((startY * startY) + (endY * endY));
-
-		bulletSprite.relocate(destX, destY);
+		bulletSprite.relocate(xStepList.get(currentPosIndex), yStepList.get(currentPosIndex));
+		if (xStepList.get(currentPosIndex + 1) != null && yStepList.get(currentPosIndex + 1) != null) {
+			// there is another position
+			currentPosIndex++;
+		} else {
+			// not another position
+			// remove the bullet, but for now do nothing
+		}
 	}
 }
