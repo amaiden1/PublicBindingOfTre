@@ -17,26 +17,34 @@ import javafx.scene.image.ImageView;
 public class Bullet {
 	
 	private int timerIndex;
-	private ImageView bulletImg;
+	private ImageView bulletSprite;
 	private int direction;
-	private double x;
-	private double y;
-	
+	private double startX;
+	private double startY;
+	private double endX;
+	private double endY;
+
 	public Bullet(double startX, double startY, double destinationX, double destinationY, String imageSrc){
-		bulletImg.setFitHeight(30);
-		bulletImg.setFitWidth(30);
+		bulletSprite = new ImageView(imageSrc);
+		bulletSprite.setFitHeight(30);
+		bulletSprite.setFitWidth(30);
 		try{
-			bulletImg = new ImageView(imageSrc);
+			bulletSprite = new ImageView(imageSrc);
 		}
 		catch(Exception e){
 			System.out.println("bullet image not found... using default");
-			bulletImg = new ImageView("/img/Stairs.png");
+			bulletSprite = new ImageView("/img/Stairs.png");
 		}
-		x = startX;
-		y = startY;
-		
-		bulletImg.relocate(x,y);
-		timerIndex = Main.player.getGame().getController().getTimer().addTickAndPlay(5 , Timeline.INDEFINITE, new EventHandler<ActionEvent>(){
+		this.startX = startX;
+		this.startY = startY;
+		this.endX = Main.player.getX();
+		this.endY = Main.player.getY();
+
+		Main.player.getCurrentRoom().getRoomPane().getChildren().add(bulletSprite);
+		bulletSprite.relocate(startX,startY);
+		bulletSprite.setRotate(90);
+
+		timerIndex = Main.player.getGame().getController().getTimer().addTickAndPlay(5, Timeline.INDEFINITE, new EventHandler<ActionEvent>(){
             public void handle(ActionEvent ae){
                 updateBullet();
             }
@@ -45,6 +53,12 @@ public class Bullet {
 	}
 	
 	public void updateBullet(){
-		
+
+		startX += 1;
+		startY += 1;
+		double destX = Math.sqrt((startX * startX) + (endX * endX));
+		double destY = Math.sqrt((startY * startY) + (endY * endY));
+
+		bulletSprite.relocate(destX, destY);
 	}
 }
