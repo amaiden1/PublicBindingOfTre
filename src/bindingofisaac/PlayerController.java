@@ -33,7 +33,8 @@ public class PlayerController {
         tt = new TickTimer();
         tt.addTickAndPlay(10, Timeline.INDEFINITE, new EventHandler<ActionEvent>(){
             public void handle(ActionEvent ae){
-                updatePlayer();
+				if(Main.player != null)
+					updatePlayer();
             }
         });
         scene.setOnKeyPressed(new EventHandler<KeyEvent>(){

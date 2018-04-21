@@ -39,7 +39,7 @@ public class Floor {
 
 		possibleItems = new ArrayList<>();
 		try {
-			Scanner itemFileScanner = new Scanner(new File("Items.txt"));
+			Scanner itemFileScanner = new Scanner(new File("/files/Items.txt"));
 			while (itemFileScanner.hasNextLine()) {
 				Scanner itemLineScanner = new Scanner(itemFileScanner.nextLine());
 				itemLineScanner.useDelimiter(",");

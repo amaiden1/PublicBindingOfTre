@@ -22,8 +22,7 @@ public class Bullet {
 	private double x;
 	private double y;
 	
-	public Bullet(double startX, double startY, String imageSrc, int givenDirection){
-		direction = givenDirection;
+	public Bullet(double startX, double startY, double destinationX, double destinationY, String imageSrc){
 		bulletImg.setFitHeight(30);
 		bulletImg.setFitWidth(30);
 		try{

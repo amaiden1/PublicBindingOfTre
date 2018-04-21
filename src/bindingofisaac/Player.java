@@ -54,7 +54,11 @@ public class Player {
 	}
 	
 	public void setCurrentRoom(Room givenRoom){
+		if(currentRoom != null)
+			currentRoom.setOccupied(false);
 		currentRoom = givenRoom;
+		currentRoom.setOccupied(true);
+		//if currentroom has enemies, then start the tickTimers
 	}
 	
 	public Room getCurrentRoom(){

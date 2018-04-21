@@ -3,6 +3,7 @@ package bindingofisaac;
 import javafx.scene.image.ImageView;
 
 
+
 public class Enemy {
 
 	Room currentRoom;
@@ -48,7 +49,11 @@ public class Enemy {
 		health -= damage;
 		if(isDead()){
 			sprite = null;
+			Main.player.getCurrentRoom().removeEnemy(this);
 		}
+	}
+	public int getTickIndex(){
+		return timerIndex;
 	}
 	
 	private boolean isDead(){
@@ -73,6 +78,10 @@ public class Enemy {
 
 	public void setY(double y) {
 		this.y = y;
+	}
+	
+	public void updatePos(){
+		System.out.println("you need to override the updatePos method in Enemy you fool!");
 	}
 
 	

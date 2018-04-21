@@ -101,6 +101,7 @@ public class Room {
 		}
 		
 	}
+	
 	public void addEnemies(){
 		enemy = new Witch(400, 400, Main.player.getGame().getFloorLevel(), this);
 		roomPane.getChildren().add(enemy.getSprite());
@@ -157,6 +158,9 @@ public class Room {
 	}
 
 	public void setOccupied(boolean occupied) {
+		if(occupied && enemy != null){
+			Main.player.getGame().getController().getTimer().play(enemy.getTickIndex()); // when Isaac enters a room with enemies, they begin to move
+		}
 		isOccupied = occupied;
 	}
 
