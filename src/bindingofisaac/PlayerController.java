@@ -99,8 +99,8 @@ public class PlayerController {
 		
 		player.setX(player.getX() + deltaX);
 		player.setY(player.getY() + deltaY);
-		player.getImageView().setTranslateX(player.getX());
-		player.getImageView().setTranslateY(player.getY());
+		player.getImageView().relocate(player.getX(), player.getY());
+
 		
 		for(Door thisDoor : player.getCurrentRoom().getDoors()){
 			thisDoor.checkCollision();
