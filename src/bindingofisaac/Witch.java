@@ -38,17 +38,12 @@ public class Witch extends Enemy{
 		//System.out.println("witch location: " + x + " , " + y);
 		//System.out.println("sprite location: " + sprite.getX() + " , " + sprite.getY());
 		
-		timerIndex = Main.player.getGame().getController().getTimer().addTick(10 , Timeline.INDEFINITE, new EventHandler<ActionEvent>(){
-            public void handle(ActionEvent ae){
-                updatePos();
-				checkCollision();
-            }
+		timerIndex = Main.player.getGame().getController().getTimer().addTick(10 , Timeline.INDEFINITE, event -> {
+			updatePos();
+			checkCollision();
         });
-		bulletTimerIndex = Main.player.getGame().getController().getTimer().addTick(1000, Timeline.INDEFINITE, new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				shoot();
-			} //currently this teleports image of bullet to same spot on map. The pythagorean method does not work properly
+		bulletTimerIndex = Main.player.getGame().getController().getTimer().addTick(1000, Timeline.INDEFINITE, event -> {
+			shoot();
 		});
 		
 	}
@@ -64,7 +59,9 @@ public class Witch extends Enemy{
 	@Override
 	public void shoot() {
 		System.out.println("shooting!!!!");
-		Bullet bullet = new Bullet(x, y, Main.player.getX(), Main.player.getY(), bulletImg);
+		double playerX = Main.player.getX() + (Main.player.getImageView().getBoundsInParent().getWidth() / 2);
+		double playerY = Main.player.getY() + (Main.player.getImageView().getBoundsInParent().getHeight() / 2);
+		Bullet bullet = new Bullet(x, y, playerX, playerY, 1000, 10, bulletImg);
 	}
 
 	public int getBulletTimerIndex() {
