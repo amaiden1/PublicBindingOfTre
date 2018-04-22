@@ -93,6 +93,11 @@ public class TickTimer {
 		ticks.remove(index);
 	}
 
+	public void removeNull(int index) {
+		stop(index);
+		ticks.set(index, null);
+	}
+
 	/**
 	 * Removes and stops all ticks from the ticks list.
 	 */
