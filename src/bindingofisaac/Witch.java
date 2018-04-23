@@ -61,7 +61,7 @@ public class Witch extends Enemy{
 		System.out.println("shooting!!!!");
 		double playerX = Main.player.getX() + (Main.player.getImageView().getBoundsInParent().getWidth() / 2);
 		double playerY = Main.player.getY() + (Main.player.getImageView().getBoundsInParent().getHeight() / 2);
-		Bullet bullet = new Bullet(x, y, playerX, playerY, 1000, 10, bulletImg);
+		EnemyBullet bullet = new EnemyBullet(x, y, playerX, playerY, 1000, 10, bulletImg);
 	}
 
 	public int getBulletTimerIndex() {
