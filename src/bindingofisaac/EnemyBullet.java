@@ -5,8 +5,6 @@
  */
 package bindingofisaac;
 
-import javafx.scene.image.ImageView;
-
 /**
  *
  * @author Austin
