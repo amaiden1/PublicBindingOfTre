@@ -101,14 +101,6 @@ public class Room {
 		
 	}
 	
-	public void addEnemies(){
-		enemy = new Witch(Main.player.getGame().getFloorLevel(), this);
-		enemy.setX(roomPane.getBoundsInParent().getMinX() + 400);
-		enemy.setY(roomPane.getBoundsInParent().getMinY() + 200);
-		roomPane.getChildren().add(enemy.getSprite());
-		enemy.getSprite().relocate(enemy.getX(), enemy.getY());
-	}
-	
 	public ArrayList<Door> getDoors(){
 		return doorsList;
 	}
@@ -137,8 +129,8 @@ public class Room {
 		return numDoors;
 	}
 
-	public void setEnemies(Enemy... enemies) {
-		// code to add enemies
+	public void setEnemies(ArrayList<Enemy> enemies) {
+		this.enemies = enemies;
 	}
 
 	public ArrayList<Enemy> getEnemies() {
@@ -160,11 +152,12 @@ public class Room {
 	}
 
 	public void setOccupied(boolean occupied) {
-		if(occupied && enemy != null){
-			Main.player.getGame().getController().getTimer().play(enemy.getTickIndex()); // when Isaac enters a room with enemies, they begin to move
-			if (enemy instanceof Witch) Main.player.getGame().getController().getTimer().play(((Witch) enemy).getBulletTimerIndex());
-		}
-		isOccupied = occupied;
+            if(occupied && enemies != null){
+                    for(Enemy enemy : enemies){
+                        enemy.start();
+                    }
+            }
+            isOccupied = occupied;
 	}
 
 	public boolean isCleared() {

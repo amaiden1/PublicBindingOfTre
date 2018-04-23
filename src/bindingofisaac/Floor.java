@@ -109,9 +109,20 @@ public class Floor {
     }
         
     public void addEnemies(){
-               for(Room room : thisFloor){
-                   room.addEnemies();
-               }
+        
+        for(Room room : thisFloor){
+            ArrayList<Enemy> enemies = new ArrayList<Enemy>();
+            if(room != spawnRoom && room != itemRoom){
+                Enemy enemy = new Witch(Main.player.getGame().getFloorLevel(), room);
+                System.out.println("sprite created: " + enemy.getSprite() + "\nroom: " + room);
+                enemies.add(enemy);
+                enemy.setX(room.getRoomPane().getBoundsInParent().getMinX() + 400);
+                enemy.setY(room.getRoomPane().getBoundsInParent().getMinY() + 200);
+                room.getRoomPane().getChildren().add(enemy.getSprite());
+                enemy.getSprite().relocate(enemy.getX(), enemy.getY());
+                room.setEnemies(enemies);
+            }
+        }
     }
     
     private void createItems(){

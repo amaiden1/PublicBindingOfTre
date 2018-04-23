@@ -35,9 +35,6 @@ public class Witch extends Enemy{
 		speed = 1;
 		bulletImg = "/img/lightning_bolt.png";
 		
-		//System.out.println("witch location: " + x + " , " + y);
-		//System.out.println("sprite location: " + sprite.getX() + " , " + sprite.getY());
-		
 		timerIndex = Main.player.getGame().getController().getTimer().addTick(10 , Timeline.INDEFINITE, event -> {
 			updatePos();
 			checkCollision();
@@ -50,7 +47,6 @@ public class Witch extends Enemy{
 	
 	@Override
 	public void updatePos(){
-		//System.out.println("X: " + x + ", Y: + " + y);
 		deltaY = (y <= 100)? 1 : (deltaY = (y >= 600)? -1 : deltaY);
 		y += deltaY;
 		sprite.relocate(x, y);
@@ -58,7 +54,6 @@ public class Witch extends Enemy{
 	
 	@Override
 	public void shoot() {
-		System.out.println("shooting!!!!");
 		double playerX = Main.player.getX() + (Main.player.getImageView().getBoundsInParent().getWidth() / 2);
 		double playerY = Main.player.getY() + (Main.player.getImageView().getBoundsInParent().getHeight() / 2);
 		EnemyBullet bullet = new EnemyBullet(x, y, playerX, playerY, 1000, 10, bulletImg);
@@ -67,4 +62,16 @@ public class Witch extends Enemy{
 	public int getBulletTimerIndex() {
 		return bulletTimerIndex;
 	}
+        
+        @Override
+        public void start(){
+            Main.player.getGame().getController().getTimer().play(timerIndex);
+            Main.player.getGame().getController().getTimer().play(bulletTimerIndex);
+        }
+        
+        @Override
+        public void stop(){
+            Main.player.getGame().getController().getTimer().removeNull(timerIndex);
+            Main.player.getGame().getController().getTimer().removeNull(bulletTimerIndex);
+        }
 }

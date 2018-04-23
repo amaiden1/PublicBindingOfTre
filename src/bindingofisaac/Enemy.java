@@ -50,6 +50,7 @@ public class Enemy {
 		if(isDead()){
 			sprite = null;
 			Main.player.getCurrentRoom().removeEnemy(this);
+                        stop();
 		}
 	}
 	public int getTickIndex(){
@@ -87,6 +88,12 @@ public class Enemy {
 	public void shoot() {
 		// override me!
 	}
-
-	
+        
+        public void start(){
+            //override me!
+        }
+        
+        public void stop(){
+            //override me!
+        }
 }
