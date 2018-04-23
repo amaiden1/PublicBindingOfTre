@@ -5,10 +5,7 @@
  */
 package bindingofisaac;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.scene.image.ImageView;
-import javafx.util.Duration;
 
 /**
  *
@@ -71,6 +68,7 @@ public class Bullet {
 		xStep = xDist / steps;
 		yStep = yDist / steps;
 
+		/*
 		System.out.println("======== INIT VALUES ========");
 		System.out.println("startX: " + startX);
 		System.out.println("startY: " + startY);
@@ -85,6 +83,7 @@ public class Bullet {
 		System.out.println("yDist: " + yDist);
 		System.out.println("xStep: " + xStep);
 		System.out.println("yStep: " + yStep);
+		*/
 
 		totalProgress = 0;
 		timerIndex = Main.player.getGame().getController().getTimer().addTickAndPlay(tickLength, steps, event -> {
@@ -94,7 +93,7 @@ public class Bullet {
 
 	}
 
-	private void updateBullet(){
+	protected void updateBullet(){
 
 		x += xStep;
 		y += yStep;
@@ -106,14 +105,16 @@ public class Bullet {
 
 	}
 
-	private void checkCollision(){
-		if((Main.player.getImageView().getBoundsInParent().intersects(bulletSprite.getBoundsInParent())) && Main.player != null){
-			despawn();
-		}
+	protected void checkCollision(){
+		// override me
 	}
 
-	private void despawn() {
+	protected void despawn() {
 		Main.player.getGame().getController().getTimer().removeNull(timerIndex);
 		Main.player.getCurrentRoom().getRoomPane().getChildren().remove(bulletSprite);
+	}
+
+	protected ImageView getBulletSprite() {
+		return bulletSprite;
 	}
 }
