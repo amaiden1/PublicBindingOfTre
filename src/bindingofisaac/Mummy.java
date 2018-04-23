@@ -5,6 +5,7 @@
  */
 package bindingofisaac;
 
+import static bindingofisaac.Constants.*;
 import javafx.scene.image.ImageView;
 
 /**
@@ -14,7 +15,7 @@ import javafx.scene.image.ImageView;
 public class Mummy extends Enemy{
 	
 	public Mummy(double givenX, double givenY, int floorLevel){
-		sprite = new ImageView("/img/Mummy.png");
+		sprite = new ImageView(MUMMY);
 		sprite.setFitHeight(70);
 		sprite.setFitWidth(70);
 		health = 10 + (10 * floorLevel);

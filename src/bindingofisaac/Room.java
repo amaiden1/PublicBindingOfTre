@@ -12,7 +12,6 @@ package bindingofisaac;
 
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import java.util.ArrayList;
 import static bindingofisaac.Constants.*;
 import javafx.scene.image.Image;
@@ -50,10 +49,8 @@ public class Room {
 		roomPane = new Pane();
 		roomPane.setPrefSize(ROOM_WIDTH, ROOM_HEIGHT);
 		
-		Image walls = new Image("/img/Walls.png");
-		outerBack = new ImageView();
-		outerBack.setImage(walls);
-		innerBack = new ImageView(new Image("/img/Playable_Area.png"));
+		outerBack = new ImageView(ROOM_WALLS);
+		innerBack = new ImageView(ROOM_PLAYABLE_AREA);
 		
 		roomPane.getChildren().add(outerBack);
 		roomPane.getChildren().add(innerBack);

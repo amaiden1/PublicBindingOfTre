@@ -8,17 +8,10 @@ package bindingofisaac;
 
 import static bindingofisaac.Constants.*;
 
-import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.util.Duration;
-
-import java.security.Key;
 
 /**
  *
@@ -35,6 +28,7 @@ public class PlayerController {
 	private boolean leftPressed;
 	private boolean canShoot;
 	private int shootTimerIndex;
+	private ImageView bulletImg = new ImageView(LIGHTNING_BOLT);
     
     public PlayerController(Scene scene, Player player){
         this.player = player;
@@ -116,19 +110,15 @@ public class PlayerController {
         
         if(rightPressed){
             deltaX += Main.player.getSpeed();
-            player.setImageView("/img/Right_Tre.png");
         }
         if(leftPressed){
             deltaX -= Main.player.getSpeed();
-            player.setImageView("/img/Left_Tre.png");
         }
 		if(upPressed){
 			deltaY -= Main.player.getSpeed();
-			player.setImageView("/img/Back_Tre.png");
 			}
 		if(downPressed){
 			deltaY += Main.player.getSpeed();
-			player.setImageView("/img/Front_Tre.png");
         }
 		
 		player.setX(player.getX() + deltaX);
@@ -157,16 +147,16 @@ public class PlayerController {
     	final int SHOOT_DISTANCE = 1200;
 
     	if (direction == UP) {
-			Bullet bullet = new PlayerBullet(player.getX(), player.getY(), player.getX(), player.getY() - SHOOT_DISTANCE, 1000, 10, "/img/lightning_bolt.png");
+			Bullet bullet = new PlayerBullet(player.getX(), player.getY(), player.getX(), player.getY() - SHOOT_DISTANCE, 1000, 10, bulletImg);
 	    }
 		if (direction == RIGHT) {
-			Bullet bullet = new PlayerBullet(player.getX(), player.getY(), player.getX() + SHOOT_DISTANCE, player.getY(), 1000, 10, "/img/lightning_bolt.png");
+			Bullet bullet = new PlayerBullet(player.getX(), player.getY(), player.getX() + SHOOT_DISTANCE, player.getY(), 1000, 10, bulletImg);
 		}
 		if (direction == DOWN) {
-			Bullet bullet = new PlayerBullet(player.getX(), player.getY(), player.getX(), player.getY() + SHOOT_DISTANCE, 1000, 10, "/img/lightning_bolt.png");
+			Bullet bullet = new PlayerBullet(player.getX(), player.getY(), player.getX(), player.getY() + SHOOT_DISTANCE, 1000, 10, bulletImg);
 		}
 		if (direction == LEFT) {
-			Bullet bullet = new PlayerBullet(player.getX(), player.getY(), player.getX() - SHOOT_DISTANCE, player.getY(), 1000, 10, "/img/lightning_bolt.png");
+			Bullet bullet = new PlayerBullet(player.getX(), player.getY(), player.getX() - SHOOT_DISTANCE, player.getY(), 1000, 10, bulletImg);
 		}
 	}
 }

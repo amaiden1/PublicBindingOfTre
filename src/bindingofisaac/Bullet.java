@@ -5,6 +5,8 @@
  */
 package bindingofisaac;
 
+import static bindingofisaac.Constants.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 /**
@@ -34,16 +36,16 @@ public class Bullet {
 	private double cornerY;
 	private int totalProgress;
 
-	public Bullet(double startX, double startY, double destinationX, double destinationY, int travelTime, int tickLength, String imageSrc){
+	public Bullet(double startX, double startY, double destinationX, double destinationY, int travelTime, int tickLength, ImageView imgSrc){
 
 		try{
-			bulletSprite = new ImageView(imageSrc);
+			bulletSprite = imgSrc;
 			bulletSprite.setPreserveRatio(true);
 			bulletSprite.setFitHeight(10);
 		}
 		catch(Exception e){
 			System.out.println("bullet image not found... using default");
-			bulletSprite = new ImageView("/img/Stairs.png");
+			bulletSprite = new ImageView(STAIRS);
 		}
 		this.startX = startX;
 		this.startY = startY;
@@ -67,24 +69,7 @@ public class Bullet {
 		yDist = endY - cornerY;
 		xStep = xDist / steps;
 		yStep = yDist / steps;
-
-		/*
-		System.out.println("======== INIT VALUES ========");
-		System.out.println("startX: " + startX);
-		System.out.println("startY: " + startY);
-		System.out.println("endX: " + endX);
-		System.out.println("endY: " + endY);
-		System.out.println("cornerX: " + cornerX);
-		System.out.println("cornerY: " + cornerY);
-		System.out.println("tickLength: " + tickLength);
-		System.out.println("travelTime: " + travelTime);
-		System.out.println("steps: " + steps);
-		System.out.println("xDist: " + xDist);
-		System.out.println("yDist: " + yDist);
-		System.out.println("xStep: " + xStep);
-		System.out.println("yStep: " + yStep);
-		*/
-
+		
 		totalProgress = 0;
 		timerIndex = Main.player.getGame().getController().getTimer().addTickAndPlay(tickLength, steps, event -> {
 			totalProgress += tickLength;

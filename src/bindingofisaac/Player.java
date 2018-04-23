@@ -1,7 +1,7 @@
 package bindingofisaac;
 
 import java.util.ArrayList;
-import javafx.scene.image.Image;
+import static bindingofisaac.Constants.*;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
@@ -13,7 +13,7 @@ public class Player {
 		x,  // current x position
 		y;  // current y position
 	private final ImageView
-                playerImage = new ImageView("/img/Front_Tre.png");       // image for dir 0
+                playerImage = new ImageView(PLAYER_FRONT);       // image for dir 0
                 //RIGHT_IMG = ImageHelper.imageFromSource("playerRight.png"), // image for dir 1
                 //DOWN_IMG = ImageHelper.imageFromSource("playerDown.png"),   // image for dir 2
                 //LEFT_IMG = ImageHelper.imageFromSource("playerLeft.png");   // image for dir 3
@@ -50,7 +50,7 @@ public class Player {
 		return thisGame;
 	}
 	
-	public void setImageView(String fileName){
+	public void setImageView(ImageView newImg){
 		
 	}
 	

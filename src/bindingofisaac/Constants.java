@@ -3,7 +3,7 @@ package bindingofisaac;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
-import javafx.scene.image.ImageView;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BackgroundImage;
@@ -37,18 +37,31 @@ public final class Constants {
 			ROOM_TYPE_ITEM = 1,
 			ROOM_TYPE_BOSS = 2;
 
-	public static final ImageView // Locked_Door.png, Open_Door.png
-			LOCKED_DOOR = ImageHelper.imageFromSource("Locked_Door.png"),
-			DOOR_RIGHT = ImageHelper.imageFromSource("Open_Door.png"),
-			ROOM_PLAYABLE_AREA = ImageHelper.imageFromSource("Playable_Area.png"),
-			ROOM_WALLS = ImageHelper.imageFromSource("Walls.png"),
-			OPEN_DOOR = new ImageView("/img/Open_Door.png");
+	public static final Image // Locked_Door.png, Open_Door.png
+			LOCKED_DOOR = new Image("/img/Locked_Door.png"),
+			ROOM_PLAYABLE_AREA = new Image("/img/Playable_Area.png"),
+			ROOM_WALLS = new Image("/img/Walls.png"),
+			OPEN_DOOR = new Image("/img/Open_Door.png"),
+			AERODYNAMICS = new Image("/img/Aerodynamics.png"),
+			PLAYER_BACK = new Image("/img/Back_Tre.png"),
+			PLAYER_FRONT = new Image("/img/Front_Tre.png"),
+			PLAYER_LEFT = new Image("/img/Left_Tre.png"),
+			PLAYER_RIGHT = new Image("/img/Right_Tre.png"),
+			LOVE = new Image("/img/Love.png"),
+			MUMMY = new Image("/img/Mummy.png"),
+			PLAYER = new Image("/img/Player.png"),
+			RUNNING_SHOES = new Image("/img/Running_Shoes.png"),
+			STAIRS = new Image("/img/Stairs.png"),
+			STEROIDS = new Image("/img/Steroids.png"),
+			LIFT_WEIGHTS = new Image("/img/Weights.png"),
+			WITCH = new Image("/img/Witch.png"),
+			LIGHTNING_BOLT = new Image("/img/Lightning_Bolt.png");
+			
 	
 	public static final Background 
 			ROOM = new Background(new BackgroundFill(Paint.valueOf("BLUE"), CornerRadii.EMPTY, Insets.EMPTY)),
 			EMPTY = new Background(new BackgroundFill(Paint.valueOf("WHITE"), CornerRadii.EMPTY, Insets.EMPTY)),
 			SPAWN = new Background(new BackgroundFill(Paint.valueOf("YELLOW"), CornerRadii.EMPTY, Insets.EMPTY)),
-			STAIRS = new Background(new BackgroundFill(Paint.valueOf("RED"), CornerRadii.EMPTY, Insets.EMPTY)),
 			ITEM = new Background(new BackgroundFill(Paint.valueOf("GREEN"), CornerRadii.EMPTY, Insets.EMPTY));
 	
 

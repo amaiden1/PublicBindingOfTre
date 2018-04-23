@@ -22,8 +22,8 @@ public class Floor {
     private Room spawnRoom;
     private Room stairRoom;
     private Room itemRoom;
-    private final ImageView stairs = new ImageView("/img/Stairs.png");
     private ArrayList<Item> possibleItems;
+	private ImageView stairs = new ImageView(STAIRS);
     
     public Floor(ArrayList<Room> givenRooms){
         thisFloor = givenRooms;

@@ -23,41 +23,4 @@ public class RoomGenerator {
 		items = possibleItems;
 		this.boss = boss;
 	}
-/*
-	public Room generateRegularRoom(boolean[] doors) {
-		Room room = new Room();
-		// randomize enemies
-		for (int i = 0 ; i < MIN_ENEMIES + rand.nextInt(MAX_ENEMIES - MIN_ENEMIES) ; i++) {
-			room.getEnemies().add(enemies.get(rand.nextInt(enemies.size())));
-		}
-		// setup doors
-		room.setDoors(doors);
-
-		return room;
-	}
-
-	public Room generateItemRoom(boolean[] doors) {
-		Room room = new Room();
-		// randomize item
-		room.setItem(items.get(rand.nextInt(items.size())));
-		// setup doors
-		room.setDoors(doors);
-		// set cleared to true. this will unlock all the doors
-		room.setCleared(true);
-
-		return room;
-	}
-
-	public Room generateFinalRoom(boolean[] doors) {
-		Room room = new Room();
-		// insert boss
-		room.getEnemies().add(boss);
-		// setup doors
-		room.setDoors(doors);
-		/*
-		 * Todo: add/create final room staircase
-		 */
-
-		//return room;
-	//}
 }

@@ -32,7 +32,7 @@ public class Door {
 
 	public Door(int dir) {
 		direction = dir;
-		img = new ImageView("/img/Open_Door.png");
+		img = new ImageView(OPEN_DOOR);
 		imgWidth = img.getFitWidth();
 		imgHeight = img.getFitHeight();
 		switch (dir) {
