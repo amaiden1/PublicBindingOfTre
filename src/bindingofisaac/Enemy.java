@@ -46,11 +46,9 @@ public class Enemy {
 	}
 	
 	public void takeDamage(int damage){
-		System.out.println("took damage");
 		health -= damage;
 		if(isDead()){
-			sprite = null;
-			Main.player.getCurrentRoom().removeEnemy(this);
+			Main.player.getCurrentRoom().getRoomPane().getChildren().remove(sprite);
 			stop();
 			System.out.println("dead");
 		}
@@ -59,7 +57,7 @@ public class Enemy {
 		return timerIndex;
 	}
 	
-	private boolean isDead(){
+	public boolean isDead(){
 		return (health <= 0);
 	}
 	

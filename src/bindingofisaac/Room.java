@@ -157,7 +157,7 @@ public class Room {
 	}
 
 	public void setOccupied(boolean occupied) {
-            if(occupied && enemies != null){
+            if(occupied && enemies != null && enemies.size() > 0){
                     for(Enemy enemy : enemies){
                         enemy.start();
                     }

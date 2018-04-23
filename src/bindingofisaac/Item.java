@@ -25,7 +25,6 @@ public class Item {
         itemImg.setFitHeight(30);
         itemImg.setFitWidth(30);
 		timerIndex = Main.player.getGame().getController().getTimer().addTick(10, Timeline.INDEFINITE, event -> {
-			System.out.println("item timer is running");
         	if(Main.player.getImageView().getBoundsInParent().intersects(itemImg.getBoundsInParent())){
 				pickUpItem();
 				System.out.println(Main.player.getStats());
@@ -47,7 +46,6 @@ public class Item {
 		Main.player.addSpeed(speedDelta);
 		Main.player.addAttackSpeed(attackSpeedDelta);
 		Main.player.getCurrentRoom().getRoomPane().getChildren().remove(itemImg);
-		Main.player.getCurrentRoom().setItem(null);
 		stopTimer();
 	}
 

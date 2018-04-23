@@ -23,10 +23,11 @@ public class Player {
                 /* replace with proper data type */ currentItem,
                 direction,
                 health,
-                speed,
                 damage,
-                attackSpeed,
 				maxHealth;
+	private double
+				speed,
+				attackSpeed;
 
 	public Player (double startX, double startY, Stage mainStage) {
 		
@@ -85,7 +86,7 @@ public class Player {
 		return damage;
 	}
 
-	public int getAttackSpeed() {
+	public double getAttackSpeed() {
 		return attackSpeed;
 	}
 
@@ -93,7 +94,7 @@ public class Player {
 		return health;
 	}
 
-	public int getSpeed() {
+	public double getSpeed() {
 		return speed;
 	}
 

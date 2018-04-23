@@ -44,7 +44,7 @@ public class PlayerController {
         	if(Main.player != null)
         		updatePlayer();
         });
-	    shootTimerIndex = tt.addTick(1500 / player.getAttackSpeed(), 1, event -> {
+	    shootTimerIndex = tt.addTick((int)(1500 / player.getAttackSpeed()), 1, event -> {
 		    canShoot = true;
 	    });
         scene.setOnKeyPressed(event -> {

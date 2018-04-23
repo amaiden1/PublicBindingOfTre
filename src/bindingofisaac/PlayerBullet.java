@@ -17,10 +17,8 @@ public class PlayerBullet extends Bullet {
 
 	@Override
 	protected void checkCollision(){
-		System.out.println("checking collision");
 		if (Main.player.getCurrentRoom().getEnemies() != null && Main.player.getCurrentRoom().getEnemies().size() > 0) {
 			for (Enemy enemy : Main.player.getCurrentRoom().getEnemies()) {
-				System.out.println("in for loop");
 				if (super.getBulletSprite().getBoundsInParent().intersects(enemy.getSprite().getBoundsInParent())) {
 					System.out.println("intersects");
 					enemy.takeDamage(Main.player.getDamage());
