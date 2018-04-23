@@ -46,11 +46,13 @@ public class Enemy {
 	}
 	
 	public void takeDamage(int damage){
+		System.out.println("took damage");
 		health -= damage;
 		if(isDead()){
 			sprite = null;
 			Main.player.getCurrentRoom().removeEnemy(this);
-                        stop();
+			stop();
+			System.out.println("dead");
 		}
 	}
 	public int getTickIndex(){
@@ -89,11 +91,11 @@ public class Enemy {
 		// override me!
 	}
         
-        public void start(){
-            //override me!
-        }
+	public void start(){
+		//override me!
+	}
         
-        public void stop(){
-            //override me!
-        }
+	public void stop(){
+		//override me!
+	}
 }
