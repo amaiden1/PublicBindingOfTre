@@ -177,6 +177,7 @@ public class Room {
 
 	public void setItem(Item givenItem) {
 		item = givenItem;
+                roomPane.getChildren().add(item.getImageView());
 	}
 
 	public Item getItem() {

@@ -1,6 +1,7 @@
 package bindingofisaac;
 
 import javafx.scene.image.ImageView;
+import static bindingofisaac.Constants.*;
 
 public class Item {
 
@@ -18,6 +19,9 @@ public class Item {
 		damageDelta = damage;
 		attackSpeedDelta = attackSpeed;
 		itemImg = img;
+                itemImg.relocate(ROOM_WIDTH/ 2, ROOM_HEIGHT / 2);
+                itemImg.setFitHeight(30);
+                itemImg.setFitWidth(30);
 	}
 
 	public int getHealthDelta() {

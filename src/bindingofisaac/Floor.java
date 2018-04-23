@@ -8,7 +8,6 @@ package bindingofisaac;
 
 import static bindingofisaac.Constants.*;
 import java.io.File;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -62,8 +61,7 @@ public class Floor {
         }while(chosenRoom == spawnRoom || chosenRoom == stairRoom);
         itemRoom = chosenRoom;
         System.out.println("list size: " + possibleItems.size());
-        Item item = possibleItems.get(rand.nextInt(possibleItems.size()));
-        itemRoom.setItem(item); //there was an exception here
+        itemRoom.setItem(possibleItems.get(rand.nextInt(possibleItems.size()))); //there was an exception here
     }
 
     public void checkStairsCollision()	{
@@ -120,20 +118,30 @@ public class Floor {
         Scanner fileScan;
         Scanner lineScan;
         ImageView itemImg;
-        Item item;
+        String startImgSrc = "/img/";
+        String endImgSrc = ".png";
         try{
-            fileScan = new Scanner(new File("/file/items.txt"));
+        File file = new File("./src/files/items.txt");
+        fileScan = new Scanner(file);
+        
         while(fileScan.hasNextLine()){
             lineScan = new Scanner(fileScan.nextLine());
             lineScan.useDelimiter(",");
-            itemImg = new ImageView(lineScan.next());
-            item = new Item(lineScan.next(), itemImg, lineScan.nextInt(), lineScan.nextDouble(), lineScan.nextInt(), lineScan.nextDouble());
-            System.out.println("this worked");
-            possibleItems.add(item);
+            String name = lineScan.next();
+            String midImgSrc = lineScan.next();
+            String imgSrc = startImgSrc + midImgSrc + endImgSrc;
+            itemImg = new ImageView(imgSrc);
+            int healthDelta = lineScan.nextInt();
+            double speedDelta = lineScan.nextDouble();
+            int damageDelta = lineScan.nextInt();
+            double attackSpeedDelta = lineScan.nextDouble();
+            possibleItems.add(new Item(name, itemImg, healthDelta, speedDelta, damageDelta, attackSpeedDelta));
         }
+        System.out.println("hi");
         }
         catch(Exception e){
             System.out.println(e.getMessage());
         }
+        
     }
 }
