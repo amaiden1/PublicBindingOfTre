@@ -23,6 +23,9 @@ public class PlayerBullet extends Bullet {
 					System.out.println("intersects");
 					enemy.takeDamage(Main.player.getDamage());
 					despawn();
+					if (enemy.isDead()) {
+						Main.player.getCurrentRoom().getEnemies().remove(enemy);
+					}
 				}
 			}
 		}
