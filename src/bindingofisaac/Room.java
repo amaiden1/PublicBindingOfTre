@@ -42,7 +42,6 @@ public class Room {
 			ix, // artificial index x
 			iy; // artificial index y
 	
-	
 	public Room(int x, int y){ //Austin's constructor
 		ix = x; iy = y;
 		hasDoors = new boolean[]{false,false,false,false}; //N, E, S, W
@@ -59,7 +58,7 @@ public class Room {
 		roomPane.getChildren().add(outerBack);
 		roomPane.getChildren().add(innerBack);
 		innerBack.relocate(80,82);
-		
+                
 		isOccupied = false;
 		isCleared = false;
 		door0 = null;
@@ -176,8 +175,8 @@ public class Room {
 		isCleared = cleared;
 	}
 
-	public void setItem(Item item) {
-		// code to set item
+	public void setItem(Item givenItem) {
+		item = givenItem;
 	}
 
 	public Item getItem() {
@@ -196,5 +195,4 @@ public class Room {
 	public String toString(){
 		return "Room co-ordinates: " + ix + " " + iy;
 	}
-
 }
