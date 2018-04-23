@@ -7,12 +7,18 @@
 package bindingofisaac;
 
 import static bindingofisaac.Constants.*;
+
+import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.util.Duration;
+
+import java.security.Key;
 
 /**
  *
@@ -23,23 +29,25 @@ public class PlayerController {
     private Player player;
 	private TickTimer tt;
 	
-    private boolean upPressed,
-                    rightPressed,
-                    downPressed,
-                    leftPressed;
+    private boolean upPressed;
+	private boolean rightPressed;
+	private boolean downPressed;
+	private boolean leftPressed;
+	private boolean canShoot;
+	private int shootTimerIndex;
     
     public PlayerController(Scene scene, Player player){
         this.player = player;
+        canShoot = true;
         tt = new TickTimer();
-        tt.addTickAndPlay(10, Timeline.INDEFINITE, new EventHandler<ActionEvent>(){
-            public void handle(ActionEvent ae){
-				if(Main.player != null)
-					updatePlayer();
-            }
+        tt.addTickAndPlay(10, Timeline.INDEFINITE, event -> {
+        	if(Main.player != null)
+        		updatePlayer();
         });
-        scene.setOnKeyPressed(new EventHandler<KeyEvent>(){
-        @Override
-        public void handle(KeyEvent event){
+	    shootTimerIndex = tt.addTick(1500 / player.getAttackSpeed(), 1, event -> {
+		    canShoot = true;
+	    });
+        scene.setOnKeyPressed(event -> {
                 
             if(event.getCode() == KeyCode.W){
                 upPressed = true;
@@ -53,12 +61,38 @@ public class PlayerController {
             if(event.getCode() == KeyCode.A){
                 leftPressed = true;
             }
-        }
+
+            if (event.getCode() == KeyCode.UP) {
+            	if (canShoot) {
+		            shoot(UP);
+		            canShoot = false;
+		            tt.play(shootTimerIndex);
+	            }
+            }
+	        if (event.getCode() == KeyCode.RIGHT) {
+            	if (canShoot) {
+		            shoot(RIGHT);
+		            canShoot = false;
+		            tt.play(shootTimerIndex);
+	            }
+	        }
+	        if (event.getCode() == KeyCode.DOWN) {
+            	if (canShoot) {
+		            shoot(DOWN);
+		            canShoot = false;
+		            tt.play(shootTimerIndex);
+	            }
+	        }
+	        if (event.getCode() == KeyCode.LEFT) {
+            	if (canShoot) {
+		            shoot(LEFT);
+		            canShoot = false;
+		            tt.play(shootTimerIndex);
+	            }
+	        }
         });
         
-        scene.setOnKeyReleased(new EventHandler<KeyEvent>(){
-        @Override
-        public void handle(KeyEvent event){
+        scene.setOnKeyReleased(event -> {
             
             if(event.getCode() == KeyCode.W){
                 upPressed = false;
@@ -72,8 +106,8 @@ public class PlayerController {
             if(event.getCode() == KeyCode.A){
                 leftPressed = false;
             }
-        }
         });
+
     }
     
     public void updatePlayer() {
@@ -115,5 +149,23 @@ public class PlayerController {
 	
 	public TickTimer getTimer(){
 		return tt;
+	}
+
+	private void shoot(int direction) {
+
+    	final int SHOOT_DISTANCE = 1200;
+
+    	if (direction == UP) {
+			Bullet bullet = new Bullet(player.getX(), player.getY(), player.getX(), player.getY() - SHOOT_DISTANCE, 1000, 10, "/img/lightning_bolt.png");
+	    }
+		if (direction == RIGHT) {
+			Bullet bullet = new Bullet(player.getX(), player.getY(), player.getX() + SHOOT_DISTANCE, player.getY(), 1000, 10, "/img/lightning_bolt.png");
+		}
+		if (direction == DOWN) {
+			Bullet bullet = new Bullet(player.getX(), player.getY(), player.getX(), player.getY() + SHOOT_DISTANCE, 1000, 10, "/img/lightning_bolt.png");
+		}
+		if (direction == LEFT) {
+			Bullet bullet = new Bullet(player.getX(), player.getY(), player.getX() - SHOOT_DISTANCE, player.getY(), 1000, 10, "/img/lightning_bolt.png");
+		}
 	}
 }
