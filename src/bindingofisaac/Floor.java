@@ -25,7 +25,7 @@ public class Floor {
     private Room itemRoom;
     private final ImageView stairs = new ImageView("/img/Stairs.png");
     private ArrayList<Item> possibleItems;
-
+    
     public Floor(ArrayList<Room> givenRooms){
         thisFloor = givenRooms;
         spawnRoom = thisFloor.get(0);
@@ -122,7 +122,7 @@ public class Floor {
         ImageView itemImg;
         Item item;
         try{
-            fileScan = new Scanner(new File("items.txt"));
+            fileScan = new Scanner(new File("/file/items.txt"));
         while(fileScan.hasNextLine()){
             lineScan = new Scanner(fileScan.nextLine());
             lineScan.useDelimiter(",");
