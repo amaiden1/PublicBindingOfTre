@@ -5,14 +5,13 @@ import javafx.scene.image.ImageView;
 public class Item {
 
 	private int healthDelta;
-	private int speedDelta;
+	private double speedDelta;
 	private int damageDelta;
-	private int attackSpeedDelta;
+	private double attackSpeedDelta;
 	private String itemName;
 	private ImageView itemImg;
 
-	public Item(ImageView img, int health, int speed, int damage, int attackSpeed, String name) {
-
+	public Item(String name, ImageView img, int health, double speed, int damage, double attackSpeed) {
 		itemName = name;
 		healthDelta = health;
 		speedDelta = speed;
@@ -25,7 +24,7 @@ public class Item {
 		return healthDelta;
 	}
 
-	public int getSpeedDelta() {
+	public double getSpeedDelta() {
 		return speedDelta;
 	}
 
@@ -33,7 +32,7 @@ public class Item {
 		return damageDelta;
 	}
 
-	public int getAttackSpeedDelta() {
+	public double getAttackSpeedDelta() {
 		return attackSpeedDelta;
 	}
 
