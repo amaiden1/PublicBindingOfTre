@@ -141,6 +141,7 @@ public class PlayerController {
 		}
 		
 		Main.player.getGame().getFloor().checkStairsCollision();
+		
     }
     
     public boolean isInBounds(){
@@ -156,16 +157,16 @@ public class PlayerController {
     	final int SHOOT_DISTANCE = 1200;
 
     	if (direction == UP) {
-			Bullet bullet = new Bullet(player.getX(), player.getY(), player.getX(), player.getY() - SHOOT_DISTANCE, 1000, 10, "/img/lightning_bolt.png");
+			Bullet bullet = new PlayerBullet(player.getX(), player.getY(), player.getX(), player.getY() - SHOOT_DISTANCE, 1000, 10, "/img/lightning_bolt.png");
 	    }
 		if (direction == RIGHT) {
-			Bullet bullet = new Bullet(player.getX(), player.getY(), player.getX() + SHOOT_DISTANCE, player.getY(), 1000, 10, "/img/lightning_bolt.png");
+			Bullet bullet = new PlayerBullet(player.getX(), player.getY(), player.getX() + SHOOT_DISTANCE, player.getY(), 1000, 10, "/img/lightning_bolt.png");
 		}
 		if (direction == DOWN) {
-			Bullet bullet = new Bullet(player.getX(), player.getY(), player.getX(), player.getY() + SHOOT_DISTANCE, 1000, 10, "/img/lightning_bolt.png");
+			Bullet bullet = new PlayerBullet(player.getX(), player.getY(), player.getX(), player.getY() + SHOOT_DISTANCE, 1000, 10, "/img/lightning_bolt.png");
 		}
 		if (direction == LEFT) {
-			Bullet bullet = new Bullet(player.getX(), player.getY(), player.getX() - SHOOT_DISTANCE, player.getY(), 1000, 10, "/img/lightning_bolt.png");
+			Bullet bullet = new PlayerBullet(player.getX(), player.getY(), player.getX() - SHOOT_DISTANCE, player.getY(), 1000, 10, "/img/lightning_bolt.png");
 		}
 	}
 }

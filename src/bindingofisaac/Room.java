@@ -135,7 +135,7 @@ public class Room {
 
 	public ArrayList<Enemy> getEnemies() {
 		// code to get enemies
-		return new ArrayList<>();
+		return enemies;
 	}
 
 	public ArrayList<ImageView> getEnemyImageViews() {
@@ -144,7 +144,12 @@ public class Room {
 	}
 
 	public void removeEnemy(Enemy enemy) {
-		// code to remove an enemy
+		try{
+		enemies.remove(enemy);
+		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+		}
 	}
 
 	public boolean isOccupied() {
@@ -157,6 +162,12 @@ public class Room {
                         enemy.start();
                     }
             }
+			if(occupied && item != null){
+				item.startTimer();
+			}
+			if(!occupied && item != null){
+				item.stopTimer();
+			}
             isOccupied = occupied;
 	}
 

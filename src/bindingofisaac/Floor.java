@@ -114,7 +114,6 @@ public class Floor {
             ArrayList<Enemy> enemies = new ArrayList<Enemy>();
             if(room != spawnRoom && room != itemRoom){
                 Enemy enemy = new Witch(Main.player.getGame().getFloorLevel(), room);
-                System.out.println("sprite created: " + enemy.getSprite() + "\nroom: " + room);
                 enemies.add(enemy);
                 enemy.setX(room.getRoomPane().getBoundsInParent().getMinX() + 400);
                 enemy.setY(room.getRoomPane().getBoundsInParent().getMinY() + 200);
@@ -148,7 +147,6 @@ public class Floor {
             double attackSpeedDelta = lineScan.nextDouble();
             possibleItems.add(new Item(name, itemImg, healthDelta, speedDelta, damageDelta, attackSpeedDelta));
         }
-        System.out.println("hi");
         }
         catch(Exception e){
             System.out.println(e.getMessage());

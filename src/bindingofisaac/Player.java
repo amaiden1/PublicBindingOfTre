@@ -104,9 +104,34 @@ public class Player {
 	public ImageView getImageView() {
 		return currentImg;
 	}
-
-	/*
-	Item methods not implemented yet. The player uses his fists.
-	*/
+	
+	public void addHealth(int delta){
+		maxHealth += delta;
+		health += delta;
+	}
+	
+	public void addDamage(int delta){
+		damage += delta;
+	}
+	
+	public void addSpeed(double delta){
+		speed += delta;
+	}
+	
+	public void addAttackSpeed(double delta){
+		attackSpeed += delta;
+	}
+	
+	public void refillHealth(){
+		health = maxHealth;
+	}
+	
+	public String getStats(){
+		return ("Player max health: " + maxHealth +
+				"\nPlayer current health: " + health +
+				"\nPlayer damage: " + damage +
+				"\nPlayer speed: " + speed +
+				"\nPlayer attackSpeed: " + attackSpeed);
+	}
 
 }
