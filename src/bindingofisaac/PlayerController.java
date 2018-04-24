@@ -86,6 +86,9 @@ public class PlayerController {
 		            tt.play(shootTimerIndex);
 	            }
 	        }
+	        if(event.getCode() == KeyCode.U) {
+            	Main.player.getCurrentRoom().setCleared(true);
+	        }
         });
         
         scene.setOnKeyReleased(event -> {
