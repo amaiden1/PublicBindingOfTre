@@ -46,25 +46,21 @@ public class Item {
 		Main.player.addSpeed(speedDelta);
 		Main.player.addAttackSpeed(attackSpeedDelta);
 		Main.player.getCurrentRoom().getRoomPane().getChildren().remove(itemImg);
+		Main.player.getGame().displayTemporaryPane(true, new ItemDialogScreen(this).getPane());
 		stopTimer();
 	}
 
-	/*public int getHealthDelta() {
+	public String getItemName() {
+		return itemName;
+	}
+
+	public int getHealthDelta() {
 		return healthDelta;
 	}
 
 	public double getSpeedDelta() {
 		return speedDelta;
 	}
-
-	
-	for int i; i < numberOfRows; i++
-	for(boolean current : row i){
-	if there is a queen{
-		do stuff
-	}
-	
-	
 	
 	public int getDamageDelta() {
 		return damageDelta;
@@ -72,7 +68,7 @@ public class Item {
 
 	public double getAttackSpeedDelta() {
 		return attackSpeedDelta;
-	}*/
+	}
 
 	public ImageView getImageView() {
 		return itemImg;
