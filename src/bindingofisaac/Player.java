@@ -1,7 +1,8 @@
 package bindingofisaac;
 
-import java.util.ArrayList;
 import static bindingofisaac.Constants.*;
+import java.util.ArrayList;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
@@ -50,8 +51,8 @@ public class Player {
 		return thisGame;
 	}
 	
-	public void setImageView(ImageView newImg){
-		
+	public void setImageView(Image givenImg){
+		currentImg.setImage(givenImg);
 	}
 	
 	public void setCurrentRoom(Room givenRoom){

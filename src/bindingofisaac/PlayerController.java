@@ -46,16 +46,20 @@ public class PlayerController {
         scene.setOnKeyPressed(event -> {
                 
             if(event.getCode() == KeyCode.W){
+                player.setImageView(PLAYER_BACK);
                 upPressed = true;
             }
             if(event.getCode() == KeyCode.D){
+                player.setImageView(PLAYER_RIGHT);
                 rightPressed = true;
             }
-            if(event.getCode() == KeyCode.S){
-                downPressed = true;
-            }
             if(event.getCode() == KeyCode.A){
+                player.setImageView(PLAYER_LEFT);
                 leftPressed = true;
+            }
+            if(event.getCode() == KeyCode.S){
+                player.setImageView(PLAYER_FRONT);
+                downPressed = true;
             }
 
             if (event.getCode() == KeyCode.UP) {
@@ -63,7 +67,7 @@ public class PlayerController {
 		            shoot(UP);
 		            canShoot = false;
 		            tt.play(shootTimerIndex);
-	            }
+	        }
             }
 	        if (event.getCode() == KeyCode.RIGHT) {
             	if (canShoot) {
@@ -87,6 +91,7 @@ public class PlayerController {
 	            }
 	        }
 	        if(event.getCode() == KeyCode.U) {
+                Main.player.getCurrentRoom().setCleared(false);
             	Main.player.getCurrentRoom().setCleared(true);
 	        }
         });
