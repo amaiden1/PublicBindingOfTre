@@ -42,21 +42,21 @@ public class Mummy extends Enemy {
 
 	@Override
 	public void updatePos() {
-            double playerX = Main.player.getX();
-            double playerY = Main.player.getY();
-            if(playerX > x){
-                x += xStep;
-            }
-            if (playerX < x){
-                x -= xStep;
-            }
-            if (playerY > y){
-                y += yStep;
-            }
-            if (playerY < y){
-                y -= yStep;
-            }
-            sprite.relocate(x,y);
+		double playerX = Main.player.getX();
+		double playerY = Main.player.getY();
+		if(playerX > x){
+			x += xStep;
+		}
+		if (playerX < x){
+			x -= xStep;
+		}
+		if (playerY > y){
+			y += yStep;
+		}
+		if (playerY < y){
+			y -= yStep;
+		}
+		sprite.relocate(x,y);
 	}
 	
         @Override
