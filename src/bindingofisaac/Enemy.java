@@ -21,7 +21,7 @@ public class Enemy {
 	
 	public void checkCollision(){
 		if(sprite.getBoundsInParent().intersects(Main.player.getImageView().getBoundsInParent())){
-			System.out.println("collision at: " + Main.player.getCurrentRoom());
+			Main.player.takeDamage(damage);
 		}
 		if(Main.player.getCurrentRoom() == currentRoom)
 			Main.player.getGame().getController().getTimer().play(timerIndex);
