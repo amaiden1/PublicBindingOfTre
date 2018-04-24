@@ -23,12 +23,14 @@ public class Floor {
     private Room stairRoom;
     private Room itemRoom;
     private ArrayList<Item> possibleItems;
-	private ImageView stairs = new ImageView(STAIRS);
+    private ArrayList<Enemy> possibleEnemies;
+    private ImageView stairs = new ImageView(STAIRS);
     
     public Floor(ArrayList<Room> givenRooms){
         thisFloor = givenRooms;
         spawnRoom = thisFloor.get(0);
         possibleItems = new ArrayList<>();
+        possibleEnemies = new ArrayList<Enemy>();
         createItems();
         setStairRoom();
         setItemRoom();
@@ -109,16 +111,32 @@ public class Floor {
     }
         
     public void addEnemies(){
-        
+        int[] xSpawns = new int[]{400, 800, 400, 800};
+        int[] ySpawns = new int[]{200, 500, 500, 200};
+        Random rand = new Random();
         for(Room room : thisFloor){
-            ArrayList<Enemy> enemies = new ArrayList<Enemy>();
             if(room != spawnRoom && room != itemRoom){
-                Enemy enemy = new Witch(Main.player.getGame().getFloorLevel(), room);
-                enemies.add(enemy);
-                enemy.setX(room.getRoomPane().getBoundsInParent().getMinX() + 400);
-                enemy.setY(room.getRoomPane().getBoundsInParent().getMinY() + 200);
-                room.getRoomPane().getChildren().add(enemy.getSprite());
-                enemy.getSprite().relocate(enemy.getX(), enemy.getY());
+                int numberOfEnemies = rand.nextInt(5);
+                ArrayList<Enemy> enemies = new ArrayList<Enemy>();
+                for(int i = 0; i < numberOfEnemies; i++){
+                    int number = rand.nextInt(2);
+                    Enemy enemy = null;
+                    switch(number){
+                        case 0:
+                            enemy = new Witch(Main.player.getGame().getFloorLevel(), room);
+                            break;
+                        case 1:
+                            enemy = new Mummy(Main.player.getGame().getFloorLevel());
+                            break;
+                        default:
+                            break;
+                    }
+                    enemies.add(enemy);
+                    enemy.setX(xSpawns[i]);
+                    enemy.setY(ySpawns[i]);
+                    room.getRoomPane().getChildren().add(enemy.getSprite());
+                    enemy.getSprite().relocate(enemy.getX(), enemy.getY());
+                }
                 room.setEnemies(enemies);
             }
         }
