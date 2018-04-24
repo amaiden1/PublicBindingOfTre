@@ -14,15 +14,13 @@ import javafx.scene.image.ImageView;
  */
 public class Mummy extends Enemy{
 	
-	public Mummy(double givenX, double givenY, int floorLevel){
+	public Mummy(int floorLevel, Room currentRoom){
 		sprite = new ImageView(MUMMY);
 		sprite.setFitHeight(70);
 		sprite.setFitWidth(70);
 		health = 10 + (10 * floorLevel);
 		damage = 20 + (5 * ((floorLevel - 1) / 2));
 		speed = (int) (1 + (0.3 * floorLevel));
-		x = givenX;
-		y = givenY;
 	}
 	
 }
