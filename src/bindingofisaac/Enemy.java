@@ -7,7 +7,7 @@ public class Enemy {
 	protected Room currentRoom;
 	protected int timerIndex;
 	protected ImageView sprite;
-	protected int speed;
+	protected double speed;
 	protected int health;
 	protected int damage;
 	protected double x;

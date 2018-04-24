@@ -29,8 +29,8 @@ public class Mummy extends Enemy {
 		sprite.setFitHeight(70);
 		sprite.setFitWidth(70);
 		health = 10 + (10 * floorLevel);
-		damage = 20 + (5 * ((floorLevel - 1) / 2));
-		speed = (int) (1 + (0.3 * floorLevel));
+		damage = 10 + (2 * floorLevel);
+		speed = (1 + (0.1 * floorLevel));
 		xStep = speed;
 		yStep = speed;
 
@@ -64,7 +64,6 @@ public class Mummy extends Enemy {
 					My solution for handling mummy collisions.
 					The mummies end up "vibrating" and moving around rapidly.
 					 */
-					System.out.println("mummy intersecting an enemy");
 					Random random = new Random();
 					int randInt = random.nextInt(4);
 					int offset = 50;

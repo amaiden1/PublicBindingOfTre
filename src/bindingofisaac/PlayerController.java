@@ -39,7 +39,7 @@ public class PlayerController {
         	if(Main.player != null)
         		updatePlayer();
         });
-	    shootTimerIndex = tt.addTick((int)(1500 / player.getAttackSpeed()), 1, event -> {
+	    shootTimerIndex = tt.addTick((int)(1000 / player.getAttackSpeed()), 1, event -> {
 		    canShoot = true;
 	    });
         scene.setOnKeyPressed(event -> {
@@ -90,8 +90,11 @@ public class PlayerController {
 	            }
 	        }
 	        if(event.getCode() == KeyCode.U) {
-                Main.player.getCurrentRoom().setCleared(false);
-            	Main.player.getCurrentRoom().setCleared(true);
+                for(int i = Main.player.getCurrentRoom().getEnemies().size() - 1; i >= 0; i++){
+					Main.player.getCurrentRoom().getEnemies().get(i).takeDamage(300000);
+					Main.player.getCurrentRoom().getEnemies().remove(i);
+				}
+				Main.player.getCurrentRoom().setCleared(true);
 	        }
         });
         
@@ -156,10 +159,7 @@ public class PlayerController {
     }
     
     public boolean checkBounds(double x, double y){
-    	if ((x <= 60 || x >= ROOM_WIDTH - 120 || y <= 70 || y >= ROOM_HEIGHT - 130)) {
-    		return false;
-	    }
-        else return true;
+    	return !((x <= 60 || x >= ROOM_WIDTH - 120 || y <= 70 || y >= ROOM_HEIGHT - 130));
     }
 	
 	public TickTimer getTimer(){
