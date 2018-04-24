@@ -10,27 +10,20 @@ public class Player {
 
 	private Game thisGame;
 	private Room currentRoom;
-	private double
-		x,  // current x position
-		y;  // current y position
-	private final ImageView
-                playerImage = new ImageView(PLAYER_FRONT);       // image for dir 0
-                //RIGHT_IMG = ImageHelper.imageFromSource("playerRight.png"), // image for dir 1
-                //DOWN_IMG = ImageHelper.imageFromSource("playerDown.png"),   // image for dir 2
-                //LEFT_IMG = ImageHelper.imageFromSource("playerLeft.png");   // image for dir 3
+	private double x;
+	private double y;
+	private final ImageView playerImage = new ImageView(PLAYER_FRONT);
 	private ImageView currentImg;
-	private ArrayList<Integer /* replace with proper data type */> inventory;
-	private int
-                /* replace with proper data type */ currentItem,
-                direction,
-                health,
-                damage,
-				maxHealth;
-	private double
-				speed,
-				attackSpeed;
+	private int direction;
+	private int health;
+	private int damage;
+	private int maxHealth;
+	private double speed;
+	private double attackSpeed;
+	private int ifTickIndex;
+	private boolean canTakeDamage;
 
-	public Player (double startX, double startY, Stage mainStage) {
+	public Player(double startX, double startY, Stage mainStage) {
 		
         playerImage.setFitHeight(70);
         playerImage.setFitWidth(70);
@@ -44,7 +37,15 @@ public class Player {
         damage = 5;
         attackSpeed = 1;
 		thisGame = new Game(mainStage, this);
+		canTakeDamage = true;
 		
+	}
+
+	public void postInit() {
+		ifTickIndex = Main.player.getGame().getController().getTimer().addTick(1000, 1, event -> {
+			System.out.println("iframe timeline finished, can now take damage");
+			canTakeDamage = true;
+		});
 	}
 	
 	public Game getGame(){
@@ -111,8 +112,8 @@ public class Player {
 		maxHealth += delta;
 		health += delta;
 	}
-	
-	public void addDamage(int delta){
+
+	public void addDamage(int delta) {
 		damage += delta;
 	}
 	
@@ -122,6 +123,22 @@ public class Player {
 	
 	public void addAttackSpeed(double delta){
 		attackSpeed += delta;
+	}
+
+	public void takeDamage(int delta){
+		if (canTakeDamage) {
+			health -= delta;
+			System.out.println("took damage: health is now: " + health);
+			if (health <= 0) {
+				// player is dead. GAME OVER
+				System.out.println("PLAYER IS DEAD");
+			}
+			canTakeDamage = false;
+			Main.player.getGame().getLg().getMiniMap().updateHud();
+			Main.player.getGame().getController().getTimer().play(ifTickIndex);
+		} else {
+			System.out.println("could not take damage");
+		}
 	}
 	
 	public void refillHealth(){
