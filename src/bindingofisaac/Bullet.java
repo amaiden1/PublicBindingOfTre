@@ -35,6 +35,7 @@ public class Bullet {
 	private double cornerX;
 	private double cornerY;
 	private int totalProgress;
+	private boolean alreadyDespawned;
 
 	public Bullet(double startX, double startY, double destinationX, double destinationY, int travelTime, int tickLength, Image imgSrc){
 
@@ -85,7 +86,10 @@ public class Bullet {
 		bulletSprite.relocate(x, y);
 		checkCollision();
 		if (totalProgress >= travelTime) {
-			despawn();
+			System.out.println(this + " despawn called due to travel time");
+			if (!alreadyDespawned) {
+				despawn();
+			}
 		}
 
 	}
