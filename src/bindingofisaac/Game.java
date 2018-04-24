@@ -8,21 +8,13 @@ package bindingofisaac;
 import static bindingofisaac.Constants.ROOM_HEIGHT;
 import static bindingofisaac.Constants.ROOM_WIDTH;
 
-import javafx.animation.Timeline;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Paint;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
-import java.sql.Time;
 
 /**
  *
@@ -38,12 +30,13 @@ public class Game {
 	private Room spawnRoom;
 	private int floorLevel;
 	private BooleanProperty isFloorFinished;
+	private Scene primaryScene;
 	
 	public Game(Stage primaryStage, Player player){
 		this.player = player;
 		
 		primaryPane = new Pane();
-		Scene primaryScene = new Scene(primaryPane);
+		primaryScene = new Scene(primaryPane);
 		primaryStage.setScene(primaryScene);
 		primaryStage.setMaxHeight(ROOM_HEIGHT + 30);
 		primaryStage.setMaxWidth(ROOM_WIDTH);
@@ -101,6 +94,30 @@ public class Game {
 		floor.addEnemies();
 		lg.getMiniMap().updateHud();
 
+	}
+
+	public void displayTemporaryPane(boolean canDismiss, Pane pane) {
+		primaryPane.getChildren().add(pane);
+		pane.toFront();
+		if (canDismiss) {
+			pane.setOnMouseClicked(event -> {
+				primaryPane.getChildren().remove(pane);
+			});
+
+			primaryScene.setOnKeyReleased(event -> {
+				primaryPane.getChildren().remove(pane);
+			});
+
+		}
+	}
+
+	public void gameOver() {
+		displayTemporaryPane(false, new LoseDialogScreen(Main.player.getGame().getFloorLevel()).getPane());
+		try {
+			getController().getTimer().removeAllTicks();
+		} catch (Exception e) {
+			System.out.println("If you are seeing this, someone is trying to play a tick after everything is deleted.");
+		}
 	}
 	
 	public Floor getFloor(){
