@@ -2,29 +2,29 @@ package bindingofisaac;
 
 import javafx.scene.image.ImageView;
 
-
-
 public class Enemy {
 
-	Room currentRoom;
-	int timerIndex;
-	ImageView sprite;
-	int speed;
-	int health;
-	int damage;
-	double x;
-	double y;
+	protected Room currentRoom;
+	protected int timerIndex;
+	protected ImageView sprite;
+	protected int speed;
+	protected int health;
+	protected int damage;
+	protected double x;
+	protected double y;
 	
 	public Enemy(){
-		
+
 	}
 	
 	public void checkCollision(){
+
 		if(sprite.getBoundsInParent().intersects(Main.player.getImageView().getBoundsInParent())){
 			Main.player.takeDamage(damage);
 		}
-		if(Main.player.getCurrentRoom() == currentRoom)
+		if(Main.player.getCurrentRoom() == currentRoom) {
 			Main.player.getGame().getController().getTimer().play(timerIndex);
+		}
 	}
 	
 	public void setSprite(ImageView givenSprite){
@@ -84,7 +84,7 @@ public class Enemy {
 	}
 
 	public void shoot() {
-		// override me!
+		//override me!
 	}
         
 	public void start(){
