@@ -41,7 +41,7 @@ public class Room {
 			ix, // artificial index x
 			iy; // artificial index y
 	
-	public Room(int x, int y){ //Austin's constructor
+	public Room(int x, int y){
 		ix = x; iy = y;
 		hasDoors = new boolean[]{false,false,false,false}; //N, E, S, W
 		numDoors = 0;
@@ -164,6 +164,11 @@ public class Room {
             }
             if(!occupied && item != null){
 		item.stopTimer();
+            }
+            if(occupied && enemies != null && enemies.size() > 0){
+                for(Door thisDoor : doorsList){
+                    
+                }
             }
             isOccupied = occupied;
 	}

@@ -42,14 +42,36 @@ public class Mummy extends Enemy {
 
 	@Override
 	public void updatePos() {
-
-		if (y < Main.player.getY()) {
-			y += yStep;
-		}
-		if (x < Main.player.getX()) {
-			x += xStep;
-		}
-
+            double playerX = Main.player.getX();
+            double playerY = Main.player.getY();
+            System.out.println("playerX: " + playerX);
+            System.out.println("playerY: " + playerY);
+            if(playerX > x){
+                System.out.println("Px > Mx");
+                x += xStep;
+            }
+            if (playerX < x){
+                System.out.println("Px < Mx");
+                x -= xStep;
+            }
+            if (playerY > y){
+                System.out.println("Py > My");
+                y += yStep;
+            }
+            if (playerY < y){
+                System.out.println("Py < My");
+                y -= yStep;
+            }
+            sprite.relocate(x,y);
 	}
 	
+        @Override
+        public void start(){
+            Main.player.getGame().getController().getTimer().play(timerIndex);
+        }
+        
+        @Override
+        public void stop(){
+            Main.player.getGame().getController().getTimer().removeNull(timerIndex);
+        }
 }
