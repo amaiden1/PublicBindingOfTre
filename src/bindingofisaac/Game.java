@@ -85,6 +85,9 @@ public class Game {
 	}
 	
 	public void nextFloor() {
+		if (floorLevel == 0) {
+			player.postInit();
+		}
 		isFloorFinished.set(false);
 		floorLevel++;
 		lg = new LayoutGenerator();
