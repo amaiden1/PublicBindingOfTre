@@ -22,6 +22,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.sql.Time;
+
 /**
  *
  * @author Austin
@@ -36,9 +38,6 @@ public class Game {
 	private Room spawnRoom;
 	private int floorLevel;
 	private BooleanProperty isFloorFinished;
-	private Pane hudPane;
-	private Text healthLabel;
-	private Text floorLabel;
 	
 	public Game(Stage primaryStage, Player player){
 		this.player = player;
@@ -67,38 +66,22 @@ public class Game {
 				}
 			}
 		});
-
-		VBox hudBox = new VBox();
-		hudBox.setPadding(new Insets(2,0,2,0));
-		hudBox.setBackground(new Background(new BackgroundFill(Paint.valueOf("BLACK"), CornerRadii.EMPTY, Insets.EMPTY)));
-		hudBox.setOpacity(0.8);
-		healthLabel = new Text("Health: 999");
-		healthLabel.setFont(Font.font(null, 13));
-		healthLabel.setFill(Paint.valueOf("WHITE"));
-		floorLabel = new Text("Health: 999");
-		floorLabel.setFont(Font.font(null, 13));
-		floorLabel.setFill(Paint.valueOf("WHITE"));
-		hudBox.getChildren().addAll(healthLabel, floorLabel);
-		hudBox.relocate(0,0);
-		hudPane = new Pane();
-		hudPane.getChildren().add(hudBox);
 		
         controller = new PlayerController(primaryScene, player);
-		controller.getTimer().addTickAndPlay(50, Timeline.INDEFINITE, event -> {
-			updateHud();
-		});
                 
 		primaryStage.show();
 	}
 	
-	public void updatePane(double newX, double newY){
+	public void updatePane(double newX, double newY, int previousRoomX, int previousRoomY){
 		primaryPane.getChildren().clear();
 		player.getCurrentRoom().getRoomPane().getChildren().add(player.getImageView()); //adds player image to current room pane
 		primaryPane.getChildren().add(player.getCurrentRoom().getRoomPane());
 		player.setX(newX);
 		player.setY(newY);
+		lg.getMiniMap().updateMap(previousRoomX + 3, previousRoomY + 3, player.getCurrentRoom().getX() + 3, player.getCurrentRoom().getY() + 3);
 		primaryPane.getChildren().add(lg.getMiniMap().getPane());
-		
+		lg.getMiniMap().updateHud();
+
 	}
 	
 	public void nextFloor() {
@@ -112,8 +95,9 @@ public class Game {
 		player.getCurrentRoom().getRoomPane().getChildren().add(player.getImageView()); //adds player image to current room pane
 		primaryPane.getChildren().add(player.getCurrentRoom().getRoomPane());
 		primaryPane.getChildren().add(lg.getMiniMap().getPane());
-		primaryPane.getChildren().add(hudPane);
 		floor.addEnemies();
+		lg.getMiniMap().updateHud();
+
 	}
 	
 	public Floor getFloor(){
@@ -167,10 +151,5 @@ public class Game {
 	public void setIsFloorFinished(boolean value) {
 		isFloorFinished.set(true);
 	}
-	
-	public void updateHud() {
 
-	}
-	
-	
 }
