@@ -81,8 +81,10 @@ public class Door {
 		if((Main.player.getImageView().getBoundsInParent().intersects(img.getBoundsInParent())) && Main.player != null && isOpen){
 			System.out.println(destination);
 			Main.player.getCurrentRoom().getRoomPane().getChildren().remove(Main.player.getImageView());
+			int previousRoomX = Main.player.getCurrentRoom().getX();
+			int previousRoomY = Main.player.getCurrentRoom().getY();
 			Main.player.setCurrentRoom(destination);
-			Main.player.getGame().updatePane(nextRoomX, nextRoomY);
+			Main.player.getGame().updatePane(nextRoomX, nextRoomY, previousRoomX, previousRoomY);
 		}
 	}
 
