@@ -10,17 +10,20 @@
 
 package bindingofisaac;
 
+import static bindingofisaac.Constants.*;
+import java.util.ArrayList;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import java.util.ArrayList;
-import static bindingofisaac.Constants.*;
-import javafx.scene.image.Image;
 
 public class Room {
 
-	private boolean
-			isOccupied,
-			isCleared;
+	private boolean isOccupied;
+        private BooleanProperty isCleared;
 	private boolean[] hasDoors;
 	private ImageView
 			innerBack,
@@ -57,7 +60,16 @@ public class Room {
 		innerBack.relocate(80,82);
                 
 		isOccupied = false;
-		isCleared = false;
+		isCleared = new SimpleBooleanProperty(false);
+                isCleared.addListener(new ChangeListener<Boolean>(){
+                    @Override
+                    public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                            for(Door door : doorsList){
+                                door.setOpen(newValue);
+                            }
+                    }
+                });
+                
 		door0 = null;
 		door1 = null;
 		door2 = null;
@@ -142,10 +154,10 @@ public class Room {
 
 	public void removeEnemy(Enemy enemy) {
 		try{
-		enemies.remove(enemy);
+                    enemies.remove(enemy);
 		}
 		catch(Exception e){
-			System.out.println(e.getMessage());
+                    System.out.println(e.getMessage());
 		}
 	}
 
@@ -167,18 +179,18 @@ public class Room {
             }
             if(occupied && enemies != null && enemies.size() > 0){
                 for(Door thisDoor : doorsList){
-                    
+                    thisDoor.setOpen(false);
                 }
             }
             isOccupied = occupied;
 	}
 
 	public boolean isCleared() {
-		return isCleared;
+            return isCleared.get();
 	}
 
 	public void setCleared(boolean cleared) {
-		isCleared = cleared;
+            isCleared.set(cleared);
 	}
 
 	public void setItem(Item givenItem) {

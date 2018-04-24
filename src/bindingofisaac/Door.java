@@ -35,6 +35,7 @@ public class Door {
 		img = new ImageView(OPEN_DOOR);
 		imgWidth = img.getFitWidth();
 		imgHeight = img.getFitHeight();
+                isOpen = true;
 		switch (dir) {
 			case 0:
 				img.setRotate(0);  // rotate to face UP
@@ -77,7 +78,7 @@ public class Door {
 	}
 	
 	public void checkCollision(){
-		if((Main.player.getImageView().getBoundsInParent().intersects(img.getBoundsInParent())) && Main.player != null){
+		if((Main.player.getImageView().getBoundsInParent().intersects(img.getBoundsInParent())) && Main.player != null && isOpen){
 			System.out.println(destination);
 			Main.player.getCurrentRoom().getRoomPane().getChildren().remove(Main.player.getImageView());
 			Main.player.setCurrentRoom(destination);
@@ -86,7 +87,8 @@ public class Door {
 	}
 
 	public void setOpen(boolean open) {
-		isOpen = open;
+            img.setImage((open)?OPEN_DOOR : LOCKED_DOOR);
+            isOpen = open;
 	}
 
 	public boolean isOpen() {
