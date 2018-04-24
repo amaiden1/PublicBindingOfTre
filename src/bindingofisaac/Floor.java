@@ -126,7 +126,7 @@ public class Floor {
                             enemy = new Witch(Main.player.getGame().getFloorLevel(), room);
                             break;
                         case 1:
-                            enemy = new Mummy(Main.player.getGame().getFloorLevel());
+                            enemy = new Mummy(Main.player.getGame().getFloorLevel(), room);
                             break;
                         default:
                             break;

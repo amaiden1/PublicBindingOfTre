@@ -20,7 +20,8 @@ public class Mummy extends Enemy {
 	private double xStep;
 	private double yStep;
 
-	public Mummy(int floorLevel) {
+	public Mummy(int floorLevel, Room room) {
+		currentRoom = room;
 		sprite = new ImageView(MUMMY);
 		sprite.setFitHeight(70);
 		sprite.setFitWidth(70);
