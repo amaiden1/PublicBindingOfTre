@@ -5,6 +5,7 @@
  */
 package bindingofisaac;
 
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 /**
@@ -13,7 +14,7 @@ import javafx.scene.image.ImageView;
  */
 public class EnemyBullet extends Bullet {
 
-	public EnemyBullet(double startX, double startY, double destinationX, double destinationY, int travelTime, int tickLength, ImageView imageSrc){
+	public EnemyBullet(double startX, double startY, double destinationX, double destinationY, int travelTime, int tickLength, Image imageSrc){
 		super(startX, startY, destinationX, destinationY, travelTime, tickLength, imageSrc);
 	}
 

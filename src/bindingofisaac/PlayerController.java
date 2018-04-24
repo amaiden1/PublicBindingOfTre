@@ -10,6 +10,7 @@ import static bindingofisaac.Constants.*;
 
 import javafx.animation.Timeline;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 
@@ -28,10 +29,11 @@ public class PlayerController {
 	private boolean leftPressed;
 	private boolean canShoot;
 	private int shootTimerIndex;
-	private ImageView bulletImg = new ImageView(LIGHTNING_BOLT);
+	private Image bulletImg;
     
     public PlayerController(Scene scene, Player player){
         this.player = player;
+        bulletImg = LIGHTNING_BOLT;
         canShoot = true;
         tt = new TickTimer();
         tt.addTickAndPlay(10, Timeline.INDEFINITE, event -> {

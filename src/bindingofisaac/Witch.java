@@ -6,6 +6,7 @@
 package bindingofisaac;
 
 import javafx.animation.Timeline;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import static bindingofisaac.Constants.*;
@@ -17,7 +18,7 @@ import static bindingofisaac.Constants.*;
 public class Witch extends Enemy{
 	
 	private int deltaY;
-	private ImageView bulletImg;
+	private Image bulletImg;
 	private int bulletTimerIndex;
 	
 	public Witch(int floorLevel, Room givenRoom){
@@ -29,7 +30,7 @@ public class Witch extends Enemy{
 		health = 10 + (10 * floorLevel);
 		damage = 5 + (2 * (floorLevel - 1));
 		speed = 1;
-		bulletImg = new ImageView(LIGHTNING_BOLT);
+		bulletImg = LIGHTNING_BOLT;
 		
 		timerIndex = Main.player.getGame().getController().getTimer().addTick(10 , Timeline.INDEFINITE, event -> {
 			updatePos();

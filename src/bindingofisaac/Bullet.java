@@ -36,10 +36,10 @@ public class Bullet {
 	private double cornerY;
 	private int totalProgress;
 
-	public Bullet(double startX, double startY, double destinationX, double destinationY, int travelTime, int tickLength, ImageView imgSrc){
+	public Bullet(double startX, double startY, double destinationX, double destinationY, int travelTime, int tickLength, Image imgSrc){
 
 		try{
-			bulletSprite = imgSrc;
+			bulletSprite = new ImageView(imgSrc);
 			bulletSprite.setPreserveRatio(true);
 			bulletSprite.setFitHeight(10);
 		}

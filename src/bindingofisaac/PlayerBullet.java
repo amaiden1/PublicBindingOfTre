@@ -14,7 +14,7 @@ import javafx.scene.image.ImageView;
  */
 public class PlayerBullet extends Bullet {
 
-	public PlayerBullet(double startX, double startY, double destinationX, double destinationY, int travelTime, int tickLength, ImageView imageSrc){
+	public PlayerBullet(double startX, double startY, double destinationX, double destinationY, int travelTime, int tickLength, Image imageSrc){
 		super(startX, startY, destinationX, destinationY, travelTime, tickLength, imageSrc);
 	}
 
