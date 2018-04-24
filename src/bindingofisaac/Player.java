@@ -136,8 +136,6 @@ public class Player {
 			canTakeDamage = false;
 			Main.player.getGame().getLg().getMiniMap().updateHud();
 			Main.player.getGame().getController().getTimer().play(ifTickIndex);
-		} else {
-			System.out.println("could not take damage");
 		}
 	}
 	
