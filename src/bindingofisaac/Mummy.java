@@ -44,22 +44,16 @@ public class Mummy extends Enemy {
 	public void updatePos() {
             double playerX = Main.player.getX();
             double playerY = Main.player.getY();
-            System.out.println("playerX: " + playerX);
-            System.out.println("playerY: " + playerY);
             if(playerX > x){
-                System.out.println("Px > Mx");
                 x += xStep;
             }
             if (playerX < x){
-                System.out.println("Px < Mx");
                 x -= xStep;
             }
             if (playerY > y){
-                System.out.println("Py > My");
                 y += yStep;
             }
             if (playerY < y){
-                System.out.println("Py < My");
                 y -= yStep;
             }
             sprite.relocate(x,y);
