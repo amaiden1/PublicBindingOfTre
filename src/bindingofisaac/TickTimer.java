@@ -94,8 +94,10 @@ public class TickTimer {
 	}
 
 	public void removeNull(int index) {
-		stop(index);
-		ticks.set(index, null);
+		if (ticks.get(index) != null) {
+			stop(index);
+			ticks.set(index, null);
+		}
 	}
 
 	/**
