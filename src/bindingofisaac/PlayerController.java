@@ -119,16 +119,28 @@ public class PlayerController {
         double deltaY = 0;
         
         if(rightPressed){
-            deltaX += Main.player.getSpeed();
+        	double proposedDeltaX = deltaX + Main.player.getSpeed();
+        	if (checkBounds(player.getX() + proposedDeltaX, player.getY())) {
+		        deltaX += Main.player.getSpeed();
+	        }
         }
         if(leftPressed){
-            deltaX -= Main.player.getSpeed();
+        	double proposedDeltaX = deltaX - Main.player.getSpeed();
+        	if (checkBounds(player.getX() + proposedDeltaX, player.getY())) {
+		        deltaX -= Main.player.getSpeed();
+	        }
         }
 		if(upPressed){
-			deltaY -= Main.player.getSpeed();
-			}
+        	double proposedDeltaY = deltaY - Main.player.getSpeed();
+        	if (checkBounds(player.getX(), player.getY() + proposedDeltaY)) {
+		        deltaY -= Main.player.getSpeed();
+	        }
+        }
 		if(downPressed){
-			deltaY += Main.player.getSpeed();
+        	double proposedDeltaY = deltaY + Main.player.getSpeed();
+        	if (checkBounds(player.getX(), player.getY() + proposedDeltaY)) {
+		        deltaY += Main.player.getSpeed();
+	        }
         }
 		
 		player.setX(player.getX() + deltaX);
@@ -144,8 +156,11 @@ public class PlayerController {
 		
     }
     
-    public boolean isInBounds(){
-        return ((player.getX() >= 80 && player.getX() <= ROOM_WIDTH - 80));
+    public boolean checkBounds(double x, double y){
+    	if ((x <= 60 || x >= ROOM_WIDTH - 120 || y <= 70 || y >= ROOM_HEIGHT - 130)) {
+    		return false;
+	    }
+        else return true;
     }
 	
 	public TickTimer getTimer(){
