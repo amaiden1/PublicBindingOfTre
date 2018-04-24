@@ -8,6 +8,7 @@ package bindingofisaac;
 import static bindingofisaac.Constants.ROOM_HEIGHT;
 import static bindingofisaac.Constants.ROOM_WIDTH;
 
+import javafx.animation.Timeline;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ChangeListener;
@@ -15,6 +16,8 @@ import javafx.beans.value.ObservableValue;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+
+import java.awt.*;
 
 /**
  *
@@ -96,15 +99,19 @@ public class Game {
 
 	}
 
-	public void displayTemporaryPane(boolean canDismiss, Pane pane) {
+	public void displayTemporaryPane(boolean autoDismiss, Pane pane) {
 		primaryPane.getChildren().add(pane);
 		pane.toFront();
-		if (canDismiss) {
-			pane.setOnMouseClicked(event -> {
-				primaryPane.getChildren().remove(pane);
+		pane.setOpacity(0.8);
+		if (autoDismiss) {
+			final boolean[] firstTickDone = {false};
+			controller.getTimer().addTickAndPlay(1500, 1, event -> {
+				firstTickDone[0] = true;
 			});
-
-			primaryScene.setOnKeyReleased(event -> {
+			controller.getTimer().addTickAndPlay(10, 500, event -> {
+				if (firstTickDone[0]) pane.setOpacity(pane.getOpacity() - 0.01);
+			});
+			controller.getTimer().addTickAndPlay(5000, 1, event -> {
 				primaryPane.getChildren().remove(pane);
 			});
 
@@ -112,11 +119,13 @@ public class Game {
 	}
 
 	public void gameOver() {
-		displayTemporaryPane(false, new LoseDialogScreen(Main.player.getGame().getFloorLevel()).getPane());
+		Pane loseDialogPane = new LoseDialogScreen(Main.player.getGame().getFloorLevel()).getPane();
+		primaryPane.getChildren().add(loseDialogPane);
 		try {
 			getController().getTimer().removeAllTicks();
 		} catch (Exception e) {
 			System.out.println("If you are seeing this, someone is trying to play a tick after everything is deleted.");
+			e.printStackTrace();
 		}
 	}
 	

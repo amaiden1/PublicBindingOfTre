@@ -36,7 +36,7 @@ public class ItemDialogScreen {
 		desc = new Text("This is the description");
 		desc.setFont(Font.font(16));
 		desc.setFill(Paint.valueOf("WHITE"));
-		Text dismissLabel = new Text("click or press any key to dismiss");
+		Text dismissLabel = new Text("automatically dismisses in 2 seconds");
 		dismissLabel.setFont(Font.font(13));
 		dismissLabel.setFill(Paint.valueOf("WHITE"));
 
