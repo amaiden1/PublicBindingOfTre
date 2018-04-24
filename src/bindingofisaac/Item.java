@@ -22,8 +22,8 @@ public class Item {
 		attackSpeedDelta = attackSpeed;
 		itemImg = img;
         itemImg.relocate(ROOM_WIDTH/ 2, ROOM_HEIGHT / 2);
-        itemImg.setFitHeight(30);
-        itemImg.setFitWidth(30);
+        itemImg.setFitHeight(50);
+        itemImg.setFitWidth(50);
 		timerIndex = Main.player.getGame().getController().getTimer().addTick(10, Timeline.INDEFINITE, event -> {
         	if(Main.player.getImageView().getBoundsInParent().intersects(itemImg.getBoundsInParent())){
 				pickUpItem();
