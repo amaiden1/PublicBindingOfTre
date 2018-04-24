@@ -7,12 +7,19 @@ package bindingofisaac;
 
 import static bindingofisaac.Constants.ROOM_HEIGHT;
 import static bindingofisaac.Constants.ROOM_WIDTH;
+
+import javafx.animation.Timeline;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
@@ -29,6 +36,9 @@ public class Game {
 	private Room spawnRoom;
 	private int floorLevel;
 	private BooleanProperty isFloorFinished;
+	private Pane hudPane;
+	private Text healthLabel;
+	private Text floorLabel;
 	
 	public Game(Stage primaryStage, Player player){
 		this.player = player;
@@ -58,8 +68,26 @@ public class Game {
 				}
 			}
 		});
+
+		VBox hudBox = new VBox();
+		hudBox.setPadding(new Insets(2,0,2,0));
+		hudBox.setBackground(new Background(new BackgroundFill(Paint.valueOf("BLACK"), CornerRadii.EMPTY, Insets.EMPTY)));
+		hudBox.setOpacity(0.8);
+		healthLabel = new Text("Health: 999");
+		healthLabel.setFont(Font.font(null, 13));
+		healthLabel.setFill(Paint.valueOf("WHITE"));
+		floorLabel = new Text("Health: 999");
+		floorLabel.setFont(Font.font(null, 13));
+		floorLabel.setFill(Paint.valueOf("WHITE"));
+		hudBox.getChildren().addAll(healthLabel, floorLabel);
+		hudBox.relocate(0,0);
+		hudPane = new Pane();
+		hudPane.getChildren().add(hudBox);
 		
         controller = new PlayerController(primaryScene, player);
+		controller.getTimer().addTickAndPlay(50, Timeline.INDEFINITE, event -> {
+			updateHud();
+		});
                 
 		primaryStage.show();
 	}
@@ -85,6 +113,7 @@ public class Game {
 		player.getCurrentRoom().getRoomPane().getChildren().add(player.getImageView()); //adds player image to current room pane
 		primaryPane.getChildren().add(player.getCurrentRoom().getRoomPane());
 		primaryPane.getChildren().add(lg.getMiniMap().getPane());
+		primaryPane.getChildren().add(hudPane);
 		floor.addEnemies();
 	}
 	
@@ -140,7 +169,9 @@ public class Game {
 		isFloorFinished.set(true);
 	}
 	
-	
+	public void updateHud() {
+
+	}
 	
 	
 }
