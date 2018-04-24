@@ -1,7 +1,6 @@
 package bindingofisaac;
 
 import static bindingofisaac.Constants.*;
-import java.util.ArrayList;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -45,6 +44,7 @@ public class Player {
 		ifTickIndex = Main.player.getGame().getController().getTimer().addTick(1000, 1, event -> {
 			System.out.println("iframe timeline finished, can now take damage");
 			canTakeDamage = true;
+			playerImage.setOpacity(1);
 		});
 	}
 	
@@ -132,9 +132,11 @@ public class Player {
 			if (health <= 0) {
 				// player is dead. GAME OVER
 				System.out.println("PLAYER IS DEAD");
+				Main.player.getGame().gameOver();
 			}
 			canTakeDamage = false;
 			Main.player.getGame().getLg().getMiniMap().updateHud();
+			playerImage.setOpacity(0.5);
 			Main.player.getGame().getController().getTimer().play(ifTickIndex);
 		}
 	}
