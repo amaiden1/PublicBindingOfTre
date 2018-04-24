@@ -14,13 +14,17 @@ import javafx.scene.image.ImageView;
  */
 public class EnemyBullet extends Bullet {
 
-	public EnemyBullet(double startX, double startY, double destinationX, double destinationY, int travelTime, int tickLength, Image imageSrc){
+	private int damage;
+
+	public EnemyBullet(double startX, double startY, double destinationX, double destinationY, int travelTime, int tickLength, Image imageSrc, int damage){
 		super(startX, startY, destinationX, destinationY, travelTime, tickLength, imageSrc);
+		this.damage = damage;
 	}
 
 	@Override
 	protected void checkCollision(){
 		if((Main.player.getImageView().getBoundsInParent().intersects(super.getBulletSprite().getBoundsInParent())) && Main.player != null){
+			Main.player.takeDamage(damage);
 			despawn();
 		}
 	}
