@@ -40,7 +40,7 @@ public class Mummy extends Enemy {
 			updatePos();
 			checkCollision();
 		});
-		surroundingCheckIndex = Main.player.getGame().getController().getTimer().addTick(200, Timeline.INDEFINITE, event -> {
+		surroundingCheckIndex = Main.player.getGame().getController().getTimer().addTick(800, Timeline.INDEFINITE, event -> {
 			checkSurroundingEnemies();
 		});
 	}
@@ -80,16 +80,16 @@ public class Mummy extends Enemy {
 	public void updatePos() {
 		double playerX = Main.player.getX();
 		double playerY = Main.player.getY();
-		if(playerX > x){
+		if(playerX > x){ 
 			x += xStep;
 		}
-		if (playerX < x){
+		if (playerX < x){ 
 			x -= xStep;
 		}
-		if (playerY > y){
+		if (playerY > y){ 
 			y += yStep;
 		}
-		if (playerY < y){
+		if (playerY < y){ 
 			y -= yStep;
 		}
 		sprite.relocate(x,y);
