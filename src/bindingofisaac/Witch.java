@@ -41,7 +41,7 @@ public class Witch extends Enemy{
 		});
 		
 	}
-	
+
 	@Override
 	public void updatePos(){
 		deltaY = (y <= 100)? 1 : (deltaY = (y >= 600)? -1 : deltaY);
