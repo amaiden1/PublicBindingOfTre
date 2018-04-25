@@ -1,10 +1,3 @@
-/*
- * Copyright © 2018 Austin Maiden and Nolan Ierardi.
- * All rights reserved.
- *
- * This code is licensed for private use. Any unauthorized distribution is prohibited.
- */
-
 package bindingofisaac;
 
 import java.io.File;
@@ -18,10 +11,6 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Paint;
 
-/**
- * Contains all constant variables used in this package.
- * @author Austin Maiden and Nolan Ierardi
- */
 public final class Constants {
 
 	/*
@@ -31,7 +20,8 @@ public final class Constants {
 	 * not be instantiated.
 	 *
 	 * For easier usage, add
-	 * 'import static bindingofisaac.Constants.*' to your imports.
+	 * 'import static bindingofisaac.Constants.*' to
+	 * your imports.
 	 */
 	public static final int
 			ROOM_WIDTH = 1200, // 13 * 80
@@ -79,17 +69,17 @@ public final class Constants {
 	
 	public static final Media
 			SONG_1 = new Media(new File("./src/Sounds/Song1.mp3").toURI().toString()),
-			SONG_2 = new Media(new File("./src/Sounds/Song2.mp3").toURI().toString());
+			SONG_2 = new Media(new File("./src/Sounds/Song2.mp3").toURI().toString()),
+                SONG_3 = new Media(new File("./src/Sounds/Song3.mp3").toURI().toString());
         
-	public static final MediaPlayer
-			SONG1_PLAYER = new MediaPlayer(SONG_1),
-			SONG2_PLAYER = new MediaPlayer(SONG_2);
+        public static final MediaPlayer SONG1_PLAYER = new MediaPlayer(SONG_1),
+                                        SONG2_PLAYER = new MediaPlayer(SONG_2),
+                SONG3_PLAYER = new MediaPlayer(SONG_3);
 
-	public static final ArrayList<MediaPlayer> SONGS = new ArrayList<MediaPlayer>(){{
-		add(SONG1_PLAYER);
-		add(SONG2_PLAYER);
-	}};
-
+        public static final ArrayList<MediaPlayer> SONGS = new ArrayList<MediaPlayer>(){{
+            add(SONG1_PLAYER);
+            add(SONG2_PLAYER);
+        add(SONG3_PLAYER);}};
 	/*
 	 * Forcibly prevents class instantation. The default
 	 * constructor is public, so if we specify a private
