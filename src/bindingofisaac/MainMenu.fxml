@@ -14,17 +14,17 @@
                <children>
                   <Button fx:id="newGameButton" mnemonicParsing="false" onAction="#newGameButtonPressed" onMouseEntered="#newGameMouseEntered" onMouseExited="#newGameMouseExited" prefHeight="118.0" prefWidth="393.0" style="-fx-background-color: GREY; -fx-border-color: BLUE;" text="New Game">
                      <font>
-                        <Font name="Bauhaus 93" size="42.0" />
+                        <Font name="Arial" size="42.0" />
                      </font>
                   </Button>
                   <Button fx:id="leaderboardsButton" mnemonicParsing="false" onAction="#leaderboardsButtonPressed" onMouseEntered="#leaderboardsMouseEntered" onMouseExited="#leaderboardsMouseExited" prefHeight="118.0" prefWidth="393.0" style="-fx-background-color: GREY; -fx-border-color: BLUE;" text="Leaderboards">
                      <font>
-                        <Font name="Bauhaus 93" size="42.0" />
+                        <Font name="Arial" size="42.0" />
                      </font>
                   </Button>
                   <Button fx:id="quitButton" mnemonicParsing="false" onAction="#quitButtonPressed" onMouseEntered="#quitMouseEntered" onMouseExited="#quitMouseExited" prefHeight="118.0" prefWidth="393.0" style="-fx-background-color: GREY; -fx-border-color: BLUE;" text="Quit">
                      <font>
-                        <Font name="Bauhaus 93" size="42.0" />
+                        <Font name="Arial" size="42.0" />
                      </font>
                   </Button>
                </children>
