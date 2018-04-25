@@ -6,25 +6,25 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1200.0" style="-fx-background-color: BLACK;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1200.0" style="-fx-background-color: BLACK;" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane layoutX="301.0" layoutY="27.0" prefHeight="676.0" prefWidth="634.0" style="-fx-background-color: BEIGE; -fx-border-color: RED; -fx-border-insets: 20;">
+      <Pane layoutX="301.0" layoutY="27.0" prefHeight="676.0" prefWidth="634.0" style="-fx-background-color: BLACK; -fx-border-insets: 20;">
          <children>
-            <VBox layoutX="133.0" layoutY="85.0" prefHeight="507.0" prefWidth="396.0" spacing="75.0">
+            <VBox layoutX="119.0" layoutY="121.0" prefHeight="434.0" prefWidth="396.0" spacing="40.0">
                <children>
-                  <Button fx:id="newGameButton" mnemonicParsing="false" onAction="#newGameButtonPressed" onMouseEntered="#newGameMouseEntered" onMouseExited="#newGameMouseExited" prefHeight="118.0" prefWidth="393.0" style="-fx-background-color: GREY; -fx-border-color: BLUE;" text="New Game">
+                  <Button fx:id="newGameButton" mnemonicParsing="false" onAction="#newGameButtonPressed" onMouseEntered="#newGameMouseEntered" onMouseExited="#newGameMouseExited" prefHeight="118.0" prefWidth="393.0" style="-fx-background-color: #007c3b#007c3b;" text="New Game" textFill="WHITE">
                      <font>
-                        <Font name="Arial" size="42.0" />
+                        <Font size="42.0" />
                      </font>
                   </Button>
-                  <Button fx:id="leaderboardsButton" mnemonicParsing="false" onAction="#leaderboardsButtonPressed" onMouseEntered="#leaderboardsMouseEntered" onMouseExited="#leaderboardsMouseExited" prefHeight="118.0" prefWidth="393.0" style="-fx-background-color: GREY; -fx-border-color: BLUE;" text="Leaderboards">
+                  <Button fx:id="leaderboardsButton" mnemonicParsing="false" onAction="#leaderboardsButtonPressed" onMouseEntered="#leaderboardsMouseEntered" onMouseExited="#leaderboardsMouseExited" prefHeight="118.0" prefWidth="393.0" style="-fx-background-color: #af4800#af4800;" text="Leaderboards" textFill="WHITE">
                      <font>
-                        <Font name="Arial" size="42.0" />
+                        <Font size="42.0" />
                      </font>
                   </Button>
-                  <Button fx:id="quitButton" mnemonicParsing="false" onAction="#quitButtonPressed" onMouseEntered="#quitMouseEntered" onMouseExited="#quitMouseExited" prefHeight="118.0" prefWidth="393.0" style="-fx-background-color: GREY; -fx-border-color: BLUE;" text="Quit">
+                  <Button fx:id="quitButton" mnemonicParsing="false" onAction="#quitButtonPressed" onMouseEntered="#quitMouseEntered" onMouseExited="#quitMouseExited" prefHeight="118.0" prefWidth="393.0" style="-fx-background-color: #870000#870000;" text="Quit" textFill="WHITE">
                      <font>
-                        <Font name="Arial" size="42.0" />
+                        <Font size="42.0" />
                      </font>
                   </Button>
                </children>
