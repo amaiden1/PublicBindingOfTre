@@ -30,7 +30,7 @@ public class Mummy extends Enemy {
 		sprite.setFitWidth(70);
 		health = 10 + (10 * floorLevel);
 		damage = 10 + (2 * floorLevel);
-		speed = (1 + (0.1 * floorLevel));
+		speed = (1 + (0.05 * floorLevel));
 		xStep = speed;
 		yStep = speed;
 

@@ -31,10 +31,12 @@ public class Game {
 	private int floorLevel;
 	private BooleanProperty isFloorFinished;
 	private Scene primaryScene;
+        private Stage primaryStage;
 	
 	public Game(Stage primaryStage, Player player){
 		this.player = player;
 		
+                this.primaryStage = primaryStage;
 		primaryPane = new Pane();
 		primaryScene = new Scene(primaryPane);
 		primaryStage.setScene(primaryScene);
@@ -116,7 +118,7 @@ public class Game {
 	}
 
 	public void gameOver() {
-		Pane loseDialogPane = new LoseDialogScreen(Main.player.getGame().getFloorLevel()).getPane();
+		Pane loseDialogPane = new LoseDialogScreen(Main.player.getGame().getFloorLevel(), primaryStage).getPane();
 		primaryPane.getChildren().add(loseDialogPane);
 		try {
 			getController().getTimer().removeAllTicks();
@@ -124,6 +126,7 @@ public class Game {
 			System.out.println("If you are seeing this, someone is trying to play a tick after everything is deleted.");
 			e.printStackTrace();
 		}
+                
 	}
 	
 	public Floor getFloor(){
