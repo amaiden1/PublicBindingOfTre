@@ -33,7 +33,7 @@ public class ItemDialogScreen {
 		title = new Text("You have collected " + item.getItemName() + "!");
 		title.setFont(Font.font(null, FontWeight.BOLD, FontPosture.REGULAR, 20));
 		title.setFill(Paint.valueOf("WHITE"));
-		desc = new Text("This is the description");
+		desc = new Text(item.getDescription());
 		desc.setFont(Font.font(16));
 		desc.setFill(Paint.valueOf("WHITE"));
 		Text dismissLabel = new Text("automatically dismisses in 2 seconds");

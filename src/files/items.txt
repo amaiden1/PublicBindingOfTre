@@ -1,5 +1,5 @@
-Steroids,Steroids,10,0,5,0.1
-Lift Weights,Weights,0,0,10,0
-More Love,Love,20,0.1,5,0.1
-Running Shoes,Running_Shoes,0,.5,0,0
-Aerodynamics,Aerodynamics,0,.2,2,0.5
+Steroids,Steroids,What doesn't kill you...,10,0,5,0.1
+Lift Weights,Weights,Do you even lift?,0,0,10,0
+More Love,Love,All stats up!,20,0.1,5,0.1
+Running Shoes,Running_Shoes,Gotta go fast!,0,.5,0,0
+Aerodynamics,Aerodynamics,Faster! Stronger!,0,.2,2,0.5

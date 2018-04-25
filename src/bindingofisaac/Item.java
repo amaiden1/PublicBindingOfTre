@@ -11,16 +11,18 @@ public class Item {
 	private int damageDelta;
 	private double attackSpeedDelta;
 	private String itemName;
+        private String description;
 	private ImageView itemImg;
 	private int timerIndex;
 
-	public Item(String name, ImageView img, int health, double speed, int damage, double attackSpeed) {
+	public Item(String name, ImageView img, String desc, int health, double speed, int damage, double attackSpeed) {
             itemName = name;
             healthDelta = health;
             speedDelta = speed;
             damageDelta = damage;
             attackSpeedDelta = attackSpeed;
             itemImg = img;
+            description = desc;
             itemImg.relocate(ROOM_WIDTH/ 2, ROOM_HEIGHT / 2);
             itemImg.setFitHeight(50);
             itemImg.setFitWidth(50);
@@ -51,6 +53,9 @@ public class Item {
 		stopTimer();
 	}
 
+        public String getDescription(){
+            return description;
+        }
 	public String getItemName() {
 		return itemName;
 	}

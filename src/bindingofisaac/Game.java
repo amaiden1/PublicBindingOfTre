@@ -102,13 +102,13 @@ public class Game {
 		pane.setOpacity(0.8);
 		if (autoDismiss) {
 			final boolean[] firstTickDone = {false};
-			controller.getTimer().addTickAndPlay(1500, 1, event -> {
+			controller.getTimer().addTickAndPlay(2000, 1, event -> {
 				firstTickDone[0] = true;
 			});
 			controller.getTimer().addTickAndPlay(10, 500, event -> {
 				if (firstTickDone[0]) pane.setOpacity(pane.getOpacity() - 0.01);
 			});
-			controller.getTimer().addTickAndPlay(5000, 1, event -> {
+			controller.getTimer().addTickAndPlay(5500, 1, event -> {
 				primaryPane.getChildren().remove(pane);
 			});
 

@@ -159,11 +159,12 @@ public class Floor {
             String midImgSrc = lineScan.next();
             String imgSrc = startImgSrc + midImgSrc + endImgSrc;
             itemImg = new ImageView(imgSrc);
+            String desc = lineScan.next();
             int healthDelta = lineScan.nextInt();
             double speedDelta = lineScan.nextDouble();
             int damageDelta = lineScan.nextInt();
             double attackSpeedDelta = lineScan.nextDouble();
-            possibleItems.add(new Item(name, itemImg, healthDelta, speedDelta, damageDelta, attackSpeedDelta));
+            possibleItems.add(new Item(name, itemImg, desc, healthDelta, speedDelta, damageDelta, attackSpeedDelta));
         }
         }
         catch(Exception e){
