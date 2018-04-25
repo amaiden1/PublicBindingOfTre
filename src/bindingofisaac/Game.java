@@ -41,9 +41,9 @@ public class Game {
 		primaryPane = new Pane();
 		primaryScene = new Scene(primaryPane);
 		primaryStage.setScene(primaryScene);
-		//primaryStage.setMaxHeight(ROOM_HEIGHT + 30);
-		//primaryStage.setMaxWidth(ROOM_WIDTH);
-		//primaryStage.setResizable(false);
+		primaryStage.setMaxHeight(ROOM_HEIGHT + 30);
+		primaryStage.setMaxWidth(ROOM_WIDTH);
+		primaryStage.setResizable(false);
 		primaryPane.setPrefSize(ROOM_WIDTH, ROOM_HEIGHT);
 		primaryPane.setMaxSize(ROOM_WIDTH, ROOM_HEIGHT);
 		

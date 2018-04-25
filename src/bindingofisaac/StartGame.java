@@ -49,7 +49,7 @@ public class StartGame {
         musicTimer.play();
     }
     
-    public void openMenu() throws IOException{
+    private void openMenu() throws IOException{
         
         MainMenuController controller = new MainMenuController(primaryStage);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));
