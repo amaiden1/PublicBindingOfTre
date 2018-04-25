@@ -1,7 +1,6 @@
 package bindingofisaac;
 
-import static bindingofisaac.Constants.ROOM_HEIGHT;
-import static bindingofisaac.Constants.ROOM_WIDTH;
+import static bindingofisaac.Constants.*;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
