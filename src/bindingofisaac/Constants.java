@@ -73,6 +73,10 @@ public final class Constants {
 			ITEM = new Background(new BackgroundFill(Paint.valueOf("GREEN"), CornerRadii.EMPTY, Insets.EMPTY)),
 			CURRENT = new Background(new BackgroundFill(Paint.valueOf("GREEN"), CornerRadii.EMPTY, Insets.EMPTY));
 	
+        /**
+         * Music sources retrieved from https://www.youtube.com/watch?v=c5XtauVeFGc
+         */
+        
 	public static final Media
 			SONG_1 = new Media(new File("./src/Sounds/Song1.mp3").toURI().toString()),
 			SONG_2 = new Media(new File("./src/Sounds/Song2.mp3").toURI().toString()),
