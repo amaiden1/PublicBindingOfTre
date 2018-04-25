@@ -1,7 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright © 2018 Austin Maiden and Nolan Ierardi.
+ * All rights reserved.
+ *
+ * This code is licensed for private use. Any unauthorized distribution is prohibited.
  */
 package bindingofisaac;
 
@@ -14,8 +15,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- *
- * @author Austin
+ * represents an enemy that is our game's interpretation of a Mummy
+ * @author Austin Maiden and Nolan Ierardi
  */
 public class Mummy extends Enemy {
 
@@ -23,6 +24,12 @@ public class Mummy extends Enemy {
 	private double yStep;
 	private int surroundingCheckIndex;
 
+     /**
+     * creates the Mummy with it's stats according to the current floor
+     * @param floorLevel int representing the floor the player is on. makes the Mummy's difficulty
+     * scale with the floor
+     * @param givenRoom room that the enemy is in. Used when comparing rooms with the player to initialize it's timer
+     */
 	public Mummy(int floorLevel, Room room) {
 		super.setCurrentRoom(room);
 		ImageView sprite = new ImageView(MUMMY);
@@ -46,7 +53,10 @@ public class Mummy extends Enemy {
 		});
 	}
 
-	@Override
+    /**
+     * makes the player take damage upon contact with the Mummy
+     */
+    @Override
 	public void checkCollision(){
 		if(super.getSprite().getBoundsInParent().intersects(Main.player.getImageView().getBoundsInParent())){
 			Main.player.takeDamage(super.getDamage());
@@ -56,7 +66,10 @@ public class Mummy extends Enemy {
 		}
 	}
 
-	public void checkSurroundingEnemies() {
+    /**
+     * prevents mummies from overlapping each other
+     */
+    public void checkSurroundingEnemies() {
 		ArrayList<Enemy> enemiesToCheck = Main.player.getCurrentRoom().getEnemies();
 		for(int i = 0; i < enemiesToCheck.size() ; i++) {
 			if(super.getSprite().getBoundsInParent().intersects(enemiesToCheck.get(i).getSprite().getBoundsInParent())) {
@@ -77,6 +90,9 @@ public class Mummy extends Enemy {
 		}
 	}
 
+     /**
+     * updates the x and y coordinates of the witch
+     */
 	@Override
 	public void updatePos() {
 		double playerX = Main.player.getX();
@@ -96,12 +112,18 @@ public class Mummy extends Enemy {
 		super.getSprite().relocate(super.getX(),super.getY());
 	}
 	
+        /**
+        * begins all the timers for the witch
+        */
         @Override
         public void start(){
             Main.player.getGame().getController().getTimer().play(super.getTimerIndex());
             Main.player.getGame().getController().getTimer().play(surroundingCheckIndex);
         }
         
+        /**
+        * begins all the timers for the witch
+        */
         @Override
         public void stop(){
             Main.player.getGame().getController().getTimer().removeNull(super.getTimerIndex());

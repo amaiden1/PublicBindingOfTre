@@ -1,3 +1,9 @@
+/*
+ * Copyright © 2018 Austin Maiden and Nolan Ierardi.
+ * All rights reserved.
+ *
+ * This code is licensed for private use. Any unauthorized distribution is prohibited.
+ */
 package bindingofisaac;
 
 import java.io.File;

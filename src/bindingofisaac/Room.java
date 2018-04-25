@@ -1,11 +1,8 @@
 /*
- ***********
+ * Copyright © 2018 Austin Maiden and Nolan Ierardi.
+ * All rights reserved.
  *
- * This method contains many stub methods. This is due to
- * the classes needed to create those methods not existing
- * yet. These classes need to be created.
- *
- ***********
+ * This code is licensed for private use. Any unauthorized distribution is prohibited.
  */
 
 package bindingofisaac;

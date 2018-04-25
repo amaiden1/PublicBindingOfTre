@@ -1,3 +1,9 @@
+/*
+ * Copyright © 2018 Austin Maiden and Nolan Ierardi.
+ * All rights reserved.
+ *
+ * This code is licensed for private use. Any unauthorized distribution is prohibited.
+ */
 package bindingofisaac;
 
 import static bindingofisaac.Constants.*;
@@ -5,6 +11,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
+/**
+ * data representing the user's statistics, progress, and location
+ * @author Austin Maiden and Nolan Ierardi
+ */
 public class Player {
 
 	private Game thisGame;
@@ -22,7 +32,13 @@ public class Player {
 	private int ifTickIndex;
 	private boolean canTakeDamage;
 
-	public Player(double startX, double startY, Stage mainStage) {
+    /**
+     * creates and initializes the player
+     * @param startX the beginning location of the player on the x axis
+     * @param startY the beginning location of the player on the y axis
+     * @param mainStage the screen that displays everything
+     */
+    public Player(double startX, double startY, Stage mainStage) {
 		
         playerImage.setFitHeight(70);
         playerImage.setFitWidth(70);
@@ -40,22 +56,37 @@ public class Player {
 		
 	}
 
-	public void postInit() {
+    /**
+     * sets the timer for invincibility frame
+     */
+    public void postInit() {
 		ifTickIndex = Main.player.getGame().getController().getTimer().addTick(1000, 1, event -> {
 			canTakeDamage = true;
 			playerImage.setOpacity(1);
 		});
 	}
 	
-	public Game getGame(){
+    /**
+     * the current game the player is in
+     * @return a reference to the players game
+     */
+    public Game getGame(){
 		return thisGame;
 	}
 	
-	public void setImageView(Image givenImg){
+    /**
+     * sets the image of the player
+     * @param givenImg the image of the player's sprite
+     */
+    public void setImageView(Image givenImg){
 		currentImg.setImage(givenImg);
 	}
 	
-	public void setCurrentRoom(Room givenRoom){
+    /**
+     * sets the current room the player is in to the room he is walking into
+     * @param givenRoom the room that the player is going to
+     */
+    public void setCurrentRoom(Room givenRoom){
 		if(currentRoom != null)
 			currentRoom.setOccupied(false);
 		currentRoom = givenRoom;
@@ -63,43 +94,83 @@ public class Player {
 		//if currentroom has enemies, then start the tickTimers
 	}
 	
-	public Room getCurrentRoom(){
+    /**
+     * getter method for the room that contains the player
+     * @return a reference to the current room containing the player
+     */
+    public Room getCurrentRoom(){
 		return currentRoom;
 	}
 
-	public double getX() {
+    /**
+     * getter for the player's current X position
+     * @return the exact x location of the player
+     */
+    public double getX() {
 		return x;
 	}
 
-	public void setX(double x) {
+    /**
+     * setter for the player's current X position
+     * @param x the new x position of the player
+     */
+    public void setX(double x) {
 		this.x = x;
 	}
-
+    
+     /**
+     * getter for the player's current Y position
+     * @return the exact y location of the player
+     */
 	public double getY() {
 		return y;
 	}
-
+        
+     /**
+     * setter for the player's current Y position
+     * @param y the new y position of the player
+     */
 	public void setY(double y) {
 		this.y = y;
 	}
 
-	public int getDamage() {
+    /**
+     * getter method for the damage the player does
+     * @return an int representing how much damage the player does
+     */
+    public int getDamage() {
 		return damage;
 	}
 
-	public double getAttackSpeed() {
+    /**
+     * getter method for the rate at which the player fires shots
+     * @return attack speed of the player
+     */
+    public double getAttackSpeed() {
 		return attackSpeed;
 	}
 
-	public int getHealth() {
+    /**
+     * getter method for the player's current health
+     * @return player's health
+     */
+    public int getHealth() {
 		return health;
 	}
 
-	public double getSpeed() {
+    /**
+     * getter method for speed
+     * @return player's speed
+     */
+    public double getSpeed() {
 		return speed;
 	}
 
-	public int getDirection() {
+    /**
+     * getter method for the direction the player is facing
+     * @return int representing cardinal direction
+     */
+    public int getDirection() {
 		return direction;
 	}
 
