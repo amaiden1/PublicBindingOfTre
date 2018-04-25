@@ -5,12 +5,12 @@
  * This code is licensed for private use. Any unauthorized distribution is prohibited.
  */
 
-package bindingofisaac;
+package bindingoftre;
 
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 
-import static bindingofisaac.Constants.*;
+import static bindingoftre.Constants.*;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.paint.Paint;

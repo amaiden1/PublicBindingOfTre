@@ -4,10 +4,10 @@
  *
  * This code is licensed for private use. Any unauthorized distribution is prohibited.
  */
-package bindingofisaac;
+package bindingoftre;
 
-import static bindingofisaac.Constants.ROOM_HEIGHT;
-import static bindingofisaac.Constants.ROOM_WIDTH;
+import static bindingoftre.Constants.ROOM_HEIGHT;
+import static bindingoftre.Constants.ROOM_WIDTH;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;

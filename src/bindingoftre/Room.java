@@ -5,9 +5,9 @@
  * This code is licensed for private use. Any unauthorized distribution is prohibited.
  */
 
-package bindingofisaac;
+package bindingoftre;
 
-import static bindingofisaac.Constants.*;
+import static bindingoftre.Constants.*;
 import java.util.ArrayList;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;

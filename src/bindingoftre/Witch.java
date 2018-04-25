@@ -4,13 +4,13 @@
  *
  * This code is licensed for private use. Any unauthorized distribution is prohibited.
  */
-package bindingofisaac;
+package bindingoftre;
 
 import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-import static bindingofisaac.Constants.*;
+import static bindingoftre.Constants.*;
 
 /**
  * represents an enemy that is our game's interpretation of a witch

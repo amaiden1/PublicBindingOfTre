@@ -5,10 +5,10 @@
  * This code is licensed for private use. Any unauthorized distribution is prohibited.
  */
 
-package bindingofisaac;
+package bindingoftre;
 
 import javafx.scene.image.ImageView;
-import static bindingofisaac.Constants.*;
+import static bindingoftre.Constants.*;
 import javafx.animation.Timeline;
 
 /**

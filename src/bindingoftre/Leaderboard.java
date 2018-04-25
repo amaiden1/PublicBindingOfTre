@@ -5,7 +5,7 @@
  * This code is licensed for private use. Any unauthorized distribution is prohibited.
  */
 
-package bindingofisaac;
+package bindingoftre;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -24,7 +24,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
-import static bindingofisaac.Constants.*;
+import static bindingoftre.Constants.*;
 
 /**
  * Manages the saving, loading, and display of the top player scores.

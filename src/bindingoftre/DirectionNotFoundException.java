@@ -5,7 +5,7 @@
  * This code is licensed for private use. Any unauthorized distribution is prohibited.
  */
 
-package bindingofisaac;
+package bindingoftre;
 
 /**
  * Exception that is thrown when a direction is specified that is not 0-3.

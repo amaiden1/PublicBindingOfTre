@@ -4,7 +4,7 @@
  *
  * This code is licensed for private use. Any unauthorized distribution is prohibited.
  */
-package bindingofisaac;
+package bindingoftre;
 
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;

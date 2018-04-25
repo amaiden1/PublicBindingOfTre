@@ -4,10 +4,10 @@
  *
  * This code is licensed for private use. Any unauthorized distribution is prohibited.
  */
-package bindingofisaac;
+package bindingoftre;
 
 
-import static bindingofisaac.Constants.*;
+import static bindingoftre.Constants.*;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;

@@ -4,7 +4,7 @@
  *
  * This code is licensed for private use. Any unauthorized distribution is prohibited.
  */
-package bindingofisaac;
+package bindingoftre;
 
 import java.io.File;
 import java.util.ArrayList;

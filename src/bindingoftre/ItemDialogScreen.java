@@ -5,7 +5,7 @@
  * This code is licensed for private use. Any unauthorized distribution is prohibited.
  */
 
-package bindingofisaac;
+package bindingoftre;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -17,7 +17,7 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
-import static bindingofisaac.Constants.*;
+import static bindingoftre.Constants.*;
 
 /**
  * Generates a displayable Pane to showcase a newly collected item.

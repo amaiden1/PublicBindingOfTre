@@ -5,7 +5,7 @@
  * This code is licensed for private use. Any unauthorized distribution is prohibited.
  */
 
-package bindingofisaac;
+package bindingoftre;
 
 import javafx.application.Application;
 import javafx.stage.Stage;

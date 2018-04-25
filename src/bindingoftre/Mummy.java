@@ -4,9 +4,9 @@
  *
  * This code is licensed for private use. Any unauthorized distribution is prohibited.
  */
-package bindingofisaac;
+package bindingoftre;
 
-import static bindingofisaac.Constants.*;
+import static bindingoftre.Constants.*;
 
 import javafx.animation.Timeline;
 import javafx.scene.image.ImageView;
