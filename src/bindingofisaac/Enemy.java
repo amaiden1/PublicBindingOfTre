@@ -27,16 +27,23 @@ public class Enemy {
 	private double y;
 
 	/**
-	 *
+	 * generic enemy for the game
 	 */
 	public Enemy(){
 
 	}
 
+        /**
+	 * getter for the current room of the enemy
+         * @return the room containing this enemy
+	 */
 	public Room getCurrentRoom() {
 		return currentRoom;
 	}
 
+        /**
+	 * 
+	 */
 	public void setCurrentRoom(Room currentRoom) {
 		this.currentRoom = currentRoom;
 	}

@@ -1,5 +1,5 @@
 ASS,10
-Ææ,3
+AAA,1
 AAA,1
 AAA,1
 AAA,1
