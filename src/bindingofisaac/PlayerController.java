@@ -95,13 +95,13 @@ public class PlayerController {
 		            tt.play(shootTimerIndex);
 	            }
 	        }
-	        if(event.getCode() == KeyCode.U) {
+	        /*if(event.getCode() == KeyCode.U) {
                 for(int i = Main.player.getCurrentRoom().getEnemies().size() - 1; i >= 0; i++){
 					Main.player.getCurrentRoom().getEnemies().get(i).takeDamage(300000);
 					Main.player.getCurrentRoom().getEnemies().remove(i);
 				}
 				Main.player.getCurrentRoom().setCleared(true);
-	        }
+	        }*/ //only for developers
         });
         
         scene.setOnKeyReleased(event -> {
