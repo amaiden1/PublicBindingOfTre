@@ -31,39 +31,36 @@ public class Game {
 	private int floorLevel;
 	private BooleanProperty isFloorFinished;
 	private Scene primaryScene;
-        private Stage primaryStage;
-        private Leaderboard board;
+	private Stage primaryStage;
+	private Leaderboard board;
 	
 	public Game(Stage primaryStage, Player player){
 		this.player = player;
 		
-                this.primaryStage = primaryStage;
+		this.primaryStage = primaryStage;
 		primaryPane = new Pane();
 		primaryScene = new Scene(primaryPane);
 		primaryStage.setScene(primaryScene);
 		primaryStage.setMaxHeight(ROOM_HEIGHT + 30);
 		primaryStage.setMaxWidth(ROOM_WIDTH);
-		primaryStage.setResizable(false);
+		//primaryStage.setResizable(false);
 		primaryPane.setPrefSize(ROOM_WIDTH, ROOM_HEIGHT);
 		primaryPane.setMaxSize(ROOM_WIDTH, ROOM_HEIGHT);
 		
 		floorLevel = 0;
 		isFloorFinished = new SimpleBooleanProperty(false);
-		isFloorFinished.addListener(new ChangeListener<Boolean>() {
-			@Override
-			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-				if(newValue){
-					try{
-						nextFloor();
-					}
-					catch (Exception e){
-						//do nothing
-					}
+		isFloorFinished.addListener((observable, oldValue, newValue) -> {
+			if(newValue){
+				try{
+					nextFloor();
+				}
+				catch (Exception e) {
+					System.out.println("Cannot go to the next floor: " + e.getMessage());
 				}
 			}
 		});
                 
-                board = new Leaderboard();
+		board = new Leaderboard();
 		
         controller = new PlayerController(primaryScene, player);
                 
