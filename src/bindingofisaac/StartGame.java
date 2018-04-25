@@ -6,11 +6,17 @@
 
 package bindingofisaac;
 
+import static bindingofisaac.Constants.*;
 import java.io.IOException;
+import java.util.Random;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 /**
  *
@@ -19,11 +25,28 @@ import javafx.stage.Stage;
 public class StartGame {
     
     private Stage primaryStage;
+    private Timeline musicTimer;
+    private int songIndex;
     Pane mainMenu;
     
     public StartGame(Stage givenStage) throws IOException{
+        Random rand = new Random();
+        songIndex = 0;
         primaryStage = givenStage;
         openMenu();
+        musicTimer = new Timeline(new KeyFrame(Duration.millis(2000), event -> {
+            System.out.println("Status: " + SONGS.get(songIndex).getStatus() + 
+                    "\ncurrent time: " + SONGS.get(songIndex).getCurrentTime() + 
+                    "\ntotal duration: " + SONGS.get(songIndex).getTotalDuration());
+            if((SONGS.get(songIndex).getCurrentTime().greaterThanOrEqualTo(SONGS.get(songIndex).getTotalDuration()))||
+                    (SONGS.get(songIndex).getStatus() == MediaPlayer.Status.READY)){
+                System.out.println("Now playing: " + SONGS.get(songIndex));
+                songIndex = rand.nextInt(SONGS.size());
+                SONGS.get(songIndex).play();
+            }
+        }));
+        musicTimer.setCycleCount(Timeline.INDEFINITE);
+        musicTimer.play();
     }
     
     public void openMenu() throws IOException{

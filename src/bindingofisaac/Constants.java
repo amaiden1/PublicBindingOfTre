@@ -69,14 +69,18 @@ public final class Constants {
 	
         public static final Media
                 SONG_1 = new Media(new File("./src/Sounds/Song1.mp3").toURI().toString()),
-                SONG_2 = new Media(new File("./src/Sounds/Song2.mp3").toURI().toString());
+                SONG_2 = new Media(new File("./src/Sounds/Song2.mp3").toURI().toString()),
+                SONG_3 = new Media(new File("./src/Sounds/Song3.mp3").toURI().toString());
         
-        public static final MediaPlayer SONG1_PLAYER = new MediaPlayer(SONG_1),
-                                        SONG2_PLAYER = new MediaPlayer(SONG_2);
+        public static final MediaPlayer 
+                SONG1_PLAYER = new MediaPlayer(SONG_1),
+                SONG2_PLAYER = new MediaPlayer(SONG_2),
+                SONG3_PLAYER = new MediaPlayer(SONG_3);
 
         public static final ArrayList<MediaPlayer> SONGS = new ArrayList<MediaPlayer>(){{
             add(SONG1_PLAYER);
             add(SONG2_PLAYER);
+            add(SONG3_PLAYER);
         }};
 	/*
 	 * Forcibly prevents class instantation. The default
