@@ -23,19 +23,20 @@ public class Witch extends Enemy{
 	
 	public Witch(int floorLevel, Room givenRoom){
 		deltaY = 1;
-		currentRoom = givenRoom;
-		sprite = new ImageView(WITCH);
+		super.setCurrentRoom(givenRoom);
+		ImageView sprite = new ImageView(WITCH);
 		sprite.setFitHeight(70);
 		sprite.setFitWidth(70);
-		health = 10 + (10 * floorLevel);
-		damage = 5 + (2 * (floorLevel - 1));
-		speed = 1;
+		super.setSprite(sprite);
+		super.setHealth(10 + (10 * floorLevel));
+		super.setDamage(5 + (2 * (floorLevel - 1)));
+		super.setSpeed(1);
 		bulletImg = LIGHTNING_BOLT;
 		
-		timerIndex = Main.player.getGame().getController().getTimer().addTick(10 , Timeline.INDEFINITE, event -> {
+		super.setTimerIndex(Main.player.getGame().getController().getTimer().addTick(10 , Timeline.INDEFINITE, event -> {
 			updatePos();
 			checkCollision();
-        });
+        }));
 		bulletTimerIndex = Main.player.getGame().getController().getTimer().addTick(1000, Timeline.INDEFINITE, event -> {
 			shoot();
 		});
@@ -44,16 +45,16 @@ public class Witch extends Enemy{
 
 	@Override
 	public void updatePos(){
-		deltaY = (y <= 100)? 1 : (deltaY = (y >= 600)? -1 : deltaY);
-		y += deltaY;
-		sprite.relocate(x, y);
+		deltaY = (super.getY() <= 100)? 1 : (deltaY = (super.getY() >= 600)? -1 : deltaY);
+		super.setY(super.getY() + deltaY);
+		super.getSprite().relocate(super.getX(), super.getY());
 	}
 	
 	@Override
 	public void shoot() {
 		double playerX = Main.player.getX() + (Main.player.getImageView().getBoundsInParent().getWidth() / 2);
 		double playerY = Main.player.getY() + (Main.player.getImageView().getBoundsInParent().getHeight() / 2);
-		EnemyBullet bullet = new EnemyBullet(x, y, playerX, playerY, 1000, 10, bulletImg, damage);
+		EnemyBullet bullet = new EnemyBullet(super.getX(), super.getY(), playerX, playerY, 1000, 10, bulletImg, super.getDamage());
 	}
 
 	public int getBulletTimerIndex() {
@@ -62,13 +63,13 @@ public class Witch extends Enemy{
         
         @Override
         public void start(){
-            Main.player.getGame().getController().getTimer().play(timerIndex);
+            Main.player.getGame().getController().getTimer().play(super.getTimerIndex());
             Main.player.getGame().getController().getTimer().play(bulletTimerIndex);
         }
         
         @Override
         public void stop(){
-            Main.player.getGame().getController().getTimer().removeNull(timerIndex);
+            Main.player.getGame().getController().getTimer().removeNull(super.getTimerIndex());
             Main.player.getGame().getController().getTimer().removeNull(bulletTimerIndex);
         }
 }

@@ -1,14 +1,23 @@
 /*
- *  Temporary version of Door by Nolan Ierardi.
+ * Copyright © 2018 Austin Maiden and Nolan Ierardi.
+ * All rights reserved.
+ *
+ * This code is licensed for private use. Any unauthorized distribution is prohibited.
  */
 
 package bindingofisaac;
-
 
 import static bindingofisaac.Constants.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 
+/**
+ * Represents a door: that is, a portal to another room.
+ * Doors have a destination that determines how the player
+ * will progress to another room.
+ *
+ * @author Austin Maiden and Nolan Ierardi
+ */
 public class Door {
 
 	private ImageView img;
@@ -27,9 +36,10 @@ public class Door {
 	private Rectangle hitbox;
 	private int numDoors;
 
-	//public Door() {
-	//}
-
+	/**
+	 * Constructor for Door.
+	 * @param dir the direction of this door
+	 */
 	public Door(int dir) {
 		direction = dir;
 		img = new ImageView(OPEN_DOOR);
@@ -76,7 +86,10 @@ public class Door {
 		img.relocate(doorX, doorY);
 		
 	}
-	
+
+	/**
+	 * Checks this door for collisions with the player.
+	 */
 	public void checkCollision(){
 		if((Main.player.getImageView().getBoundsInParent().intersects(img.getBoundsInParent())) && Main.player != null && isOpen){
 			System.out.println(destination);
@@ -88,27 +101,52 @@ public class Door {
 		}
 	}
 
+	/**
+	 * Sets the open status of this door.
+	 * @param open if true, door is open; if false, door is locked
+	 */
 	public void setOpen(boolean open) {
             img.setImage((open)?OPEN_DOOR : LOCKED_DOOR);
             isOpen = open;
 	}
 
+	/**
+	 * Returns the open status of this door.
+	 * @return if this door is open
+	 */
 	public boolean isOpen() {
 		return isOpen;
 	}
-        
+
+	/**
+	 * Returns the Room this door leads to.
+	 * @return the Room this door leads to
+	 */
 	public Room getDestination() {
 		return destination;
 	}
 
+	/**
+	 * Sets the destination of this door.
+	 * @param dest the Room this door should lead to
+	 */
 	public void setDestination(Room dest) {
 		destination = dest;
 	}
-        
+
+	/**
+	 * Returns the ImageView of this door.
+	 * @return ImageView of door
+	 */
 	public ImageView getImageView() {
 		return img;
 	}
-	
+
+	/**
+	 * Returns a Rectangle representing the collidable
+	 * area of this door.
+	 * @return hitbox of this door
+	 */
 	public Rectangle getHitbox(){
 		return hitbox;
 	}

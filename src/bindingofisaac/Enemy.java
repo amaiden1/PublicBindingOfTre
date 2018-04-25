@@ -1,22 +1,64 @@
+/*
+ * Copyright © 2018 Austin Maiden and Nolan Ierardi.
+ * All rights reserved.
+ *
+ * This code is licensed for private use. Any unauthorized distribution is prohibited.
+ */
+
 package bindingofisaac;
 
 import javafx.scene.image.ImageView;
 
+/**
+ * Represents an enemy. Enemies are capable of causing damage to the
+ * player, and taking damage from the player.
+ */
 public class Enemy {
 
-	protected Room currentRoom;
-	protected int timerIndex;
-	protected ImageView sprite;
-	protected double speed;
-	protected int health;
-	protected int damage;
-	protected double x;
-	protected double y;
-	
+	private Room currentRoom;
+	private int timerIndex;
+	private ImageView sprite;
+	private double speed;
+	private int health;
+	private int damage;
+	private double x;
+	private double y;
+
+	/**
+	 *
+	 */
 	public Enemy(){
 
 	}
-	
+
+	public Room getCurrentRoom() {
+		return currentRoom;
+	}
+
+	public void setCurrentRoom(Room currentRoom) {
+		this.currentRoom = currentRoom;
+	}
+
+	public int getTimerIndex() {
+		return timerIndex;
+	}
+
+	public void setTimerIndex(int timerIndex) {
+		this.timerIndex = timerIndex;
+	}
+
+	public double getSpeed() {
+		return speed;
+	}
+
+	public void setSpeed(double speed) {
+		this.speed = speed;
+	}
+
+	public void setDamage(int damage) {
+		this.damage = damage;
+	}
+
 	public void checkCollision(){
 
 		if(sprite.getBoundsInParent().intersects(Main.player.getImageView().getBoundsInParent())){

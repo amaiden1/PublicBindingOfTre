@@ -41,9 +41,9 @@ public class Game {
 		primaryPane = new Pane();
 		primaryScene = new Scene(primaryPane);
 		primaryStage.setScene(primaryScene);
-		primaryStage.setMaxHeight(ROOM_HEIGHT + 30);
-		primaryStage.setMaxWidth(ROOM_WIDTH);
-		primaryStage.setResizable(false);
+		//primaryStage.setMaxHeight(ROOM_HEIGHT + 30);
+		//primaryStage.setMaxWidth(ROOM_WIDTH);
+		//primaryStage.setResizable(false);
 		primaryPane.setPrefSize(ROOM_WIDTH, ROOM_HEIGHT);
 		primaryPane.setMaxSize(ROOM_WIDTH, ROOM_HEIGHT);
 		
@@ -68,6 +68,7 @@ public class Game {
         controller = new PlayerController(primaryScene, player);
                 
 		primaryStage.show();
+		primaryPane.setPrefSize(ROOM_WIDTH, ROOM_HEIGHT);
 	}
 	
 	public void updatePane(double newX, double newY, int previousRoomX, int previousRoomY){
@@ -121,12 +122,9 @@ public class Game {
 	}
 
 	public void gameOver() {
-		Pane loseDialogPane = new LoseDialogScreen(Main.player.getGame().getFloorLevel(), primaryStage).getPane();
+		Pane loseDialogPane = new LoseDialogScreen(board.rankPlayer(floorLevel), Main.player.getGame().getFloorLevel(), primaryStage).getPane();
 		primaryPane.getChildren().add(loseDialogPane);
-                getController().getTimer().removeAllTicks();
-                board.rankPlayer(floorLevel);
-           
-                
+		getController().getTimer().removeAllTicks();
 	}
 	
 	public Floor getFloor(){
@@ -181,4 +179,7 @@ public class Game {
 		isFloorFinished.set(true);
 	}
 
+	public Leaderboard getLeaderboard() {
+		return board;
+	}
 }

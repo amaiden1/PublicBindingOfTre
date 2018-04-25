@@ -1,8 +1,10 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright © 2018 Austin Maiden and Nolan Ierardi.
+ * All rights reserved.
+ *
+ * This code is licensed for private use. Any unauthorized distribution is prohibited.
  */
+
 package bindingofisaac;
 
 import static bindingofisaac.Constants.*;
@@ -10,8 +12,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 /**
- *
- * @author Austin
+ * Represents a bullet entity that has been fired
+ * from either a Player or Enemy.
+ * @author Austin Maiden and Nolan Ierardi
  */
 public class Bullet {
 	
@@ -37,6 +40,17 @@ public class Bullet {
 	private int totalProgress;
 	private boolean alreadyDespawned;
 
+	/**
+	 * Constructor for Bullet class.
+	 *
+	 * @param startX the x position this Bullet originates from
+	 * @param startY the y position this Bullet originates from
+	 * @param destinationX the x position this Bullet should move toward
+	 * @param destinationY the y position this Bullet should move toward
+	 * @param travelTime the total time (ms) this Bullet should take to travel
+	 * @param tickLength the time (ms) per each update (tick)
+	 * @param imgSrc the Image that should be used
+	 */
 	public Bullet(double startX, double startY, double destinationX, double destinationY, int travelTime, int tickLength, Image imgSrc){
 
 		try{
@@ -58,8 +72,6 @@ public class Bullet {
 		Main.player.getCurrentRoom().getRoomPane().getChildren().add(bulletSprite);
 		bulletSprite.relocate(startX,startY);
 
-		// shooting stuff
-
 		cornerX = endX;
 		cornerY = startY;
 		this.tickLength = tickLength;
@@ -79,7 +91,8 @@ public class Bullet {
 
 	}
 
-	protected void updateBullet(){
+
+	private void updateBullet(){
 
 		x += xStep;
 		y += yStep;
@@ -94,15 +107,27 @@ public class Bullet {
 
 	}
 
+	/**
+	 * Checks surrounding areas for a collision. By default, this will throw
+	 * an UnsupportedOperationException, as this method is intended to be
+	 * overridden in a class extending Bullet.
+	 */
 	protected void checkCollision(){
-		// override me
+		throw new UnsupportedOperationException("The method checkCollision() should be overridden in the subclass.");
 	}
 
+	/**
+	 * Removes this bullet from the screen and stops the tick.
+	 */
 	protected void despawn() {
 		Main.player.getGame().getController().getTimer().removeNull(timerIndex);
 		Main.player.getCurrentRoom().getRoomPane().getChildren().remove(bulletSprite);
 	}
 
+	/**
+	 * Returns the sprite (ImageView) of this Bullet.
+	 * @return ImageView of Bullet
+	 */
 	protected ImageView getBulletSprite() {
 		return bulletSprite;
 	}
