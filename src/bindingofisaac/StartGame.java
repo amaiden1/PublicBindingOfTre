@@ -37,6 +37,7 @@ public class StartGame {
         musicTimer = new Timeline(new KeyFrame(Duration.millis(2000), event -> {
             if((SONGS.get(songIndex).getCurrentTime().greaterThanOrEqualTo(SONGS.get(songIndex).getTotalDuration()))||
                     (SONGS.get(songIndex).getStatus() == MediaPlayer.Status.READY)){
+                SONGS.get(songIndex).stop();
                 System.out.println("Now playing: " + SONGS.get(songIndex));
                 songIndex = rand.nextInt(SONGS.size());
                 SONGS.get(songIndex).play();

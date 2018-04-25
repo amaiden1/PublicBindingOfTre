@@ -114,6 +114,7 @@ public class TickTimer {
 	 * @param index the index of the tick to play
 	 */
 	public void play(int index) {
+            if(ticks.get(index) != null)
 		ticks.get(index).play();
 	}
 
