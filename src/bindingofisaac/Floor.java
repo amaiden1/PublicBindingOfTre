@@ -1,7 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright © 2018 Austin Maiden and Nolan Ierardi.
+ * All rights reserved.
+ *
+ * This code is licensed for private use. Any unauthorized distribution is prohibited.
  */
 package bindingofisaac;
 
@@ -14,8 +15,9 @@ import java.util.Scanner;
 import javafx.scene.image.ImageView;
 
 /**
+ * Represents a floor of the dungeon, containing many rooms.
  *
- * @author Austin
+ * @author Austin Maiden and Nolan Ierardi
  */
 public class Floor {
     private ArrayList<Room> thisFloor;
@@ -25,8 +27,12 @@ public class Floor {
     private ArrayList<Item> possibleItems;
     private ArrayList<Enemy> possibleEnemies;
     private ImageView stairs = new ImageView(LOCKED_STAIRS);
-    
-    public Floor(ArrayList<Room> givenRooms){
+
+	/**
+	 * Constructor for Floor.
+	 * @param givenRooms ArrayList of Rooms to add
+	 */
+	public Floor(ArrayList<Room> givenRooms){
         thisFloor = givenRooms;
         spawnRoom = thisFloor.get(0);
         possibleItems = new ArrayList<>();
@@ -43,7 +49,7 @@ public class Floor {
         
     }
 
-    public void setStairRoom(){
+    private void setStairRoom(){
         Random rand = new Random();
         Room chosenRoom = null;
         do{
@@ -53,7 +59,7 @@ public class Floor {
         stairRoom = chosenRoom;
     }
 
-    public void setItemRoom(){
+    private void setItemRoom(){
         Random rand = new Random();
         Room chosenRoom = null;
         do{
@@ -65,7 +71,10 @@ public class Floor {
         itemRoom.setItem(possibleItems.get(rand.nextInt(possibleItems.size()))); //there was an exception here
     }
 
-    public void checkStairsCollision()	{
+	/**
+	 * Checks the stairs for collision with the player.
+	 */
+	public void checkStairsCollision()	{
         if(Main.player.getCurrentRoom().getRoomPane() == stairRoom.getRoomPane()&&
             (Main.player.getImageView().getBoundsInParent().intersects(stairs.getBoundsInParent()) && stairs.getImage() == STAIRS)){ // if the player is in stair room and is touching the (visible) stairs
             Main.player.getGame().setIsFloorFinished(true);
@@ -73,11 +82,19 @@ public class Floor {
         }
     }
 
-    public ArrayList<Room> getFloor(){
+	/**
+	 * Returns the current floor level.
+	 * @return the current floor level the player is on
+	 */
+	public ArrayList<Room> getFloor(){
         return thisFloor;
     }
-	
-    public String toString(){
+
+	/**
+	 * Returns a String representing this room.
+	 * @return String representing this room
+	 */
+	public String toString(){
         String result = "";
         int index = 0;
         for(Room current : thisFloor){
@@ -88,11 +105,21 @@ public class Floor {
         return result;
     }
 
-    public Room getSpawnRoom(){
+	/**
+	 * Returns the Room the player spawns in.
+	 * @return the Room the player spawns in
+	 */
+	public Room getSpawnRoom(){
             return spawnRoom;
     }
-	
-    public Room getRoomAtLocation(int x, int y){
+
+	/**
+	 * Returns the room at a given location.
+	 * @param x the x position of the room
+	 * @param y the y position of the room
+	 * @return the room at that location
+	 */
+	public Room getRoomAtLocation(int x, int y){
         Room room = null;
         boolean found = false;
         int index = 0;
@@ -108,8 +135,11 @@ public class Floor {
         }while(!found);
         return room;
     }
-        
-    public void addEnemies(){
+
+	/**
+	 * Adds predefined enemies to the room.
+	 */
+	public void addEnemies(){
         int[] xSpawns = new int[]{400, 800, 400, 800};
         int[] ySpawns = new int[]{200, 500, 500, 200};
         Random rand = new Random();
@@ -143,8 +173,8 @@ public class Floor {
             }
         }
     }
-    
-    private void createItems(){
+
+	private void createItems(){
         Scanner fileScan;
         Scanner lineScan;
         ImageView itemImg;
@@ -174,8 +204,11 @@ public class Floor {
         }
         
     }
-    
-    public void unlock(){
+
+	/**
+	 * Unlocks the stairs so that the player can go to the next floor.
+	 */
+	public void unlock(){
         stairs.setImage(STAIRS);
     }
 }

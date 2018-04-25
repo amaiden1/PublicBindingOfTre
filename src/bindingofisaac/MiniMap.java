@@ -1,10 +1,11 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright © 2018 Austin Maiden and Nolan Ierardi.
+ * All rights reserved.
+ *
+ * This code is licensed for private use. Any unauthorized distribution is prohibited.
  */
-package bindingofisaac;
 
+package bindingofisaac;
 
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
@@ -17,13 +18,12 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 /**
- *
- * @author Austin
+ * Represents a miniature map of floors.
+ * @author Austin Maiden and Nolan Ierardi
  */
 public class MiniMap {
 
-private final int MAP_SIZE = 28;
-
+	private final int MAP_SIZE = 28;
 	private HBox outerBox;
 	private VBox hudBox;
 	private Pane miniMap;
@@ -31,7 +31,10 @@ private final int MAP_SIZE = 28;
 	private Scene mapStage;
 	private Text healthLabel;
 	private Text floorLabel;
-	
+
+	/**
+	 * Constructor for MiniMap.
+	 */
 	public MiniMap(){
 
 		outerBox = new HBox();
@@ -54,8 +57,6 @@ private final int MAP_SIZE = 28;
 
 		hudBox = new VBox();
 		hudBox.setPadding(new Insets(2,2,2,2));
-		//hudBox.setBackground(new Background(new BackgroundFill(Paint.valueOf("BLACK"), CornerRadii.EMPTY, Insets.EMPTY)));
-		//hudBox.setOpacity(0.5);
 		healthLabel = new Text();
 		healthLabel.setFont(Font.font(null, 13));
 		healthLabel.setFill(Paint.valueOf("WHITE"));
@@ -71,27 +72,42 @@ private final int MAP_SIZE = 28;
 		outerBox.relocate(900, 0);
 
 	}
-	
+
+	/**
+	 * Returns the displayable Pane.
+	 * @return displayable Pane
+	 */
 	public Pane getPane(){
         return outerBox;
 	}
-	
-	public Scene getStage(){
-		mapStage = new Scene(miniMap);
-		return mapStage;
-	}
 
+	/**
+	 * Updates the map for a new room.
+	 * @param oldX old room X
+	 * @param oldY old room Y
+	 * @param x new room X
+	 * @param y new room Y
+	 */
 	public void updateMap(int oldX, int oldY, int x, int y) {
 		grid[oldX][oldY].setBackground(ROOM);
 		grid[x][y].setBackground(CURRENT);
 		System.out.println("updateMap fired, grid x: " + x + " grid y: " + y);
 	}
 
+	/**
+	 * Updates the stats shown on the HUD.
+	 */
 	public void updateHud() {
 		healthLabel.setText("Health: " + Main.player.getHealth());
 		floorLabel.setText("Floor: " + Main.player.getGame().getFloorLevel());
 	}
-	
+
+	/**
+	 * Sets the tile at a certain position.
+	 * @param type the background to use
+	 * @param x the x of tile to set
+	 * @param y the y of tile to set
+	 */
 	public void setTile(Background type, int x, int y){
             int col = x + 3;
             int row = y + 3;

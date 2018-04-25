@@ -1,3 +1,10 @@
+/*
+ * Copyright © 2018 Austin Maiden and Nolan Ierardi.
+ * All rights reserved.
+ *
+ * This code is licensed for private use. Any unauthorized distribution is prohibited.
+ */
+
 package bindingofisaac;
 
 import static bindingofisaac.Constants.*;
@@ -9,14 +16,18 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Paint;
 
+/**
+ * Generates a layout for each floor.
+ *
+ * @author Austin Maiden and Nolan Ierardi
+ */
 public class LayoutGenerator {
 
-	public final Background ROOM = new Background(new BackgroundFill(Paint.valueOf("BLUE"), CornerRadii.EMPTY, Insets.EMPTY));
+	private final Background ROOM = new Background(new BackgroundFill(Paint.valueOf("BLUE"), CornerRadii.EMPTY, Insets.EMPTY));
 	private final int MAX = 3;
 	private final int MIN = -3;
 	private final int STARTING_X = 0;
 	private final int STARTING_Y = 0;
-	private ArrayList<Integer> possibleConnectedRooms;
 	
 	private ArrayList<Integer> roomsXList;
 	private ArrayList<Integer> roomsYList;
@@ -24,10 +35,34 @@ public class LayoutGenerator {
 	private int currentNumberOfRooms;
 	private MiniMap miniMap;
 	private ArrayList<Room> floorRooms;
-	Floor floor;
+	private Floor floor;
 	
 	//starting room will always be 0,0
-	
+
+	/**
+	 * Constructor for LayoutGenerator.
+	 */
+	public LayoutGenerator(){
+		miniMap = new MiniMap();
+		roomsXList = new ArrayList<Integer>();
+		roomsYList = new ArrayList<Integer>();
+		floorRooms = new ArrayList<Room>();
+		boolean isValidMap = false;
+		roomsXList.clear();
+		roomsYList.clear();
+
+		numberOfRooms = determineNumberOfRooms();
+		roomsXList.add(STARTING_X);
+		roomsYList.add(STARTING_Y);
+		while(currentNumberOfRooms < numberOfRooms){
+			findNextRoom();
+			currentNumberOfRooms = roomsXList.size();
+		}
+		addRooms();
+		floor = new Floor(floorRooms); //problem line?
+		addFloorDoors();
+	}
+
 	private int determineNumberOfRooms(){
 		int result = 12;
 		Random numGen = new Random();
@@ -90,27 +125,6 @@ public class LayoutGenerator {
 		roomsYList.add(nextY);
 		miniMap.setTile(ROOM, nextX, nextY);
 	}
-	
-	public LayoutGenerator(){
-		miniMap = new MiniMap();
-		roomsXList = new ArrayList<Integer>();
-		roomsYList = new ArrayList<Integer>();
-		floorRooms = new ArrayList<Room>();
-		boolean isValidMap = false;
-        roomsXList.clear();
-        roomsYList.clear();
-                    
-        numberOfRooms = determineNumberOfRooms();
-        roomsXList.add(STARTING_X);
-        roomsYList.add(STARTING_Y);
-        while(currentNumberOfRooms < numberOfRooms){
-			findNextRoom();
-			currentNumberOfRooms = roomsXList.size();
-        }
-		addRooms();
-                floor = new Floor(floorRooms); //problem line?
-		addFloorDoors();
-	}
         
     private void addRooms(){
         for(int i = 0; i < roomsXList.size(); i++){
@@ -118,18 +132,26 @@ public class LayoutGenerator {
 			floorRooms.add(room);
         }
     }
-		
+
+	/**
+	 * Returns the floor.
+	 * @return this floor
+	 */
 	public Floor getFloor(){
 		return floor;
 	}
-	
+
+	/**
+	 * Returns the minimap.
+	 * @return this minimap
+	 */
 	public MiniMap getMiniMap(){
 		return miniMap;
 	}
 	
 	/***********************************************CREATING DOORS**********************************************************************/
-	
-	public void addFloorDoors(){
+
+	private void addFloorDoors(){
 		boolean[] doorValues = new boolean[4];
 		for(Room thisRoom : floor.getFloor()){ 
 			doorValues[0] = isRoomInDirection(thisRoom, 0);

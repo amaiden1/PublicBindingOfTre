@@ -12,6 +12,8 @@ import javafx.scene.image.ImageView;
 /**
  * Represents an enemy. Enemies are capable of causing damage to the
  * player, and taking damage from the player.
+ *
+ * @author Austin Maiden and Nolan Ierardi
  */
 public class Enemy {
 

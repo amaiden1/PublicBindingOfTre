@@ -1,19 +1,27 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright © 2018 Austin Maiden and Nolan Ierardi.
+ * All rights reserved.
+ *
+ * This code is licensed for private use. Any unauthorized distribution is prohibited.
  */
+
 package bindingofisaac;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
 
 /**
- *
- * @author Nolan
+ * Driver class for package.
+ * @author Austin Maiden and Nolan Ierardi
  */
 public class Main extends Application{
-	
+
+	/*
+	 * The field for Player is intentionally protected and static.
+	 * This is necessary as many methods specific to the player are
+	 * frequently accessed, and it is infeasible to ensure that the
+	 * Player object can be passed to every object that needs it.
+	 */
 	protected static Player player;
 	
 	@Override
@@ -22,6 +30,7 @@ public class Main extends Application{
 	}
 	
 	/**
+	 * Launches the application.
 	 * @param args the command line arguments
 	 */
 	public static void main(String[] args) {

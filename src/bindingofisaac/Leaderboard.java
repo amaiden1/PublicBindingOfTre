@@ -1,5 +1,11 @@
-package bindingofisaac;
+/*
+ * Copyright © 2018 Austin Maiden and Nolan Ierardi.
+ * All rights reserved.
+ *
+ * This code is licensed for private use. Any unauthorized distribution is prohibited.
+ */
 
+package bindingofisaac;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -20,15 +26,10 @@ import javafx.scene.text.Text;
 
 import static bindingofisaac.Constants.*;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
+ * Manages the saving, loading, and display of the top player scores.
  *
- * @author amaiden1
+ * @author Austin Maiden and Nolan Ierardi
  */
 public class Leaderboard {
     
@@ -37,8 +38,11 @@ public class Leaderboard {
     private VBox scoresPane;
     private VBox scoresBox;
     private boolean wasRanked;
-    
-    public Leaderboard(){
+
+	/**
+	 * Constructor for Leaderboard.
+	 */
+	public Leaderboard(){
         wasRanked = false;
         try{
             Scanner fileScan = new Scanner(new File("./src/files/High_Scores.txt"));
@@ -67,8 +71,13 @@ public class Leaderboard {
         scoresPane.getChildren().add(scoresBox);
 
     }
-    
-    public int rankPlayer(int playerScore){
+
+	/**
+	 * Ranks the player on the leaderboard.
+	 * @param playerScore the score of the player (in this case, floor level)
+	 * @return rank of the player
+	 */
+	public int rankPlayer(int playerScore){
         int rank = -1;
         for(rank = 0; rank < scores.length && !wasRanked; rank++){
             if(playerScore > scores[rank]){
@@ -78,8 +87,14 @@ public class Leaderboard {
         System.out.println("rank: " + rank);
         return rank - 1;
     }
-    
-    public void refactorScores(int rank, int newScore, String newName){
+
+	/**
+	 * Adjusts the scores to accept a new score.
+	 * @param rank the rank to place this score at
+	 * @param newScore the new score to add
+	 * @param newName the new name to add
+	 */
+	public void refactorScores(int rank, int newScore, String newName){
         for(int i = scores.length - 1; i > rank; i--){
             scores[i] = scores[i-1];
             scoreTexts[i] = scoreTexts[i-1];
@@ -87,8 +102,11 @@ public class Leaderboard {
         scores[rank] = newScore;
         scoreTexts[rank] = (newName + "," + newScore);
     }
-    
-    public void overwriteScores(){
+
+	/**
+	 * Writes all scores to the scores file.
+	 */
+	public void overwriteScores(){
         PrintWriter pw;
         try{
             pw = new PrintWriter("./src/files/High_Scores.txt");
@@ -103,8 +121,12 @@ public class Leaderboard {
             System.out.println(e.getMessage());
         }
     }
-    
-    public Pane display(){
+
+	/**
+	 * Returns a Pane that can display the leaderboard.
+	 * @return leaderboard pane
+	 */
+	public Pane display(){
         
         scoresBox.getChildren().clear();
         Text leaderboard = new Text("Leaderboard");
@@ -120,8 +142,5 @@ public class Leaderboard {
         
         return scoresPane;
     }
-    
-    public boolean getWasRanked(){
-        return wasRanked;
-    }
+
 }

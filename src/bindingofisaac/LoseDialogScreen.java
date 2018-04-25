@@ -1,3 +1,10 @@
+/*
+ * Copyright © 2018 Austin Maiden and Nolan Ierardi.
+ * All rights reserved.
+ *
+ * This code is licensed for private use. Any unauthorized distribution is prohibited.
+ */
+
 package bindingofisaac;
 
 import static bindingofisaac.Constants.ROOM_HEIGHT;
@@ -17,6 +24,12 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/**
+ * Generates a displayable Pane that tells the user when the game
+ * is over and accepts score input for the leaderboard.
+ *
+ * @author Austin Maiden and Nolan Ierardi
+ */
 public class LoseDialogScreen {
 
 	private VBox outerBox;
@@ -31,6 +44,12 @@ public class LoseDialogScreen {
 	private Leaderboard leaderboard;
 	private int floorLevel;
 
+	/**
+	 * Constructor for LoseDialogScreen.
+	 * @param rank the rank of the player
+	 * @param floorLevel the floor level at time of game over
+	 * @param primaryStage the Stage to display the screen on
+	 */
 	public LoseDialogScreen(int rank, int floorLevel, Stage primaryStage) {
 
 		this.floorLevel = floorLevel;
@@ -166,6 +185,10 @@ public class LoseDialogScreen {
 		leaderboard.overwriteScores();
 	}
 
+	/**
+	 * Returns a Pane for display.
+	 * @return Pane to display
+	 */
 	public VBox getPane() {
 		return outerBox;
 	}

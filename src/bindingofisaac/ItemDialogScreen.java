@@ -1,3 +1,10 @@
+/*
+ * Copyright © 2018 Austin Maiden and Nolan Ierardi.
+ * All rights reserved.
+ *
+ * This code is licensed for private use. Any unauthorized distribution is prohibited.
+ */
+
 package bindingofisaac;
 
 import javafx.geometry.Insets;
@@ -12,6 +19,11 @@ import javafx.scene.text.Text;
 
 import static bindingofisaac.Constants.*;
 
+/**
+ * Generates a displayable Pane to showcase a newly collected item.
+ *
+ * @author Austin Maiden and Nolan Ierardi
+ */
 public class ItemDialogScreen {
 
 	private VBox outerBox;
@@ -20,15 +32,17 @@ public class ItemDialogScreen {
 	private Text title;
 	private Text desc;
 
-	public ItemDialogScreen(Item item/*, Image background*/) {
+	/**
+	 * Constructor for ItemDialogScreen.
+	 * @param item the Item to display
+	 */
+	public ItemDialogScreen(Item item) {
 
 		outerBox = new VBox();
 		outerBox.setAlignment(Pos.CENTER);
 		this.item = item.getImageView();
 		outerBox.setBackground(new Background(new BackgroundFill(Paint.valueOf("BLACK"), CornerRadii.EMPTY, Insets.EMPTY)));
 		outerBox.setPrefSize(ROOM_WIDTH, ROOM_HEIGHT);
-
-		//this.background = new ImageView(background);
 
 		title = new Text("You have collected " + item.getItemName() + "!");
 		title.setFont(Font.font(null, FontWeight.BOLD, FontPosture.REGULAR, 20));
@@ -40,7 +54,6 @@ public class ItemDialogScreen {
 		dismissLabel.setFont(Font.font(13));
 		dismissLabel.setFill(Paint.valueOf("WHITE"));
 
-		//pane.getChildren().add(this.background);
 		VBox contentBox = new VBox();
 		contentBox.setPadding(new Insets(8,8,8,8));
 		contentBox.setAlignment(Pos.CENTER);
@@ -52,6 +65,10 @@ public class ItemDialogScreen {
 		contentBox.relocate((ROOM_WIDTH / 2) - (contentBox.getBoundsInParent().getWidth() / 2), 500);
 	}
 
+	/**
+	 * Returns the Pane used for display.
+	 * @return Pane of this ItemDialogScreen
+	 */
 	public VBox getPane() {
 		return outerBox;
 	}

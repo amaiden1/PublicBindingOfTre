@@ -1,3 +1,10 @@
+/*
+ * Copyright © 2018 Austin Maiden and Nolan Ierardi.
+ * All rights reserved.
+ *
+ * This code is licensed for private use. Any unauthorized distribution is prohibited.
+ */
+
 package bindingofisaac;
 
 import static bindingofisaac.Constants.*;
@@ -10,28 +17,37 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+/**
+ * Controller class for MainMenu.
+ *
+ * @author Austin Maiden and Nolan Ierardi
+ */
 public class MainMenuController {
 
     private Stage primaryStage;
     
     @FXML
     private Button newGameButton;
-
     @FXML
     private Button loadGameButton;
-
     @FXML
     private Button leaderboardsButton;
-
     @FXML
     private Button quitButton;
 
+    /**
+     * Constructor for MainMenuController.
+     * @param givenStage the Stage to use for display
+     */
     public MainMenuController(Stage givenStage){
         primaryStage = givenStage;
     }
-    
+
+    /**
+     * Shows leaderboard window.
+     */
     @FXML
-    void leaderboardsButtonPressed(ActionEvent event) {
+    public void leaderboardsButtonPressed() {
         Stage temporaryStage = new Stage();
         Pane primaryPane = new Pane();
         Scene lbScene = new Scene(primaryPane);
@@ -41,45 +57,69 @@ public class MainMenuController {
         primaryPane.getChildren().add(board.display());
         temporaryStage.show();
     }
-    
+
+    /**
+     * Underline effect when mouse enters Leaderboard button.
+     */
     @FXML
-    void leaderboardsMouseEntered(MouseEvent event) {
+    public void leaderboardsMouseEntered() {
         leaderboardsButton.setUnderline(true);
     }
 
+    /**
+     * Underline effect when mouse enters Leaderboard button.
+     */
     @FXML
-    void leaderboardsMouseExited(MouseEvent event) {
+    public void leaderboardsMouseExited() {
         leaderboardsButton.setUnderline(false);
     }
-    
+
+    /**
+     * Starts a new game.
+     */
     @FXML
-    void newGameButtonPressed(ActionEvent event) {
+    public void newGameButtonPressed() {
         Main.player = new Player(ROOM_WIDTH / 2, ROOM_HEIGHT / 2, primaryStage);
 	Main.player.getGame().nextFloor();
     }
-    
+
+    /**
+     * Underline effect when mouse enters New Game button.
+     */
     @FXML
-    void newGameMouseEntered(MouseEvent event) {
+    public void newGameMouseEntered() {
         newGameButton.setUnderline(true);
     }
 
+    /**
+     * Underline effect when mouse enters New Game button.
+     */
     @FXML
-    void newGameMouseExited(MouseEvent event) {
+    public void newGameMouseExited() {
         newGameButton.setUnderline(false);
     }
 
+    /**
+     * Closes the game.
+     */
     @FXML
-    void quitButtonPressed(ActionEvent event) {
+    public void quitButtonPressed() {
         Platform.exit();
     }
-    
+
+    /**
+     * Underline effect when mouse enters Quit button.
+     */
     @FXML
-    void quitMouseEntered(MouseEvent event) {
+    public void quitMouseEntered() {
         quitButton.setUnderline(true);
     }
 
+    /**
+     * Underline effect when mouse enters Quit button.
+     */
     @FXML
-    void quitMouseExited(MouseEvent event) {
+    public void quitMouseExited() {
         quitButton.setUnderline(false);
     }
 
