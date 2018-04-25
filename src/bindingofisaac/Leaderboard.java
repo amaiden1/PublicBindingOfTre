@@ -72,17 +72,11 @@ public class Leaderboard {
         int rank = -1;
         for(rank = 0; rank < scores.length && !wasRanked; rank++){
             if(playerScore > scores[rank]){
-                //playerName = promptNameInput();
-                //refactorScores(rank, playerScore, playerName);
                 wasRanked = true;
             }
         }
-        return rank;
-    }
-    
-    public String promptNameInput(){
-        
-        return "ABA";
+        System.out.println("rank: " + rank);
+        return rank - 1;
     }
     
     public void refactorScores(int rank, int newScore, String newName){

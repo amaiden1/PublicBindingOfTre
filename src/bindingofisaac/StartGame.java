@@ -35,9 +35,6 @@ public class StartGame {
         primaryStage = givenStage;
         openMenu();
         musicTimer = new Timeline(new KeyFrame(Duration.millis(2000), event -> {
-            System.out.println("Status: " + SONGS.get(songIndex).getStatus() + 
-                    "\ncurrent time: " + SONGS.get(songIndex).getCurrentTime() + 
-                    "\ntotal duration: " + SONGS.get(songIndex).getTotalDuration());
             if((SONGS.get(songIndex).getCurrentTime().greaterThanOrEqualTo(SONGS.get(songIndex).getTotalDuration()))||
                     (SONGS.get(songIndex).getStatus() == MediaPlayer.Status.READY)){
                 System.out.println("Now playing: " + SONGS.get(songIndex));
