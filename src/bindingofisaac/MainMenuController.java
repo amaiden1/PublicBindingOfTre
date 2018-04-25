@@ -2,6 +2,7 @@ package bindingofisaac;
 
 import static bindingofisaac.Constants.ROOM_HEIGHT;
 import static bindingofisaac.Constants.ROOM_WIDTH;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -61,7 +62,7 @@ public class MainMenuController {
 
     @FXML
     void quitButtonPressed(ActionEvent event) {
-        
+        Platform.exit();
     }
     
     @FXML
