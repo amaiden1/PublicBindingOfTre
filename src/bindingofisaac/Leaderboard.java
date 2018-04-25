@@ -70,20 +70,16 @@ public class Leaderboard {
         scoresAddPane = new Pane();
     }
     
-    public void rankPlayer(int playerScore){
+    public int rankPlayer(int playerScore){
         int rank = -1;
-        String playerName;
         for(rank = 0; rank < scores.length && !wasRanked; rank++){
             if(playerScore > scores[rank]){
-                playerName = promptNameInput();
-                refactorScores(rank, playerScore, playerName);
+                //playerName = promptNameInput();
+                //refactorScores(rank, playerScore, playerName);
                 wasRanked = true;
             }
         }
-        if(rank < scores.length){
-            System.out.println("rank is < than the other ranks");
-            overwriteScores();
-        }
+        return rank;
     }
     
     public String promptNameInput(){
