@@ -36,7 +36,6 @@ public class Leaderboard {
     private int[] scores = new int[10];
     private VBox scoresPane;
     private VBox scoresBox;
-    private Pane scoresAddPane;
     private boolean wasRanked;
     
     public Leaderboard(){
@@ -66,8 +65,7 @@ public class Leaderboard {
         scoresBox.setAlignment(Pos.CENTER);
         scoresBox.setPadding(new Insets(10,10,10,10));
         scoresPane.getChildren().add(scoresBox);
-        
-        scoresAddPane = new Pane();
+
     }
     
     public int rankPlayer(int playerScore){
