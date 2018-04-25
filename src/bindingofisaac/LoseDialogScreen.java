@@ -14,7 +14,6 @@ import java.io.IOException;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
@@ -71,7 +70,7 @@ public class LoseDialogScreen {
 		mainMenuButton.setTextFill(Paint.valueOf("WHITE"));
 		mainMenuButton.setOnAction(event -> {
 			try {
-				new StartGame(primaryStage);
+				new GameStarter(primaryStage);
 			} catch (IOException e) {
 				System.out.println("Unable to start a new game: " + e.getMessage());
 			}
@@ -157,7 +156,7 @@ public class LoseDialogScreen {
 				if(event.getCode() == KeyCode.ENTER) {
 					try {
 						commitScore(letter1.getText() + letter2.getText() + letter3.getText());
-						new StartGame(primaryStage);
+						new GameStarter(primaryStage);
 					} catch (IOException e) {
 						System.out.println("Unable to start a new game: " + e.getMessage());
 					}
@@ -167,7 +166,7 @@ public class LoseDialogScreen {
 			mainMenuButton.setOnAction(event -> {
 				try {
 					commitScore(letter1.getText() + letter2.getText() + letter3.getText());
-					new StartGame(primaryStage);
+					new GameStarter(primaryStage);
 				} catch (IOException e) {
 					System.out.println("Unable to start a new game: " + e.getMessage());
 				}
@@ -180,7 +179,7 @@ public class LoseDialogScreen {
 	}
 
 	private void commitScore(String name) {
-		System.out.println("refactor scores runs");
+		if (Main.DEBUG) System.out.println("refactor scores runs");
 		leaderboard.refactorScores(rank, floorLevel, name);
 		leaderboard.overwriteScores();
 	}

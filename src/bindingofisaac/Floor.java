@@ -54,7 +54,7 @@ public class Floor {
         Room chosenRoom = null;
         do{
             chosenRoom = thisFloor.get(rand.nextInt(thisFloor.size()));
-            System.out.println("Stair " + chosenRoom.toString());
+            if (Main.DEBUG) System.out.println("Stair " + chosenRoom.toString());
         }while(chosenRoom == spawnRoom);
         stairRoom = chosenRoom;
     }
@@ -64,10 +64,10 @@ public class Floor {
         Room chosenRoom = null;
         do{
             chosenRoom = thisFloor.get(rand.nextInt(thisFloor.size()));
-            System.out.println("Item " + chosenRoom.toString());
+	        if (Main.DEBUG) System.out.println("Item " + chosenRoom.toString());
         }while(chosenRoom == spawnRoom || chosenRoom == stairRoom);
         itemRoom = chosenRoom;
-        System.out.println("list size: " + possibleItems.size());
+	    if (Main.DEBUG) System.out.println("list size: " + possibleItems.size());
         itemRoom.setItem(possibleItems.get(rand.nextInt(possibleItems.size()))); //there was an exception here
     }
 
@@ -78,7 +78,7 @@ public class Floor {
         if(Main.player.getCurrentRoom().getRoomPane() == stairRoom.getRoomPane()&&
             (Main.player.getImageView().getBoundsInParent().intersects(stairs.getBoundsInParent()) && stairs.getImage() == STAIRS)){ // if the player is in stair room and is touching the (visible) stairs
             Main.player.getGame().setIsFloorFinished(true);
-            System.out.println("floorLevel: " + Main.player.getGame().getFloorLevel());
+	        if (Main.DEBUG) System.out.println("floorLevel: " + Main.player.getGame().getFloorLevel());
         }
     }
 
@@ -200,7 +200,7 @@ public class Floor {
         }
         }
         catch(Exception e){
-            System.out.println(e.getMessage());
+	        if (Main.DEBUG) System.out.println(e.getMessage());
         }
         
     }

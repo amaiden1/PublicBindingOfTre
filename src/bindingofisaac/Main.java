@@ -17,6 +17,11 @@ import javafx.stage.Stage;
 public class Main extends Application{
 
 	/*
+	 * Set to true to enable global debug mode.
+	 */
+	protected static boolean DEBUG = false;
+
+	/*
 	 * The field for Player is intentionally protected and static.
 	 * This is necessary as many methods specific to the player are
 	 * frequently accessed, and it is infeasible to ensure that the
@@ -26,7 +31,7 @@ public class Main extends Application{
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception{
-		StartGame start = new StartGame(primaryStage);
+		GameStarter start = new GameStarter(primaryStage);
 	}
 	
 	/**

@@ -91,7 +91,7 @@ public class MiniMap {
 	public void updateMap(int oldX, int oldY, int x, int y) {
 		grid[oldX][oldY].setBackground(ROOM);
 		grid[x][y].setBackground(CURRENT);
-		System.out.println("updateMap fired, grid x: " + x + " grid y: " + y);
+		if (Main.DEBUG) System.out.println("updateMap fired, grid x: " + x + " grid y: " + y);
 	}
 
 	/**

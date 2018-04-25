@@ -28,8 +28,7 @@ import java.util.ArrayList;
  * cycle count changed. All ticks in the collection can be started, stopped,
  * restarted, or removed.
  *
- * @author Nolan
- * @version 20180314-1
+ * @author Nolan Ierardi
  */
 
 public class TickTimer {
@@ -38,6 +37,9 @@ public class TickTimer {
 	private Timeline mainTimeline;
 	private int currentTickIndex;
 
+	/**
+	 * Constructor for TickTimer.
+	 */
 	public TickTimer() {
 		ticks = new ArrayList<>();
 		mainTimeline = new Timeline();
@@ -63,7 +65,6 @@ public class TickTimer {
 		KeyFrame cKeyFrame = new KeyFrame(Duration.millis(duration), onTickEvent);
 		Timeline cTimeline = new Timeline(cKeyFrame);
 		cTimeline.setCycleCount(cycleCount);
-		//cTimeline.getKeyFrames().add(currentTickIndex, cKeyFrame);
 		ticks.add(cTimeline);
 
 		int tIndexTemp = currentTickIndex;
@@ -77,9 +78,7 @@ public class TickTimer {
 	 * @param duration the duration in milliseconds the tick should last, per loop (cycle)
 	 * @param cycleCount the amount of times the tick should play before finishing
 	 *                   (note that Timeline.INDEFINITE is acceptable here)
-	 * @param onTickEvent the EventHandler that should run each tick. Per standard format,
-	 *                    this should be an ActionEvent EventHandler, and must implement the
-	 *                    handle(ActionEvent event) method
+	 * @param onTickEvent the EventHandler that should run at the completion of each tick
 	 * @return the index of this tick in the ticks list. This is necessary if you want to
 	 *         play, pause, or stop this individual tick later on. If you do not capture this
 	 *         value, it is still possible to interact with the tick using playAll() and stopAll().
@@ -99,6 +98,11 @@ public class TickTimer {
 		ticks.remove(index);
 	}
 
+	/**
+	 * Stops the tick at the passed index and sets it to null.
+	 * This keeps the indices in the list intact.
+	 * @param index the index of the tick to remove
+	 */
 	public void removeNull(int index) {
 		if (ticks.get(index) != null) {
 			stop(index);
@@ -120,8 +124,9 @@ public class TickTimer {
 	 * @param index the index of the tick to play
 	 */
 	public void play(int index) {
-            if(ticks.get(index) != null)
-		ticks.get(index).play();
+		if(ticks.size() > 0 && ticks.get(index) != null) {
+			ticks.get(index).play();
+		}
 	}
 
 	/**

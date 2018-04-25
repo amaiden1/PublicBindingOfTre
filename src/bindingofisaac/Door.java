@@ -92,7 +92,7 @@ public class Door {
 	 */
 	public void checkCollision(){
 		if((Main.player.getImageView().getBoundsInParent().intersects(img.getBoundsInParent())) && Main.player != null && isOpen){
-			System.out.println(destination);
+			if (Main.DEBUG) System.out.println(destination);
 			Main.player.getCurrentRoom().getRoomPane().getChildren().remove(Main.player.getImageView());
 			int previousRoomX = Main.player.getCurrentRoom().getX();
 			int previousRoomY = Main.player.getCurrentRoom().getY();

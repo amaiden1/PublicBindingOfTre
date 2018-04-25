@@ -40,9 +40,9 @@ public class PlayerBullet extends Bullet {
 	        // Must be a regular for loop to avoid ConcurrentModificationExceptions
             for (int i = 0 ; i < enemiesToCheck.size() ; i++) {
                 if (super.getBulletSprite().getBoundsInParent().intersects(enemiesToCheck.get(i).getSprite().getBoundsInParent())) {
-                    System.out.println("intersects");
+                    if (Main.DEBUG) System.out.println("intersects");
 	                enemiesToCheck.get(i).takeDamage(Main.player.getDamage());
-                    System.out.println(this +" despawn called to collision");
+                    if (Main.DEBUG) System.out.println(this +" despawn called to collision");
                     if (!this.alreadyDespawned) {
                     	despawn();
                     	this.alreadyDespawned = true;

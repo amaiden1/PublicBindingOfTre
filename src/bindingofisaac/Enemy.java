@@ -92,7 +92,7 @@ public class Enemy {
 		if(isDead()){
 			Main.player.getCurrentRoom().getRoomPane().getChildren().remove(sprite);
 			stop();
-			System.out.println("dead");
+			if (Main.DEBUG) System.out.println("enemy dead");
 		}
 	}
 	public int getTickIndex(){
@@ -124,18 +124,18 @@ public class Enemy {
 	}
 	
 	public void updatePos(){
-		System.out.println("you need to override the updatePos method in Enemy you fool!");
+		throw new UnsupportedOperationException("updatePos() must be overridden in the subclass.");
 	}
 
 	public void shoot() {
-		//override me!
+
 	}
         
 	public void start(){
-		//override me!
+		throw new UnsupportedOperationException("start() must be overridden in the subclass.");
 	}
         
 	public void stop(){
-		//override me!
+		throw new UnsupportedOperationException("stop() must be overridden in the subclass.");
 	}
 }

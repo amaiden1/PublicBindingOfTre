@@ -117,10 +117,9 @@ public class LayoutGenerator {
 				default: System.out.println("this is not a valid direction");
 					break;
 			}
-			System.out.println("nextX, nextY = (" + nextX + "," + nextY + ")");
+			if (Main.DEBUG) System.out.println("nextX, nextY = (" + nextX + "," + nextY + ")");
                         
 		}while(!isValid || containsRoom(nextX, nextY));
-		System.out.println("loop complete");
 		roomsXList.add(nextX);
 		roomsYList.add(nextY);
 		miniMap.setTile(ROOM, nextX, nextY);

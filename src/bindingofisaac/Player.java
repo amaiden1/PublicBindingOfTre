@@ -222,10 +222,10 @@ public class Player {
     public void takeDamage(int delta){
 		if (canTakeDamage) {
 			health -= delta;
-			System.out.println("took damage: health is now: " + health);
+			if (Main.DEBUG) System.out.println("took damage: health is now: " + health);
 			if (health <= 0) {
 				// player is dead. GAME OVER
-				System.out.println("PLAYER IS DEAD");
+				if (Main.DEBUG) System.out.println("PLAYER IS DEAD");
 				Main.player.getGame().gameOver();
 			}
 			canTakeDamage = false;

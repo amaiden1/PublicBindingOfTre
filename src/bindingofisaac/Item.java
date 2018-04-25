@@ -52,7 +52,7 @@ public class Item {
 		timerIndex = Main.player.getGame().getController().getTimer().addTick(10, Timeline.INDEFINITE, event -> {
         	if(Main.player.getImageView().getBoundsInParent().intersects(itemImg.getBoundsInParent())){
 				pickUpItem();
-				System.out.println(Main.player.getStats());
+		        if (Main.DEBUG) System.out.println(Main.player.getStats());
 			}
         });
 	}

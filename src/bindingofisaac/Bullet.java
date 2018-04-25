@@ -99,7 +99,6 @@ public class Bullet {
 		bulletSprite.relocate(x, y);
 		checkCollision();
 		if (totalProgress >= travelTime) {
-			System.out.println(this + " despawn called due to travel time");
 			if (!alreadyDespawned) {
 				despawn();
 			}

@@ -16,11 +16,14 @@ import javafx.beans.value.ObservableValue;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
+/**
+ * Represents a room that the player travels through.
+ */
 public class Room {
 
 	private boolean isOccupied,
-                        hasStairs;
-        private BooleanProperty isCleared;
+			hasStairs;
+	private BooleanProperty isCleared;
 	private boolean[] hasDoors;
 	private ImageView
 			innerBack,
@@ -40,7 +43,12 @@ public class Room {
 			numDoors,
 			ix, // artificial index x
 			iy; // artificial index y
-	
+
+	/**
+	 * Constructor for Room.
+	 * @param x the x position of this room in the map
+	 * @param y the y position of this room in the map
+	 */
 	public Room(int x, int y){
 		ix = x; iy = y;
                 hasStairs = false;
@@ -75,6 +83,13 @@ public class Room {
 		
 	}
 
+	/**
+	 * Sets the doors in the room.
+	 * @param doors boolean array of whether or not the door exists at that direction
+	 * @param floor the floor that this room is on
+	 * @param roomX the x position of the room
+	 * @param roomY the y position of the room
+	 */
 	public void setDoors(boolean[] doors, Floor floor, int roomX, int roomY) {
 		// code to create doors and add them
 		if (doors[0]) {
@@ -107,62 +122,84 @@ public class Room {
 		}
 		
 	}
-	
+
+	/**
+	 * Returns an ArrayList of doors in the room.
+	 * @return ArrayList of doors in the room
+	 */
 	public ArrayList<Door> getDoors(){
 		return doorsList;
 	}
-	
+
+	/**
+	 * Returns the height of the room.
+	 * @return height of room
+	 */
     public double getHeight(){
         return roomPane.getHeight();
     }
-        
-    public double getWidth(){
+
+	/**
+	 * Returns the width of the room.
+	 * @return width of room
+	 */
+	public double getWidth(){
         return roomPane.getWidth();
     }
-        
+
+	/**
+	 * Returns the width of the room.
+	 * @return width of room
+	 */
 	public Pane getRoomPane(){
 		return roomPane;
 	}
-	
+
+	/**
+	 * Returns the x index of the room.
+	 * @return x position of room
+	 */
 	public int getX(){
 		return ix;
 	}
-	
+
+	/**
+	 * Returns the y index of the room.
+	 * @return y position of room
+	 */
 	public int getY(){
 		return iy;
 	}
-	
+
+	/**
+	 * Returns the number of doors in this room.
+	 * @return number of doors in room
+	 */
 	public int getNumDoors(){
 		return numDoors;
 	}
 
+	/**
+	 * Sets the given ArrayList of Enemies to be the enemies.
+	 * @param enemies Enemies to use
+	 */
 	public void setEnemies(ArrayList<Enemy> enemies) {
 		this.enemies = enemies;
 	}
 
+	/**
+	 * Returns an ArrayList of Enemies in this room.
+	 * @return ArrayList of Enemies in room
+	 */
 	public ArrayList<Enemy> getEnemies() {
 		// code to get enemies
 		return enemies;
 	}
 
-	public ArrayList<ImageView> getEnemyImageViews() {
-		// code to get enemy image views
-		return new ArrayList<>();
-	}
-
-	public void removeEnemy(Enemy enemy) {
-		try{
-                    enemies.remove(enemy);
-		}
-		catch(Exception e){
-                    System.out.println(e.getMessage());
-		}
-	}
-
-	public boolean isOccupied() {
-		return isOccupied;
-	}
-
+	/**
+	 * Sets whether or not this room is occupied.
+	 * @param occupied whether or not this room is occupied
+	 */
 	public void setOccupied(boolean occupied) {
             if(occupied && enemies != null && enemies.size() > 0){
                 for(Enemy enemy : enemies){
@@ -183,10 +220,10 @@ public class Room {
             isOccupied = occupied;
 	}
 
-	public boolean isCleared() {
-            return isCleared.get();
-	}
-
+	/**
+	 * Sets whether or not this room is cleared.
+	 * @param cleared whether or not this room is cleared
+	 */
 	public void setCleared(boolean cleared) {
             if(hasStairs && cleared){
                 Main.player.getGame().getFloor().unlock();
@@ -194,29 +231,44 @@ public class Room {
             isCleared.set(cleared);
 	}
 
+	/**
+	 * Sets the item contained in this room.
+	 * @param givenItem the Item in this room
+	 */
 	public void setItem(Item givenItem) {
 		item = givenItem;
                 roomPane.getChildren().add(item.getImageView());
 	}
 
-	public Item getItem() {
-		// code to return item
-		return null;
-	}
-        
-    public void setX(int x){
+	/**
+	 * Sets the x position of this room.
+	 * @param x x position of this room
+	 */
+	public void setX(int x){
         ix = x;
     }
-        
-    public void setY(int y){
+
+	/**
+	 * Sets the y position of this room.
+	 * @param y y position of this room
+	 */
+	public void setY(int y){
         iy = y;
     }
-	
+
+	/**
+	 * Returns a string containing the room's coordinates.
+	 * @return room coordinates in displayable format
+	 */
 	public String toString(){
-		return "Room co-ordinates: " + ix + " " + iy;
+		return "Room coordinates: " + ix + " " + iy;
 	}
-    
-    public void setHasStairs(boolean newState){
+
+	/**
+	 * Sets if this room has stairs.
+	 * @param newState whether or not this room has stairs
+	 */
+	public void setHasStairs(boolean newState){
         hasStairs = newState;
     }
 }

@@ -84,7 +84,7 @@ public class Leaderboard {
                 wasRanked = true;
             }
         }
-        System.out.println("rank: " + rank);
+		if (Main.DEBUG) System.out.println("rank: " + rank);
         return rank - 1;
     }
 
