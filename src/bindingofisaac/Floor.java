@@ -24,7 +24,7 @@ public class Floor {
     private Room itemRoom;
     private ArrayList<Item> possibleItems;
     private ArrayList<Enemy> possibleEnemies;
-    private ImageView stairs = new ImageView(STAIRS);
+    private ImageView stairs = new ImageView(LOCKED_STAIRS);
     
     public Floor(ArrayList<Room> givenRooms){
         thisFloor = givenRooms;
@@ -37,10 +37,9 @@ public class Floor {
         stairs.setFitHeight(70);
         stairs.setFitWidth(70);
         stairRoom.getRoomPane().getChildren().add(stairs);
+        stairRoom.setHasStairs(true);
         stairs.relocate((ROOM_WIDTH + stairs.getFitWidth()) / 2, (ROOM_HEIGHT + stairs.getFitHeight()) / 2);
         stairs.setVisible(true);
-
-        
         
     }
 
@@ -68,7 +67,7 @@ public class Floor {
 
     public void checkStairsCollision()	{
         if(Main.player.getCurrentRoom().getRoomPane() == stairRoom.getRoomPane()&&
-            (Main.player.getImageView().getBoundsInParent().intersects(stairs.getBoundsInParent()) && stairs.isVisible())){ // if the player is in stair room and is touching the (visible) stairs
+            (Main.player.getImageView().getBoundsInParent().intersects(stairs.getBoundsInParent()) && stairs.getImage() == STAIRS)){ // if the player is in stair room and is touching the (visible) stairs
             Main.player.getGame().setIsFloorFinished(true);
             System.out.println("floorLevel: " + Main.player.getGame().getFloorLevel());
         }
@@ -138,6 +137,9 @@ public class Floor {
                     enemy.getSprite().relocate(enemy.getX(), enemy.getY());
                 }
                 room.setEnemies(enemies);
+                if(enemies.size() == 0){
+                    room.setCleared(true);
+                }
             }
         }
     }
@@ -171,5 +173,9 @@ public class Floor {
             System.out.println(e.getMessage());
         }
         
+    }
+    
+    public void unlock(){
+        stairs.setImage(STAIRS);
     }
 }

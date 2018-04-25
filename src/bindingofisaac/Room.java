@@ -21,7 +21,8 @@ import javafx.scene.layout.Pane;
 
 public class Room {
 
-	private boolean isOccupied;
+	private boolean isOccupied,
+                        hasStairs;
         private BooleanProperty isCleared;
 	private boolean[] hasDoors;
 	private ImageView
@@ -45,6 +46,7 @@ public class Room {
 	
 	public Room(int x, int y){
 		ix = x; iy = y;
+                hasStairs = false;
 		hasDoors = new boolean[]{false,false,false,false}; //N, E, S, W
 		numDoors = 0;
 		doorsList = new ArrayList<>();
@@ -189,6 +191,9 @@ public class Room {
 	}
 
 	public void setCleared(boolean cleared) {
+            if(hasStairs && cleared){
+                Main.player.getGame().getFloor().unlock();
+            }
             isCleared.set(cleared);
 	}
 
@@ -213,4 +218,8 @@ public class Room {
 	public String toString(){
 		return "Room co-ordinates: " + ix + " " + iy;
 	}
+    
+    public void setHasStairs(boolean newState){
+        hasStairs = newState;
+    }
 }
