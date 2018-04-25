@@ -37,8 +37,10 @@ public class Leaderboard {
     private VBox scoresPane;
     private VBox scoresBox;
     private Pane scoresAddPane;
+    private boolean wasRanked;
     
     public Leaderboard(){
+        wasRanked = false;
         try{
             Scanner fileScan = new Scanner(new File("./src/files/High_Scores.txt"));
             Scanner lineScan;
@@ -57,7 +59,7 @@ public class Leaderboard {
             System.out.println("high scores file not found");
         }
         scoresPane = new VBox();
-        scoresPane.setAlignment(Pos.CENTER);
+        scoresPane.setAlignment(Pos.TOP_CENTER);
         scoresPane.setBackground(new Background(new BackgroundFill(Paint.valueOf("BLACK"), CornerRadii.EMPTY, Insets.EMPTY)));
         scoresPane.setPrefSize(500, ROOM_HEIGHT);
         scoresBox = new VBox();
@@ -70,13 +72,12 @@ public class Leaderboard {
     
     public void rankPlayer(int playerScore){
         int rank = -1;
-        boolean flag = false;
         String playerName;
-        for(rank = 0; rank < scores.length && !flag; rank++){
+        for(rank = 0; rank < scores.length && !wasRanked; rank++){
             if(playerScore > scores[rank]){
                 playerName = promptNameInput();
                 refactorScores(rank, playerScore, playerName);
-                flag = true;
+                wasRanked = true;
             }
         }
         if(rank < scores.length){
@@ -86,7 +87,7 @@ public class Leaderboard {
     }
     
     public String promptNameInput(){
-        //have player insert name
+        
         return "ABA";
     }
     
@@ -128,6 +129,11 @@ public class Leaderboard {
             score.setFont(Font.font(30));
             scoresBox.getChildren().add(score);
         }
+        
         return scoresPane;
+    }
+    
+    public boolean getWasRanked(){
+        return wasRanked;
     }
 }
