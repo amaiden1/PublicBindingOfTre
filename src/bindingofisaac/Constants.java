@@ -36,6 +36,7 @@ public final class Constants {
 
 	public static final Image // Locked_Door.png, Open_Door.png
 			LOCKED_DOOR = new Image("/img/Locked_Door.png"),
+			LOCKED_STAIRS = new Image("/img/Locked_Stairs.png"),
 			ROOM_PLAYABLE_AREA = new Image("/img/Playable_Area.png"),
 			ROOM_WALLS = new Image("/img/Walls.png"),
 			OPEN_DOOR = new Image("/img/Open_Door.png"),
