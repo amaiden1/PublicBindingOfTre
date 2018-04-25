@@ -1,14 +1,12 @@
 package bindingofisaac;
 
 import static bindingofisaac.Constants.*;
-import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
 import java.util.Random;
 import javafx.geometry.Insets;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
 
 public class LayoutGenerator {

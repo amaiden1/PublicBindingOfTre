@@ -5,9 +5,7 @@
  */
 package bindingofisaac;
 
-import com.sun.deploy.net.UpdateTracker;
-import com.sun.jmx.snmp.agent.SnmpMibOid;
-import javafx.animation.Timeline;
+
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 
@@ -17,9 +15,6 @@ import javafx.scene.Scene;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import org.omg.PortableInterceptor.INACTIVE;
-
-import java.awt.font.TextHitInfo;
 
 /**
  *

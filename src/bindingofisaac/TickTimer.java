@@ -182,7 +182,8 @@ public class TickTimer {
 	 */
 	public void stopAll() {
 		for (Timeline tick : ticks) {
-			tick.stop();
+			if(tick != null)
+                            tick.stop();
 		}
 	}
 

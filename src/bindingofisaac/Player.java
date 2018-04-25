@@ -42,7 +42,6 @@ public class Player {
 
 	public void postInit() {
 		ifTickIndex = Main.player.getGame().getController().getTimer().addTick(1000, 1, event -> {
-			System.out.println("iframe timeline finished, can now take damage");
 			canTakeDamage = true;
 			playerImage.setOpacity(1);
 		});

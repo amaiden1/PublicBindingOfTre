@@ -15,15 +15,15 @@ public class Item {
 	private int timerIndex;
 
 	public Item(String name, ImageView img, int health, double speed, int damage, double attackSpeed) {
-		itemName = name;
-		healthDelta = health;
-		speedDelta = speed;
-		damageDelta = damage;
-		attackSpeedDelta = attackSpeed;
-		itemImg = img;
-        itemImg.relocate(ROOM_WIDTH/ 2, ROOM_HEIGHT / 2);
-        itemImg.setFitHeight(50);
-        itemImg.setFitWidth(50);
+            itemName = name;
+            healthDelta = health;
+            speedDelta = speed;
+            damageDelta = damage;
+            attackSpeedDelta = attackSpeed;
+            itemImg = img;
+            itemImg.relocate(ROOM_WIDTH/ 2, ROOM_HEIGHT / 2);
+            itemImg.setFitHeight(50);
+            itemImg.setFitWidth(50);
 		timerIndex = Main.player.getGame().getController().getTimer().addTick(10, Timeline.INDEFINITE, event -> {
         	if(Main.player.getImageView().getBoundsInParent().intersects(itemImg.getBoundsInParent())){
 				pickUpItem();
