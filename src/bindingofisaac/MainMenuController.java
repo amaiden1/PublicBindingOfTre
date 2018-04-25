@@ -5,8 +5,10 @@ import static bindingofisaac.Constants.ROOM_WIDTH;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class MainMenuController {
@@ -31,7 +33,14 @@ public class MainMenuController {
     
     @FXML
     void leaderboardsButtonPressed(ActionEvent event) {
+        Stage temporaryStage = new Stage();
+        Pane primaryPane = new Pane();
+        Scene lbScene = new Scene(primaryPane);
+        temporaryStage.setScene(lbScene);
         
+        Leaderboard board = new Leaderboard();
+        primaryPane.getChildren().add(board.display());
+        temporaryStage.show();
     }
     
     @FXML

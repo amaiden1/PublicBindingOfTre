@@ -3,7 +3,6 @@ package bindingofisaac;
 import static bindingofisaac.Constants.ROOM_HEIGHT;
 import static bindingofisaac.Constants.ROOM_WIDTH;
 import java.io.IOException;
-import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -33,8 +32,6 @@ public class LoseDialogScreen {
 		outerBox.setAlignment(Pos.CENTER);
 		outerBox.setBackground(new Background(new BackgroundFill(Paint.valueOf("BLACK"), CornerRadii.EMPTY, Insets.EMPTY)));
 		outerBox.setPrefSize(ROOM_WIDTH, ROOM_HEIGHT);
-
-		//this.background = new ImageView(background);
 
 		title = new Text("GAME OVER!");
 		title.setFont(Font.font(null, FontWeight.BOLD, FontPosture.REGULAR, 60));
