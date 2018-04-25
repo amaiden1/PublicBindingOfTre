@@ -46,6 +46,7 @@ public class Item {
 		Main.player.addSpeed(speedDelta);
 		Main.player.addAttackSpeed(attackSpeedDelta);
 		Main.player.getCurrentRoom().getRoomPane().getChildren().remove(itemImg);
+		Main.player.getGame().getLg().getMiniMap().updateHud();
 		Main.player.getGame().displayTemporaryPane(true, new ItemDialogScreen(this).getPane());
 		stopTimer();
 	}
