@@ -15,8 +15,8 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 
 /**
- *
- * @author amaiden1
+ * controller class for the player
+ * @author Austin Maiden and Nolan Ierardi
  */
 public class PlayerController {
     
@@ -31,6 +31,11 @@ public class PlayerController {
 	private int shootTimerIndex;
 	private Image bulletImg;
     
+    /**
+     * creates the controller and key-logger of the player
+     * @param scene the scene that the player is on
+     * @param player the player the controller is controlling
+     */
     public PlayerController(Scene scene, Player player){
         this.player = player;
         bulletImg = LIGHTNING_BOLT;
@@ -117,6 +122,9 @@ public class PlayerController {
 
     }
     
+    /**
+     * updates the location of the player
+     */
     public void updatePlayer() {
         double deltaX = 0;
         double deltaY = 0;
@@ -159,11 +167,21 @@ public class PlayerController {
 		
     }
     
+    /**
+     * checks the bounds of the player to make sure they are not off the map
+     * @param x the x position of the player
+     * @param y the y position of the player
+     * @return boolean representing whether or not the player is in the bounds of the room
+     */
     public boolean checkBounds(double x, double y){
     	return !((x <= 60 || x >= ROOM_WIDTH - 120 || y <= 70 || y >= ROOM_HEIGHT - 130));
     }
 	
-	public TickTimer getTimer(){
+    /**
+     * getter for the tick timer
+     * @return the TickTimer that contains all the timelines
+     */
+    public TickTimer getTimer(){
 		return tt;
 	}
 

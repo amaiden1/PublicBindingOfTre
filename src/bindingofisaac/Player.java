@@ -174,28 +174,52 @@ public class Player {
 		return direction;
 	}
 
-	public ImageView getImageView() {
+    /**
+     * getter for the player's imageview
+     * @return the imageview of the player
+     */
+    public ImageView getImageView() {
 		return currentImg;
 	}
 	
-	public void addHealth(int delta){
+    /**
+     * increases health of player
+     * @param delta amount to add to the health
+     */
+    public void addHealth(int delta){
 		maxHealth += delta;
 		health += delta;
 	}
 
-	public void addDamage(int delta) {
+    /**
+     * increases damage of the player
+     * @param delta the amount to increase damage by
+     */
+    public void addDamage(int delta) {
 		damage += delta;
 	}
 	
-	public void addSpeed(double delta){
+    /**
+     * increases the player's speed
+     * @param delta the amount to increase speed by
+     */
+    public void addSpeed(double delta){
 		speed += delta;
 	}
 	
-	public void addAttackSpeed(double delta){
+    /**
+     * increases the player's attack speed
+     * @param delta the amount to increment speed by
+     */
+    public void addAttackSpeed(double delta){
 		attackSpeed += delta;
 	}
 
-	public void takeDamage(int delta){
+    /**
+     * reduces players health
+     * @param delta amount to reduce health by
+     */
+    public void takeDamage(int delta){
 		if (canTakeDamage) {
 			health -= delta;
 			System.out.println("took damage: health is now: " + health);
@@ -211,11 +235,18 @@ public class Player {
 		}
 	}
 	
-	public void refillHealth(){
+    /**
+     * fills health to the max
+     */
+    public void refillHealth(){
 		health = maxHealth;
 	}
 	
-	public String getStats(){
+    /**
+     * getter for the player's statistics in a string
+     * @return string representing the stats of the player
+     */
+    public String getStats(){
 		return ("Player max health: " + maxHealth +
 				"\nPlayer current health: " + health +
 				"\nPlayer damage: " + damage +

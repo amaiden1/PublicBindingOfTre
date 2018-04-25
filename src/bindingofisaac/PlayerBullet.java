@@ -11,13 +11,23 @@ import javafx.scene.image.Image;
 import java.util.ArrayList;
 
 /**
- *
- * @author Austin
+ * bullet that is used only by the player
+ * @author Austin Maiden and Nolan Ierardi
  */
 public class PlayerBullet extends Bullet {
 
 	private boolean alreadyDespawned;
 
+    /**
+     * creates the players bullet
+     * @param startX starting location on x axis of the bullet
+     * @param startY starting location on y axis of the bullet
+     * @param destinationX ending location on x axis of the bullet
+     * @param destinationY ending location on x axis of the bullet
+     * @param travelTime how long the bullet will travel for
+     * @param tickLength how often the bullet updates
+     * @param imageSrc the image of the bullet
+     */
     public PlayerBullet(double startX, double startY, double destinationX, double destinationY, int travelTime, int tickLength, Image imageSrc){
             super(startX, startY, destinationX, destinationY, travelTime, tickLength, imageSrc);
             this.alreadyDespawned = false;
